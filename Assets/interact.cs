@@ -1,0 +1,228 @@
+﻿using UnityEngine;
+using TMPro;
+using System.Collections.Generic; // Thêm dòng này
+
+public class InteractableObject : MonoBehaviour
+{
+    // Cần phải gán một ID duy nhất cho mỗi vật phẩm trong Inspector
+    // Ví dụ: "sach_cu", "chia_khoa", v.v.
+    public string uniqueId;
+    public string spawnActionId; // ID duy nhất cho hành động spawn này
+
+    // Cài đặt cho tương tác đặc biệt (ví dụ: mở cửa)
+    public bool isSpecialInteraction = false;
+    public string requiredItemId; // ID của item cần có trong kho đồ để tương tác đặc biệt
+    public string specialInteractionText = "You have something, use it.";
+
+    // Cài đặt cho tương tác đặc biệt mới (tạo vật thể)
+    public bool isSpecialSpawnInteraction = false;
+    public GameObject objectToSpawnPrefab;
+    public Transform spawnPoint;
+    public string afterInteractionText = "You put it down, would you like to use it";
+
+    // Cài đặt UI và dữ liệu
+    public Item itemData; // Nếu là một món đồ có thể nhặt, gán itemData vào đây
+    public string myText = "My bookshelf.";
+
+    // Cài đặt trạng thái
+    private bool playerInRange = false;
+    private bool isInteracting = false;
+    private int interactionState = 0; // 0: không tương tác, 1: thoại đầu, 2: thoại thứ hai
+
+    // Tham chiếu đến script nhân vật
+    private Character_movement playerController;
+    private Animator playerAnimator;
+
+    void Start()
+    {
+        // Kiểm tra xem vật phẩm này đã được nhặt chưa
+        if (GameManager.instance.collectedItemIds.Contains(uniqueId))
+        {
+            // Nếu đã nhặt, hủy bỏ đối tượng ngay lập tức
+            Destroy(gameObject);
+            return;
+        }
+
+        // Kiểm tra xem hành động spawn đã hoàn thành chưa
+        if (GameManager.instance.completedSpawnActions.Contains(spawnActionId))
+        {
+            // Nếu đã spawn, hủy đối tượng ban đầu để tránh trùng lặp
+            Destroy(gameObject);
+            return;
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+            playerController = other.GetComponent<Character_movement>();
+            playerAnimator = other.GetComponent<Animator>();
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            EndInteraction();
+        }
+    }
+
+    void Update()
+    {
+        // Chỉ tương tác khi nhân vật ở trong vùng và bấm E
+        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        {
+            if (!isInteracting)
+            {
+                // Bắt đầu quá trình tương tác
+                StartInteraction();
+            }
+            else
+            {
+                // Tiếp tục/kết thúc tương tác dựa vào trạng thái hiện tại
+                ContinueInteraction();
+            }
+        }
+    }
+
+    void StartInteraction()
+    {
+        isInteracting = true;
+        interactionState = 1;
+
+        // Hiển thị text đầu tiên
+        // Lấy tham chiếu trực tiếp từ GameManager ngay khi cần
+        if (GameManager.instance != null && GameManager.instance.interactionText != null)
+        {
+            GameManager.instance.interactionText.gameObject.SetActive(true);
+            GameManager.instance.interactionText.text = myText;
+        }
+
+        // Khóa chuyển động nhân vật
+        if (playerController != null)
+        {
+            playerController.canMove = false;
+        }
+        if (playerAnimator != null)
+        {
+            playerAnimator.SetBool("IsMoving", false);
+        }
+    }
+
+    void ContinueInteraction()
+    {
+        // Xử lý tương tác thông thường (nhặt đồ hoặc kết thúc thoại)
+        if (itemData != null)
+        {
+            if (interactionState == 1)
+            {
+                interactionState = 2;
+                if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                {
+                    GameManager.instance.interactionText.text = "Do you want to take this " + itemData.itemName + "? (Press E to take)";
+                }
+            }
+            else if (interactionState == 2)
+            {
+                InventoryManager.instance.AddItem(itemData);
+                GameManager.instance.collectedItemIds.Add(uniqueId);
+
+                Destroy(gameObject);
+                EndInteraction();
+            }
+        }
+        // Xử lý tương tác đặc biệt (mở cửa)
+        else if (isSpecialInteraction && !isSpecialSpawnInteraction)
+        {
+            if (interactionState == 1)
+            {
+                bool hasRequiredItem = InventoryManager.instance.HasItem(requiredItemId);
+                if (hasRequiredItem)
+                {
+                    interactionState = 3;
+                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    {
+                        GameManager.instance.interactionText.text = specialInteractionText;
+                    }
+                }
+                else
+                {
+                    EndInteraction();
+                }
+            }
+            else if (interactionState == 3)
+            {
+                InventoryManager.instance.RemoveItem(requiredItemId);
+                GameManager.instance.collectedItemIds.Add(uniqueId);
+                Destroy(gameObject);
+                EndInteraction();
+            }
+        }
+        // Xử lý tương tác đặc biệt (tạo vật thể)
+        else if (isSpecialSpawnInteraction)
+        {
+            // Kiểm tra lần nhấn E thứ hai để hiển thị afterInteractionText
+            if (interactionState == 1)
+            {
+                bool hasRequiredItem = InventoryManager.instance.HasItem(requiredItemId);
+                if (hasRequiredItem)
+                {
+                    interactionState = 4;
+                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    {
+                        GameManager.instance.interactionText.text = afterInteractionText;
+                    }
+                }
+                else
+                {
+                    EndInteraction();
+                }
+            }
+            // Kiểm tra lần nhấn E thứ ba để tạo vật thể
+            else if (interactionState == 4)
+            {
+                if (objectToSpawnPrefab != null && spawnPoint != null)
+                {
+                    GameObject spawnedObject = Instantiate(objectToSpawnPrefab, spawnPoint.position, spawnPoint.rotation);
+                    // Giữ lại vật thể đã được sinh ra
+                    DontDestroyOnLoad(spawnedObject);
+                    // Đánh dấu hành động spawn đã hoàn thành
+                    GameManager.instance.completedSpawnActions.Add(spawnActionId);
+                }
+                InventoryManager.instance.RemoveItem(requiredItemId);
+                EndInteraction();
+            }
+            else
+            {
+                EndInteraction();
+            }
+        }
+        // Nếu không phải vật phẩm hoặc đã ở trạng thái 2, kết thúc tương tác
+        else
+        {
+            EndInteraction();
+        }
+    }
+
+    void EndInteraction()
+    {
+        isInteracting = false;
+        interactionState = 0;
+
+        // Tắt text UI
+        if (GameManager.instance != null && GameManager.instance.interactionText != null)
+        {
+            GameManager.instance.interactionText.gameObject.SetActive(false);
+        }
+
+        // Mở khóa chuyển động nhân vật
+        if (playerController != null)
+        {
+            playerController.canMove = true;
+        }
+    }
+}
