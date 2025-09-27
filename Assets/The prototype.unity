@@ -282,20 +282,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 4.3422766, z: 0.981371}
   m_Center: {x: -0.00000047683716, y: 0.7474762, z: -0.71569395}
---- !u!114 &135453404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 135453396}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67c6e239fa466ca44bd1844b23947c7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionText_Book: {fileID: 4695436}
-  myText: 
 --- !u!65 &135453405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -330,23 +316,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueId: 
+  spawnActionId: 
   isSpecialInteraction: 0
   requiredItemId: 
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
+  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
   afterInteractionText: You put it down, would you like to use it
   itemData: {fileID: 0}
-  interactionText: {fileID: 4695436}
   myText: Books, just be there for decoration.
-  interactionTextObjectName: 
---- !u!1 &138303872 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7204322314244816085, guid: a139467ea61ae1847b3e3d9f241f4a90, type: 3}
-  m_PrefabInstance: {fileID: 7972158649541792180}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &138303873 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8881390951061640814, guid: a139467ea61ae1847b3e3d9f241f4a90, type: 3}
@@ -592,7 +573,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9999995, y: 1.4812857, z: 3.5150077}
+  m_Size: {x: 2.2, y: 1.481286, z: 3.515008}
   m_Center: {x: 0, y: -0.60562664, z: -0.75750417}
 --- !u!114 &346423871
 MonoBehaviour:
@@ -642,18 +623,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueId: 
+  spawnActionId: 
   isSpecialInteraction: 0
   requiredItemId: 
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
+  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
   afterInteractionText: You put it down, would you like to use it
   itemData: {fileID: 0}
-  interactionText: {fileID: 4695436}
   myText: I don't think i want to sleep now.
-  interactionTextObjectName: 
 --- !u!1 &355607002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2089681278631474171, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
@@ -693,18 +674,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueId: 
+  spawnActionId: 
   isSpecialInteraction: 0
   requiredItemId: 
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
+  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
   afterInteractionText: You put it down, would you like to use it
   itemData: {fileID: 0}
-  interactionText: {fileID: 4695436}
-  myText: My favourite spot
-  interactionTextObjectName: 
+  myText: My favourite spot.
 --- !u!65 &355607008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -724,7 +705,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 2, z: 2}
+  m_Size: {x: 2.2, y: 2, z: 2.2}
   m_Center: {x: 0.0000009536743, y: 0.00000011920929, z: 0.0000019073486}
 --- !u!1 &440336540 stripped
 GameObject:
@@ -750,22 +731,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.7084045, y: 2.4733384, z: 4.849521}
-  m_Center: {x: 0.35420427, y: -1.9640573, z: -2.3869154}
---- !u!114 &440336548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 440336540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae9161d02e2cfcb4a8558db610ee6608, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionText2: {fileID: 4695436}
-  myText: 
+  m_Size: {x: 2.908405, y: 2.4733384, z: 4.849521}
+  m_Center: {x: 0.3142043, y: -1.9640573, z: -2.3869154}
 --- !u!65 &440336549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -800,18 +767,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueId: 
+  spawnActionId: 
   isSpecialInteraction: 0
   requiredItemId: 
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
+  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
   afterInteractionText: You put it down, would you like to use it
   itemData: {fileID: 0}
-  interactionText: {fileID: 4695436}
   myText: My laptop, don't wanna touch it for now.
-  interactionTextObjectName: 
 --- !u!1 &476969757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3497965556255975921, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
@@ -853,6 +820,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
+  craftingRecipes:
+  - itemA: {fileID: 11400000, guid: b680290f2534580478d8c782b8160009, type: 2}
+    itemB: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}
+    resultItem: {fileID: 11400000, guid: 47535320da483b14c96099118e3edc27, type: 2}
 --- !u!4 &480666779
 Transform:
   m_ObjectHideFlags: 0
@@ -933,6 +904,51 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.2678809, y: 3.6678414, z: 1.7781564}
+  m_Center: {x: 0.36606136, y: 0.8339207, z: 0.11091976}
+--- !u!114 &530608405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530608400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8600636f5746b354481a5e34dd9c205e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 
+  spawnActionId: 
+  isSpecialInteraction: 0
+  requiredItemId: 
+  specialInteractionText: You have something, use it.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  isSpecialSpawnInteraction: 0
+  objectToSpawnPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
+  myText: Fridge.
+--- !u!65 &530608406
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530608400}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -1177,6 +1193,108 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTarget: {fileID: 566550093}
   rotationSpeed: 5
+--- !u!1001 &595475554
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2040312742}
+    m_Modifications:
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -100
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -250
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7297583401858483227, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+      propertyPath: m_Name
+      value: Text_Interact_Brief_Mission
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+--- !u!224 &595475555 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 425590915530696360, guid: 5b41bc297eae7c042a3f3556146c475b, type: 3}
+  m_PrefabInstance: {fileID: 595475554}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &610850637 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8636291169337549904, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
@@ -1201,7 +1319,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.4690793, y: 5.757311, z: 1.9999998}
+  m_Size: {x: 3.569079, y: 5.757311, z: 2.2}
   m_Center: {x: -0.7345379, y: 1.4046016, z: 0.0000009536743}
 --- !u!114 &610850645
 MonoBehaviour:
@@ -1216,18 +1334,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uniqueId: 
+  spawnActionId: 
   isSpecialInteraction: 0
   requiredItemId: 
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
+  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
   afterInteractionText: You put it down, would you like to use it
   itemData: {fileID: 0}
-  interactionText: {fileID: 4695436}
   myText: My wardrobe, nothing much to wear.
-  interactionTextObjectName: 
 --- !u!65 &610850649
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1380,7 +1498,13 @@ MonoBehaviour:
   - {fileID: 1477183613}
   - {fileID: 1511880354}
   - {fileID: 535461264}
-  selectedSlotEffect: {fileID: 138303872}
+  selectedSlotEffect: {fileID: 7972158649541792181}
+  defaultEffectColor: {r: 0.6901961, g: 0, b: 0.007843138, a: 0.43137255}
+  craftingEffectColor: {r: 0, g: 0.6784314, b: 0.14509805, a: 0.43137255}
+  resultPanel: {fileID: 1076082362}
+  resultItemImage: {fileID: 1076082361}
+  resultText: {fileID: 1076082360}
+  continueText: {fileID: 1076082358}
   playerController: {fileID: 1080142358}
   emptySlotSprite: {fileID: 21300000, guid: 314bb9fdbf7c6684b8704a0e9d85e197, type: 3}
 --- !u!4 &744535967
@@ -1808,9 +1932,6 @@ PrefabInstance:
       addedObject: {fileID: 135453405}
     - targetCorrespondingSourceObject: {fileID: -7833818167411379387, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 135453404}
-    - targetCorrespondingSourceObject: {fileID: -7833818167411379387, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 135453409}
     - targetCorrespondingSourceObject: {fileID: 8493015188241380710, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
       insertIndex: -1
@@ -1827,6 +1948,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5652247741957399901, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 530608404}
+    - targetCorrespondingSourceObject: {fileID: 5652247741957399901, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 530608406}
+    - targetCorrespondingSourceObject: {fileID: 5652247741957399901, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 530608405}
     - targetCorrespondingSourceObject: {fileID: -7029948723529949830, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1048624755}
@@ -1845,9 +1972,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9152363913774390056, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 440336544}
-    - targetCorrespondingSourceObject: {fileID: 9152363913774390056, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 440336548}
     - targetCorrespondingSourceObject: {fileID: 9152363913774390056, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 440336549}
@@ -2034,6 +2158,146 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 2.3}
   m_Center: {x: 2.4, y: 0.5, z: 1.75}
+--- !u!1001 &1076082357
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2040312742}
+    m_Modifications:
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8632644196531002564, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_Name
+      value: ResultUIPanel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 79e003f10183fb0469937374121275d0, type: 3}
+--- !u!114 &1076082358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 444483804879568796, guid: 79e003f10183fb0469937374121275d0, type: 3}
+  m_PrefabInstance: {fileID: 1076082357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &1076082359 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
+  m_PrefabInstance: {fileID: 1076082357}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1076082360 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3619347067723462779, guid: 79e003f10183fb0469937374121275d0, type: 3}
+  m_PrefabInstance: {fileID: 1076082357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1076082361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2489740964009145851, guid: 79e003f10183fb0469937374121275d0, type: 3}
+  m_PrefabInstance: {fileID: 1076082357}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1076082362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8632644196531002564, guid: 79e003f10183fb0469937374121275d0, type: 3}
+  m_PrefabInstance: {fileID: 1076082357}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1080142355 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
@@ -2973,7 +3237,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 595475555}
   - {fileID: 476969758}
+  - {fileID: 1076082359}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3772,6 +4038,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a139467ea61ae1847b3e3d9f241f4a90, type: 3}
+--- !u!114 &7972158649541792181 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3651279169502746002, guid: a139467ea61ae1847b3e3d9f241f4a90, type: 3}
+  m_PrefabInstance: {fileID: 7972158649541792180}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

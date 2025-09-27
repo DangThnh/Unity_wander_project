@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2528668657306081913}
   - component: {fileID: 1763961195447638139}
   - component: {fileID: 1884351934096500342}
-  - component: {fileID: 4975870014762805751}
   - component: {fileID: 6590958159984215748}
+  - component: {fileID: 7807248954210381965}
   m_Layer: 0
   m_Name: The Plank
   m_TagString: Untagged
@@ -129,22 +129,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.334677, y: 0.037967708, z: 0.0059683337}
   m_Center: {x: -0.074098654, y: 0.005, z: -0.007015832}
---- !u!114 &4975870014762805751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2808332574796253516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db7be390daaf65e4ea8793f36eab1d50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myQuestion: Do you want to cross?
-  myYesText: Yes
-  myNoText: No
-  destinationId: OthersidePoint
 --- !u!114 &6590958159984215748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +146,35 @@ MonoBehaviour:
   isSpecialInteraction: 0
   requiredItemId: 
   specialInteractionText: You have something, use it.
+  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
   afterInteractionText: 
   itemData: {fileID: 0}
   myText: 
+--- !u!114 &7807248954210381965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2808332574796253516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7331d7942d51e734f9623b80e2e3b41f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preInteractionLine: Now I can cross it.
+  interactionText: {fileID: 0}
+  questionPanel: {fileID: 0}
+  faderCanvasGroup: {fileID: 0}
+  questionText: {fileID: 0}
+  yesText: {fileID: 0}
+  noText: {fileID: 0}
+  myQuestion: Do you want to go to the other side?
+  myYesText: Yes
+  myNoText: No
+  fadeSpeed: 1
+  blackScreenDuration: 2
+  destinationId: OthersidePoint

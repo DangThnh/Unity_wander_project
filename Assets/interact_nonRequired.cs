@@ -6,15 +6,17 @@ using System.Collections.Generic;
 
 public class InteractionManager_NonRequiredButton : MonoBehaviour
 {
-    // Cài đặt chuyển phòng
-    public string destinationSceneName;
+    private const string FADER_GROUP_NAME = "Panel"; // Hằng số tìm kiếm cho Fader
 
-    // Cài đặt UI
-    // Điểm xuất hiện trong scene mới
-    public string destinationSpawnPointName;
-    //public GameObject questionPanel;
-    //public TextMeshProUGUI yesText;
-    //public TextMeshProUGUI noText;
+    [Header("Teleport Settings")]
+    public string destinationSceneName; // Tên Scene đích
+    public string destinationSpawnPointName; // Điểm xuất hiện trong Scene mới
+
+    [Header("Fade Settings")]
+    public float fadeSpeed = 1.0f; // Tốc độ mờ màn hình (Fade In/Out) tính bằng giây
+    public float blackScreenDuration = 0.5f; // Thời gian dừng màn hình đen
+
+    [Header("UI Settings")]
     public string myQuestion = "Do you want to step across?";
     public string myYesText = "Yes";
     public string myNoText = "No";
@@ -24,10 +26,16 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
     private int selectedOption = 0; // 0 = Yes, 1 = No
     private bool isInteracting = false; // Trạng thái tương tác
 
-    // Tham chiếu đến script điều khiển nhân vật
-    private Character_movement playerController;
+    // SỬA LỖI CUỐI CÙNG CHO CS1061: Đổi tên thành tên độc đáo để tránh xung đột kế thừa
+    private bool isSceneTransitionActive = false; // Trạng thái chuyển cảnh
 
+    // Tham chiếu
+    private Character_movement playerController;
     private Animator playerAnimator;
+    private CanvasGroup faderCanvasGroup; // Tham chiếu đến Fader UI
+
+    // Tham chiếu TextMeshProUGUI cục bộ 
+    private TextMeshProUGUI questionText;
 
     // Thiết lập kích thước font chữ
     private float defaultFontSize = 36f;
@@ -35,17 +43,66 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
 
     void Start()
     {
-        //if (GameManager.instance != null && GameManager.instance.questionPanel != null)
-        //{
-        //    GameManager.instance.questionPanel.SetActive(false);
-        //}
+        // Bắt đầu coroutine để tìm Fader và gán text
+        StartCoroutine(SetupTextAndFader());
     }
+
+    // Coroutine riêng để thiết lập các tham chiếu UI tĩnh, chỉ chạy một lần
+    private IEnumerator SetupTextAndFader()
+    {
+        // 1. Chờ GameManager và Question Panel
+        while (GameManager.instance == null || GameManager.instance.questionPanel == null)
+        {
+            yield return null;
+        }
+
+        // 2. Lấy tham chiếu Fader
+        if (faderCanvasGroup == null)
+        {
+            GameObject faderObj = GameObject.Find(FADER_GROUP_NAME);
+            if (faderObj != null)
+            {
+                faderCanvasGroup = faderObj.GetComponent<CanvasGroup>();
+            }
+            else
+            {
+                Debug.LogWarning($"[InteractionManager] Warning: Could not find '{FADER_GROUP_NAME}'. Hiệu ứng chuyển cảnh mờ dần sẽ bị bỏ qua.");
+            }
+        }
+
+        // 3. Lấy tham chiếu Question Text từ Panel
+        if (GameManager.instance.questionPanel != null)
+        {
+            // Tìm TextMeshProUGUI đầu tiên trong Question Panel
+            questionText = GameManager.instance.questionPanel.GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        // 4. Gán nội dung TEXT (chỉ làm 1 lần)
+        if (questionText != null)
+        {
+            questionText.text = myQuestion;
+        }
+
+        if (GameManager.instance.yesText != null)
+        {
+            GameManager.instance.yesText.text = myYesText;
+        }
+        if (GameManager.instance.noText != null)
+        {
+            GameManager.instance.noText.text = myNoText;
+        }
+
+        // Ẩn UI khi bắt đầu
+        HideUI();
+    }
+
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+
             // Lấy tham chiếu đến script điều khiển nhân vật
             playerController = other.GetComponent<Character_movement>();
             playerAnimator = other.GetComponent<Animator>();
@@ -60,72 +117,45 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            // Tắt UI nếu nhân vật rời đi và không tương tác
-            if (!isInteracting)
+            // Chỉ kết thúc tương tác nếu không đang trong quá trình chuyển cảnh
+            if (!isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
             {
-                HideUI();
+                EndInteraction();
             }
         }
     }
 
     void Update()
     {
-        //// Bắt đầu tương tác khi nhân vật ở trong vùng và bấm E
-        if (playerInRange && !isInteracting)
+        // Hiển thị UI ngay lập tức khi nhân vật ở trong vùng và không có tương tác/fade nào đang diễn ra
+        if (playerInRange && !isInteracting && !isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
         {
             ShowUI();
         }
-        // Kết thúc tương tác khi UI đang bật và người chơi bấm E
-        else if (isInteracting && Input.GetKeyDown(KeyCode.Return))
-        {
-            // Thoát khỏi tương tác mà không cần chuyển scene
-            if (selectedOption == 1) // Kiểm tra nếu chọn No
-            {
-                EndInteraction();
-            }
-        }
 
         // Xử lý khi UI đang bật
-        if (isInteracting)
+        if (isInteracting && !isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
         {
             HandleUIInput();
         }
     }
 
-    // Coroutine để đợi UI được gán tham chiếu an toàn
+    // Coroutine để đợi UI được gán tham chiếu an toàn trước khi hiển thị
     private IEnumerator WaitForUIReadyAndShow()
     {
-        // Chờ cho đến khi GameManager và các tham chiếu UI của nó không còn rỗng
-        while (GameManager.instance == null || GameManager.instance.questionPanel == null)
+        // Chờ cho đến khi GameManager và Question Panel sẵn sàng và questionText đã được gán
+        while (GameManager.instance == null || GameManager.instance.questionPanel == null || questionText == null)
         {
-            yield return null; // Đợi khung hình tiếp theo
+            yield return null;
         }
 
-        // Bây giờ việc hiển thị UI đã an toàn
-        if (!isInteracting)
+        // Hiển thị UI nếu chưa tương tác và người chơi vẫn trong vùng
+        if (!isInteracting && playerInRange)
         {
             ShowUI();
         }
     }
 
-    //void ShowUI()
-    //{
-    //    isInteracting = true;
-    //    questionPanel.SetActive(true);
-    //    selectedOption = 0; // Mặc định chọn Yes
-    //    UpdateSelectionUI();
-
-    //    // Khóa chuyển động của nhân vật
-    //    if (playerController != null)
-    //    {
-    //        playerController.canMove = false;
-    //    }
-    //    if (playerAnimator != null)
-    //    {
-    //        // Dừng mọi animation bằng cách đặt biến trạng thái di chuyển thành false
-    //        playerAnimator.SetBool("IsMoving", false);
-    //    }
-    //}
     void ShowUI()
     {
         isInteracting = true;
@@ -136,16 +166,6 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
             selectedOption = 0; // Mặc định chọn Yes
             UpdateSelectionUI();
 
-            // Cập nhật text hiển thị trên các nút
-            if (GameManager.instance.yesText != null)
-            {
-                GameManager.instance.yesText.text = myYesText;
-            }
-            if (GameManager.instance.noText != null)
-            {
-                GameManager.instance.noText.text = myNoText;
-            }
-
             // Khóa chuyển động của nhân vật
             if (playerController != null)
             {
@@ -153,34 +173,21 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
             }
             if (playerAnimator != null)
             {
-                // Dừng mọi animation bằng cách đặt biến trạng thái di chuyển thành false
+                // Dừng animation di chuyển
                 playerAnimator.SetBool("IsMoving", false);
             }
         }
     }
 
-    //void HideUI()
-    //{
-    //    isInteracting = false;
-    //    questionPanel.SetActive(false);
-
-    //    // Mở khóa chuyển động của nhân vật
-    //    if (playerController != null)
-    //    {
-    //        playerController.canMove = true;
-    //    }
-    //}
-
     void HideUI()
     {
-        isInteracting = false;
         if (GameManager.instance != null && GameManager.instance.questionPanel != null)
         {
             GameManager.instance.questionPanel.SetActive(false);
         }
 
-        // Mở khóa chuyển động của nhân vật
-        if (playerController != null)
+        // Mở khóa chuyển động của nhân vật (chỉ khi không đang Fade)
+        if (!isSceneTransitionActive && playerController != null) // SỬ DỤNG TÊN MỚI
         {
             playerController.canMove = true;
         }
@@ -201,50 +208,6 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         }
     }
 
-
-
-    //void UpdateSelectionUI()
-    //{
-    //    if (yesText != null)
-    //    {
-    //        yesText.fontSize = (selectedOption == 0) ? selectedFontSize : defaultFontSize;
-    //    }
-    //    if (noText != null)
-    //    {
-    //        noText.fontSize = (selectedOption == 1) ? selectedFontSize : defaultFontSize;
-    //    }
-    //}
-
-    //void HandleUIInput()
-    //{
-    //    // Chuyển đổi lựa chọn bằng phím mũi tên trái/phải
-    //    if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
-    //    {
-    //        selectedOption = (selectedOption + 1) % 2; // Đảo ngược lựa chọn
-    //        UpdateSelectionUI();
-    //    }
-
-    //    // Xác nhận lựa chọn bằng phím Enter
-    //    if (Input.GetKeyDown(KeyCode.Return))
-    //    {
-    //        // Trong hàm HandleUIInput() của DoorInteractionManager
-    //        if (selectedOption == 0)
-    //        {
-    //            if (GameManager.instance != null)
-    //            {
-    //                // Lưu vị trí và hướng của cửa vào GameManager
-    //                GameManager.instance.spawnPosition = destinationSpawnPoint.position;
-    //                GameManager.instance.spawnRotation = destinationSpawnPoint.rotation;
-
-    //                // Đảm bảo biến isFirstLoad đã được đặt thành false
-    //                GameManager.instance.isFirstLoad = false;
-    //            }
-    //            SceneManager.LoadScene(destinationSceneName);
-    //            HideUI();
-    //        }
-    //    }
-    //}
-
     void HandleUIInput()
     {
         // Chuyển đổi lựa chọn bằng phím mũi tên trái/phải
@@ -257,35 +220,15 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         // Xác nhận lựa chọn bằng phím Enter
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (selectedOption == 0) // Kiểm tra nếu chọn Yes
+            if (selectedOption == 0) // Kiểm tra nếu chọn Yes (Tải Scene)
             {
-                if (GameManager.instance != null)
+                // Bắt đầu trình tự Fade và Load Scene
+                if (!isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
                 {
-                    //// Lấy SpawnPoint từ SpawnPointManager bằng tên
-                    //Transform destination = GameManager.instance.spawnPointManager.GetSpawnPoint(destinationSpawnPointName);
-                    //if (destination != null)
-                    //{
-                    //    // Lưu vị trí và hướng của điểm đến vào GameManager
-                    //    GameManager.instance.spawnPosition = destination.position;
-                    //    GameManager.instance.spawnRotation = destination.rotation;
-
-                    //    // Đảm bảo biến isFirstLoad đã được đặt thành false
-                    //    GameManager.instance.isFirstLoad = false;
-                    //    SceneManager.LoadScene(destinationSceneName);
-                    //}
-                    //else
-                    //{
-                    //    Debug.LogError("Điểm đến không được tìm thấy. Vui lòng kiểm tra tên đã nhập trong Prefab.");
-                    //}
-
-                    // LƯU tên điểm đến vào GameManager và TẢI scene.
-                    GameManager.instance.desiredSpawnPointName = destinationSpawnPointName;
-                    GameManager.instance.isFirstLoad = false;
-                    SceneManager.LoadScene(destinationSceneName);
+                    StartCoroutine(FadeAndLoadScene());
                 }
-                HideUI();
             }
-            else // Nếu chọn No
+            else // Nếu chọn No (Thoát tương tác)
             {
                 EndInteraction();
             }
@@ -294,12 +237,9 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
 
     void EndInteraction()
     {
-        // Tắt UI và tiếp tục chơi
-        //HideUI();
-
         isInteracting = false;
 
-        // Tắt text UI
+        // Tắt question panel
         if (GameManager.instance != null && GameManager.instance.questionPanel != null)
         {
             GameManager.instance.questionPanel.SetActive(false);
@@ -309,6 +249,46 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         if (playerController != null)
         {
             playerController.canMove = true;
+        }
+    }
+
+    // Coroutine xử lý quá trình làm tối màn hình và tải Scene mới
+    private IEnumerator FadeAndLoadScene()
+    {
+        if (faderCanvasGroup == null)
+        {
+            Debug.LogWarning("Fader Canvas Group is null. Loading scene instantly.");
+            LoadNewScene();
+            yield break;
+        }
+
+        isSceneTransitionActive = true; // SỬ DỤNG TÊN MỚI
+        HideUI(); // Ẩn Question Panel và đã khóa chuyển động nhân vật trước đó
+
+        faderCanvasGroup.blocksRaycasts = true; // Chặn tương tác
+
+        // 1. Fade Out (Mờ dần vào đen)
+        while (faderCanvasGroup.alpha < 1)
+        {
+            faderCanvasGroup.alpha += Time.deltaTime / fadeSpeed;
+            yield return null;
+        }
+        faderCanvasGroup.alpha = 1; // Đảm bảo đen hoàn toàn
+
+        // 2. Chờ màn hình tối hoàn toàn
+        yield return new WaitForSeconds(blackScreenDuration);
+
+        // 3. Tải Scene mới
+        LoadNewScene();
+    }
+
+    private void LoadNewScene()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.desiredSpawnPointName = destinationSpawnPointName;
+            GameManager.instance.isFirstLoad = false;
+            SceneManager.LoadScene(destinationSceneName);
         }
     }
 }

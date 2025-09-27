@@ -1,0 +1,283 @@
+﻿using UnityEngine;
+using TMPro;
+using System.Collections;
+using UnityEngine.SceneManagement; // Dù là dịch chuyển trong Scene, vẫn cần thư viện này để tránh lỗi compile của class
+
+// Lớp này dùng cho các Prefab được sinh ra trong Scene và kế thừa logic cơ sở
+public class TeleportForSpawnedPrefab : TeleportInteractionBase
+{
+    private const string FADER_GROUP_NAME = "Panel"; // Hằng số tìm kiếm cho Fader
+
+    // Trạng thái cục bộ
+    private bool isUIReady = false; // Đã sẵn sàng gán UI từ GameManager
+    private bool isFading = false; // Đang trong quá trình Fade/Dịch chuyển
+
+    // --- Cần Ghi Đè Lại các hằng số (nếu lớp cha không có) ---
+    private const float DEFAULT_FONT_SIZE = 36f;
+    private const float SELECTED_FONT_SIZE = 48f;
+
+    // Ghi đè phương thức Start() để sử dụng Coroutine và GameManager
+    protected override void Start()
+    {
+        // Bắt đầu coroutine để gán các tham chiếu UI an toàn sau khi GameManager đã đăng ký
+        StartCoroutine(WaitForGameManagerUIRegistration());
+
+        // Loại bỏ logic khởi tạo liên quan đến Pre-Text
+    }
+
+    private IEnumerator WaitForGameManagerUIRegistration()
+    {
+        // Bước 1: Chờ cho đến khi GameManager tồn tại và CÁC tham chiếu UI quan trọng được gán.
+        while (GameManager.instance == null || GameManager.instance.questionPanel == null || GameManager.instance.interactionText == null)
+        {
+            yield return null; // Đợi khung hình tiếp theo
+        }
+
+        // Bước 2: Gán các biến nội bộ (kế thừa) bằng các tham chiếu từ GameManager
+        if (interactionText == null) interactionText = GameManager.instance.interactionText;
+        if (questionPanel == null)
+        {
+            questionPanel = GameManager.instance.questionPanel;
+            if (questionPanel != null) questionText = questionPanel.GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        if (yesText == null) yesText = GameManager.instance.yesText;
+        if (noText == null) noText = GameManager.instance.noText;
+
+        // Tìm Fader Canvas Group (dùng GameObject.Find vì nó không được GameManager quản lý)
+        if (faderCanvasGroup == null)
+        {
+            GameObject faderObj = GameObject.Find(FADER_GROUP_NAME);
+            if (faderObj != null)
+            {
+                faderCanvasGroup = faderObj.GetComponent<CanvasGroup>();
+            }
+            else
+            {
+                Debug.LogWarning($"[TeleportPrefab] Warning: Could not find '{FADER_GROUP_NAME}'. Hiệu ứng làm tối màn hình sẽ bị bỏ qua.");
+            }
+        }
+
+        if (interactionText == null)
+        {
+            Debug.LogError("[TeleportPrefab] FATAL ERROR: interactionText is NULL. Kiểm tra SceneUIRegistrar.");
+        }
+        else
+        {
+            Debug.Log("[TeleportPrefab] Các tham chiếu UI đã được truy xuất và gán thành công.");
+        }
+
+        // Bước 3: Đánh dấu UI đã sẵn sàng
+        isUIReady = true;
+
+        // Bước 4: Thực hiện logic khởi tạo (thiết lập text và ẩn UI)
+        if (questionText != null) questionText.text = myQuestion;
+        if (yesText != null) yesText.text = myYesText;
+        if (noText != null) noText.text = myNoText;
+
+        base.HideUI(); // Ẩn Question Panel
+
+        // Loại bỏ thiết lập interactionText = "" vì nó không được sử dụng
+        // if (interactionText != null) interactionText.text = ""; 
+    }
+
+    // Ghi đè OnTriggerEnter để xử lý va chạm và HIỂN THỊ QUESTION PANEL NGAY LẬP TỨC
+    private new void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Bắt đầu Coroutine để xử lý va chạm an toàn (chờ UI sẵn sàng)
+            StartCoroutine(HandleSafeInteraction(other));
+        }
+    }
+
+    private IEnumerator HandleSafeInteraction(Collider other)
+    {
+        // CHỜ UI SẴN SÀNG TRƯỚC KHI TIẾN HÀNH TƯƠNG TÁC
+        while (!isUIReady)
+        {
+            yield return null;
+        }
+
+        // Gán tham chiếu Player
+        playerInRange = true;
+        playerController = other.GetComponent<Character_movement>();
+        playerAnimator = other.GetComponent<Animator>();
+
+        if (playerController == null)
+        {
+            Debug.LogError("[TeleportPrefab] Lỗi: Không tìm thấy Character_movement trên Player.");
+            yield break;
+        }
+
+        // Ngăn tương tác lặp lại nếu đang trong quá trình chuyển cảnh
+        if (isFading) yield break;
+
+        // Bắt đầu luồng tương tác: Hiển thị Question Panel ngay lập tức
+        ShowQuestionUI();
+    }
+
+    // Ghi đè OnTriggerExit để ẩn Panel
+    private new void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+            // Chỉ kết thúc tương tác nếu không đang chuyển cảnh
+            if (!isFading)
+            {
+                EndInteraction();
+            }
+        }
+    }
+
+    // Ghi đè Update để chỉ xử lý Input Panel
+    private new void Update()
+    {
+        // Chỉ xử lý Input ở trạng thái Question Panel
+        if (isInteracting)
+        {
+            HandleQuestionInput();
+        }
+    }
+
+    // Ghi đè ShowUI của lớp cha (Chỉ hiển thị Panel, KHÔNG KHÓA CHUYỂN ĐỘNG)
+    private new void ShowUI()
+    {
+        ShowQuestionUI();
+    }
+
+    private void ShowQuestionUI()
+    {
+        isInteracting = true;
+
+        if (questionPanel != null)
+        {
+            questionPanel.SetActive(true);
+            selectedOption = 0;
+            UpdateSelectionUI();
+        }
+        // Đã loại bỏ lệnh khóa chuyển động
+    }
+
+    // Sử dụng logic cập nhật UI của lớp cơ sở
+    private new void UpdateSelectionUI()
+    {
+        if (yesText != null)
+        {
+            yesText.fontSize = (selectedOption == 0) ? SELECTED_FONT_SIZE : DEFAULT_FONT_SIZE;
+        }
+        if (noText != null)
+        {
+            noText.fontSize = (selectedOption == 1) ? SELECTED_FONT_SIZE : DEFAULT_FONT_SIZE;
+        }
+    }
+
+    // Ghi đè HandleUIInput
+    private void HandleQuestionInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            selectedOption = (selectedOption + 1) % 2;
+            UpdateSelectionUI();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (selectedOption == 0) // Chọn Có
+            {
+                // Bắt đầu trình tự Fade và Teleport (Intra-Scene)
+                StartCoroutine(FadeAndTeleport());
+            }
+            else // Chọn Không
+            {
+                EndInteraction();
+            }
+        }
+    }
+
+    // Ghi đè EndInteraction
+    private new void EndInteraction()
+    {
+        isInteracting = false;
+        base.HideUI(); // Ẩn Question Panel (gọi của lớp cha)
+
+        // Loại bỏ việc xóa interactionText vì nó không được hiển thị
+        // if (interactionText != null) { interactionText.text = ""; }
+    }
+
+    // --- LOGIC FADE VÀ DỊCH CHUYỂN (INTRA-SCENE) ---
+    private IEnumerator FadeAndTeleport()
+    {
+        if (faderCanvasGroup == null)
+        {
+            Debug.LogError("Fader Canvas Group is not assigned. Teleporting instantly.");
+            TeleportPlayer();
+            EndInteraction();
+            yield break;
+        }
+
+        isFading = true;
+        base.HideUI(); // Ẩn Question Panel
+
+        // 1. Mờ dần vào (Fade Out - chuyển sang màu đen)
+        faderCanvasGroup.blocksRaycasts = true; // Chặn tương tác
+        float timer = 0f;
+        while (faderCanvasGroup.alpha < 1)
+        {
+            // Tối ưu hóa: sử dụng logic đơn giản hóa cho Fade (Time.deltaTime / fadeSpeed)
+            faderCanvasGroup.alpha += Time.deltaTime / fadeSpeed;
+            yield return null;
+        }
+        faderCanvasGroup.alpha = 1; // Đảm bảo đen hoàn toàn
+
+        // 2. Dịch chuyển nhân vật
+        TeleportPlayer();
+
+        // 3. Chờ thời gian màn hình tối hoàn toàn
+        yield return new WaitForSeconds(blackScreenDuration);
+
+        // 4. Mờ dần ra (Fade In - chuyển từ màu đen về trong suốt)
+        while (faderCanvasGroup.alpha > 0)
+        {
+            faderCanvasGroup.alpha -= Time.deltaTime / fadeSpeed;
+            yield return null;
+        }
+        faderCanvasGroup.alpha = 0; // Đảm bảo trong suốt hoàn toàn
+        faderCanvasGroup.blocksRaycasts = false; // Cho phép tương tác lại
+
+        isFading = false;
+
+        // 5. Kết thúc tương tác
+        EndInteraction();
+    }
+
+    private void TeleportPlayer()
+    {
+        // Tìm đối tượng đích trong cùng một Scene bằng ID
+        GameObject destinationObject = FindObjectWithId(destinationId);
+        if (playerController != null && destinationObject != null)
+        {
+            // Di chuyển trực tiếp vị trí nhân vật
+            playerController.gameObject.transform.position = destinationObject.transform.position;
+        }
+        else
+        {
+            Debug.LogError("Teleport destination with ID '" + destinationId + "' not found! Kiểm tra ID và script TeleportDestination.");
+        }
+    }
+
+    // Phương thức để tìm đối tượng đích (tương thích với TeleportDestination)
+    private GameObject FindObjectWithId(string id)
+    {
+        TeleportDestination[] destinations = FindObjectsOfType<TeleportDestination>();
+        foreach (TeleportDestination dest in destinations)
+        {
+            if (dest.uniqueId == id)
+            {
+                return dest.gameObject;
+            }
+        }
+        return null;
+    }
+}
