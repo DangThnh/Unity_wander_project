@@ -396,6 +396,8 @@ GameObject:
   - component: {fileID: 171962344}
   - component: {fileID: 171962343}
   - component: {fileID: 171962346}
+  - component: {fileID: 171962347}
+  - component: {fileID: 171962348}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -491,6 +493,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTarget: {fileID: 916685921}
   rotationSpeed: 5
+--- !u!114 &171962347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171962342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc04b12bf8cb2a749ad778b10deb4e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderWidth: 320
+  renderHeight: 240
+--- !u!114 &171962348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 171962342}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59fd038dbfbac3e41957c233e2830cec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 1
+  rotationSpeed: 20
 --- !u!1 &179118585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,6 +1201,7 @@ GameObject:
   - component: {fileID: 523356881}
   - component: {fileID: 523356880}
   - component: {fileID: 523356883}
+  - component: {fileID: 523356884}
   m_Layer: 0
   m_Name: Second Camera
   m_TagString: Untagged
@@ -1266,6 +1297,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTarget: {fileID: 916685921}
   rotationSpeed: 5
+--- !u!114 &523356884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523356879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc04b12bf8cb2a749ad778b10deb4e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderWidth: 320
+  renderHeight: 240
 --- !u!1 &524294333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,7 +2219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_fontSize
-      value: 24
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_fontAsset
@@ -2182,7 +2227,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_fontSizeBase
-      value: 24
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_sharedMaterial
@@ -2270,7 +2315,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3547151991217115400, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -125
+      value: -145
       objectReference: {fileID: 0}
     - target: {fileID: 4517131412730312346, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2278,7 +2323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517131412730312346, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 125
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 4794106484434065338, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_Color.a
@@ -2997,6 +3042,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 56c75c0ef45935b428047de9968cb584, type: 2}
     - target: {fileID: -1461304994638716399, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1461304994638716399, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bddc437bfba688c4fad7cfe46f1afce9, type: 2}
@@ -3046,6 +3095,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1903705173}
+    - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1903705177}
     - targetCorrespondingSourceObject: {fileID: 8416272007918961125, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1492723853}
@@ -3901,6 +3953,39 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2922242, y: 1, z: 4}
   m_Center: {x: -1, y: 2.05, z: 0.08459168}
+--- !u!215 &1903705177
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492723856}
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 1
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 128
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 30, y: 30, z: 30}
+  m_BoxOffset: {x: 0, y: 0, z: 0}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 0.2
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
 --- !u!1 &1988601449
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,6 +4338,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
       propertyPath: m_Name
       value: animation
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
       propertyPath: m_TagString

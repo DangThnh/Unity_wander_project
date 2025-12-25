@@ -952,7 +952,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.2678809, y: 3.6678414, z: 1.7781564}
+  m_Size: {x: 1.367881, y: 3.6678414, z: 1.878156}
   m_Center: {x: 0.36606136, y: 0.8339207, z: 0.11091976}
 --- !u!114 &535461264 stripped
 MonoBehaviour:
@@ -1098,6 +1098,7 @@ GameObject:
   - component: {fileID: 589996059}
   - component: {fileID: 589996058}
   - component: {fileID: 589996061}
+  - component: {fileID: 589996062}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1193,6 +1194,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTarget: {fileID: 566550093}
   rotationSpeed: 5
+--- !u!114 &589996062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589996057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc04b12bf8cb2a749ad778b10deb4e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderWidth: 320
+  renderHeight: 240
 --- !u!1001 &595475554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2317,7 +2332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpawnPoint: {fileID: 3731226683655797625}
   canMove: 1
-  speed: 1.6
+  speed: 3
   rotationSpeed: 180
 --- !u!95 &1080142359
 Animator:
@@ -2995,6 +3010,7 @@ GameObject:
   - component: {fileID: 1646836094}
   - component: {fileID: 1646836093}
   - component: {fileID: 1646836096}
+  - component: {fileID: 1646836097}
   m_Layer: 0
   m_Name: Second Camera
   m_TagString: Untagged
@@ -3090,6 +3106,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTarget: {fileID: 566550093}
   rotationSpeed: 5
+--- !u!114 &1646836097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646836092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc04b12bf8cb2a749ad778b10deb4e5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  renderWidth: 320
+  renderHeight: 240
 --- !u!1 &1677821028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3587,7 +3617,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_fontSize
-      value: 24
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_fontAsset
@@ -3595,7 +3625,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_fontSizeBase
-      value: 24
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 373420688732047249, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_sharedMaterial
@@ -3739,7 +3769,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3547151991217115400, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -125
+      value: -145
       objectReference: {fileID: 0}
     - target: {fileID: 4517131412730312346, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_SizeDelta.y
@@ -3747,7 +3777,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4517131412730312346, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 125
+      value: 175
       objectReference: {fileID: 0}
     - target: {fileID: 4794106484434065338, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
       propertyPath: m_Color.a

@@ -37,7 +37,10 @@ public class CameraManager : MonoBehaviour
         // Vô hiệu hóa tất cả các camera ban đầu
         foreach (Camera cam in allCameras)
         {
-            cam.enabled = false;
+            if (cam != null)
+            {
+                cam.enabled = false;
+            }
         }
 
         // Kích hoạt camera đầu tiên
@@ -50,11 +53,32 @@ public class CameraManager : MonoBehaviour
 
     void Update()
     {
-        // Chuyển đổi camera trong cùng khu vực bằng phím M
+        // --- SỬA LỖI: Đặt kiểm tra trạng thái tĩnh lên ĐẦU hàm Update ---
+        // Nếu Puzzle đang hoạt động, thoát ngay lập tức và không xử lý bất kỳ Input nào bên dưới.
+        if (HexaPuzzleManager.IsPuzzleActiveStatic)
+        {
+            return;
+        }
+        // ---------------------------------------------------------------
+
+        // Chuyển đổi camera trong cùng khu vực bằng phím M (CHỈ KHI KHÔNG GIẢI ĐỐ)
         if (Input.GetKeyDown(KeyCode.M))
         {
             SwitchToNextCameraInZone();
         }
+
+        // LƯU Ý: Khối code dưới đây đã bị XÓA vì nó là dư thừa và gây lỗi logic:
+        /*
+        if (HexaPuzzleManager.IsPuzzleActiveStatic)
+        {
+            return; // Dừng xử lý Input nếu Puzzle đang hoạt động
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            SwitchCamera(); // Lỗi: Hàm SwitchCamera() cần tham số
+        }
+        */
     }
 
     // Phương thức được gọi từ CameraZone khi người chơi đi vào
@@ -71,10 +95,18 @@ public class CameraManager : MonoBehaviour
         SwitchCamera(currentZone.mainCamera);
 
         // Cập nhật chỉ số camera để việc chuyển đổi tiếp theo là đúng
-        cameraIndex = currentZone.zoneCameras.IndexOf(activeCamera);
+        int index = currentZone.zoneCameras.IndexOf(activeCamera);
+        if (index != -1)
+        {
+            cameraIndex = index;
+        }
+        else
+        {
+            cameraIndex = 0;
+        }
     }
 
-    // Chuyển đổi giữa các camera
+    // Chuyển đổi giữa các camera (Hàm cần tham số Camera)
     private void SwitchCamera(Camera newCamera)
     {
         if (activeCamera != null)
@@ -99,7 +131,8 @@ public class CameraManager : MonoBehaviour
 
         Camera nextCamera = currentZone.zoneCameras[cameraIndex];
 
-        // Đảm bảo không chuyển về camera hiện tại
+        // Đảm bảo không chuyển về camera hiện tại (trên thực tế không cần thiết do logic modulo)
+        // Nhưng để an toàn, ta vẫn giữ
         if (nextCamera != activeCamera)
         {
             SwitchCamera(nextCamera);

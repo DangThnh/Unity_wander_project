@@ -120,6 +120,6 @@ public class MainMenuManager : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
 
         // Chuyển scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 }

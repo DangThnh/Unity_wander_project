@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     // Dùng HashSet để lưu ID, giúp kiểm tra nhanh hơn so với List
     public HashSet<string> collectedItemIds = new HashSet<string>();
 
+    // START NEW ADDITION: HashSet mới để lưu ID của các câu đố đã hoàn thành
+    public HashSet<string> completedPuzzles = new HashSet<string>();
+    // END NEW ADDITION
+
     // Vị trí và hướng xuất hiện của nhân vật
     public Vector3 spawnPosition;
     public Quaternion spawnRotation;

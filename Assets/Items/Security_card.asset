@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Security Card
   uniqueId: secu_card
   itemIcon: {fileID: 21300000, guid: f97c6c0d8648cca4780c9e2472ba80dd, type: 3}
-  itemDescription: A Security card that can grant access to the elevator.
+  itemDescription: A security card that can grant access to the elevator.

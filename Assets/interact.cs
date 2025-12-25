@@ -4,29 +4,34 @@ using System.Collections.Generic;
 
 public class InteractableObject : MonoBehaviour
 {
+    // === Cài đặt ID và Trạng thái ===
     // Cần phải gán một ID duy nhất cho mỗi vật phẩm trong Inspector
-    // Ví dụ: "sach_cu", "chia_khoa", v.v.
     public string uniqueId;
     public string spawnActionId; // ID duy nhất cho hành động spawn này
+
+    // === Tham chiếu UI Text ===
+    [Header("UI Text Settings")]
+    [Tooltip("Gán Text UI Component (TextMeshProUGUI) trực tiếp nếu không muốn dùng tham chiếu toàn cục từ GameManager.")]
+    public TMP_Text localInteractionText; // TRƯỜNG MỚI ĐƯỢC THÊM VÀO
+    public string myText = "My bookshelf.";
+    [Tooltip("Thông báo hiển thị nếu thiếu item yêu cầu cho cả tương tác đặc biệt và nhặt item.")]
+    public string requirementFailureText = "It seems you are missing a key item to proceed.";
+    public string specialInteractionText = "You have something, use it.";
+    public string afterInteractionText = "You put it down, would you like to use it";
+
+    // === Cài đặt Item và Tương tác Đặc biệt ===
+    [Header("Special Interaction Settings")]
+    public Item itemData; // Nếu là một món đồ có thể nhặt, gán itemData vào đây
 
     // Cài đặt cho tương tác đặc biệt (ví dụ: mở cửa, hoặc nhặt item bằng key)
     public bool isSpecialInteraction = false;
     [Tooltip("ID của item cần có trong kho đồ để tương tác/nhặt item này.")]
     public string requiredItemId; // ID của item cần có trong kho đồ để tương tác đặc biệt hoặc nhặt item này
-    public string specialInteractionText = "You have something, use it.";
-    [Tooltip("Thông báo hiển thị nếu thiếu item yêu cầu cho cả tương tác đặc biệt và nhặt item.")]
-    public string requirementFailureText = "It seems you are missing a key item to proceed.";
-
 
     // Cài đặt cho tương tác đặc biệt mới (tạo vật thể)
     public bool isSpecialSpawnInteraction = false;
     public GameObject objectToSpawnPrefab;
     public Transform spawnPoint;
-    public string afterInteractionText = "You put it down, would you like to use it";
-
-    // Cài đặt UI và dữ liệu
-    public Item itemData; // Nếu là một món đồ có thể nhặt, gán itemData vào đây
-    public string myText = "My bookshelf.";
 
     // Cài đặt trạng thái
     private bool playerInRange = false;
@@ -41,10 +46,24 @@ public class InteractableObject : MonoBehaviour
     private Character_movement playerController;
     private Animator playerAnimator;
 
+    // PHƯƠNG THỨC TRỢ GIÚP MỚI: Ưu tiên tham chiếu cục bộ, sau đó là tham chiếu toàn cục
+    private TMP_Text GetActiveTextComponent()
+    {
+        if (localInteractionText != null)
+        {
+            return localInteractionText;
+        }
+        if (GameManager.instance != null)
+        {
+            return GameManager.instance.interactionText;
+        }
+        return null;
+    }
+
     void Start()
     {
         // Kiểm tra xem vật phẩm này đã được nhặt chưa
-        if (GameManager.instance.collectedItemIds.Contains(uniqueId))
+        if (GameManager.instance != null && GameManager.instance.collectedItemIds.Contains(uniqueId))
         {
             // Nếu đã nhặt, hủy bỏ đối tượng ngay lập tức
             Destroy(gameObject);
@@ -52,7 +71,7 @@ public class InteractableObject : MonoBehaviour
         }
 
         // Kiểm tra xem hành động spawn đã hoàn thành chưa
-        if (GameManager.instance.completedSpawnActions.Contains(spawnActionId))
+        if (GameManager.instance != null && GameManager.instance.completedSpawnActions.Contains(spawnActionId))
         {
             // Nếu đã spawn, hủy đối tượng ban đầu để tránh trùng lặp
             Destroy(gameObject);
@@ -102,12 +121,19 @@ public class InteractableObject : MonoBehaviour
         isInteracting = true;
         interactionState = 1;
 
+        TMP_Text textComponent = GetActiveTextComponent();
+
         // Hiển thị text đầu tiên
-        // Lấy tham chiếu trực tiếp từ GameManager ngay khi cần
-        if (GameManager.instance != null && GameManager.instance.interactionText != null)
+        if (textComponent != null)
         {
-            GameManager.instance.interactionText.gameObject.SetActive(true);
-            GameManager.instance.interactionText.text = myText;
+            textComponent.gameObject.SetActive(true);
+            textComponent.text = myText;
+            // Giữ lại debug log để kiểm tra tham chiếu
+            Debug.Log($"Interactable '{gameObject.name}' is setting text on: {textComponent.gameObject.name}");
+        }
+        else
+        {
+            Debug.LogError("Interaction Text Component is missing!");
         }
 
         // Khóa chuyển động nhân vật
@@ -123,6 +149,8 @@ public class InteractableObject : MonoBehaviour
 
     void ContinueInteraction()
     {
+        TMP_Text textComponent = GetActiveTextComponent();
+
         // Xử lý tương tác nhặt đồ (có itemData và KHÔNG phải tương tác đặc biệt khác)
         if (itemData != null && !isSpecialInteraction && !isSpecialSpawnInteraction)
         {
@@ -138,19 +166,19 @@ public class InteractableObject : MonoBehaviour
                 {
                     // THÀNH CÔNG: Chuyển sang nhắc nhở nhặt item (state 2) - KHÔNG TIÊU THỤ item kích hoạt
                     interactionState = 2;
-                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    if (textComponent != null)
                     {
                         // Hiển thị itemData.itemName thay vì requiredItemId
-                        GameManager.instance.interactionText.text = "Do you want to take this " + itemData.itemName + "? (Press E to take)";
+                        textComponent.text = "Do you want to take this " + itemData.itemName + "? (Press E to take)";
                     }
                 }
                 else
                 {
                     // THẤT BẠI: Chuyển sang trạng thái thông báo thất bại (state 5)
                     interactionState = 5;
-                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    if (textComponent != null)
                     {
-                        GameManager.instance.interactionText.text = requirementFailureText;
+                        textComponent.text = requirementFailureText;
                     }
                 }
             }
@@ -172,7 +200,6 @@ public class InteractableObject : MonoBehaviour
             }
         }
         // Xử lý tương tác đặc biệt (TIÊU THỤ requiredItemId, CÓ THỂ nhặt itemData HOẶC chỉ kích hoạt)
-        // Đây là block đã được sửa đổi theo yêu cầu của bạn.
         else if (isSpecialInteraction && !isSpecialSpawnInteraction)
         {
             if (interactionState == 1)
@@ -181,25 +208,24 @@ public class InteractableObject : MonoBehaviour
                 if (hasRequiredItem)
                 {
                     interactionState = 3;
-                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    if (textComponent != null)
                     {
                         // Hiển thị text đặc biệt, có thể đề cập đến việc sử dụng item
-                        GameManager.instance.interactionText.text = specialInteractionText;
+                        textComponent.text = specialInteractionText;
                     }
                 }
                 else
                 {
                     // Thất bại: Chuyển sang trạng thái thông báo thất bại (state 5)
                     interactionState = 5;
-                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    if (textComponent != null)
                     {
-                        GameManager.instance.interactionText.text = requirementFailureText;
+                        textComponent.text = requirementFailureText;
                     }
                 }
             }
             else if (interactionState == 3)
             {
-                // --- BẮT ĐẦU PHẦN ĐÃ SỬA ĐỔI ---
                 // 1. LUÔN LUÔN xóa item kích hoạt (requiredItemId)
                 InventoryManager.instance.RemoveItem(requiredItemId);
 
@@ -208,7 +234,6 @@ public class InteractableObject : MonoBehaviour
                 {
                     InventoryManager.instance.AddItem(itemData);
                 }
-                // --- KẾT THÚC PHẦN ĐÃ SỬA ĐỔI ---
 
                 // 3. Đánh dấu đã hoàn thành và hủy đối tượng
                 GameManager.instance.collectedItemIds.Add(uniqueId);
@@ -231,18 +256,18 @@ public class InteractableObject : MonoBehaviour
                 if (hasRequiredItem)
                 {
                     interactionState = 4;
-                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    if (textComponent != null)
                     {
-                        GameManager.instance.interactionText.text = afterInteractionText;
+                        textComponent.text = afterInteractionText;
                     }
                 }
                 else
                 {
                     // Thất bại: Chuyển sang trạng thái thông báo thất bại (state 5)
                     interactionState = 5;
-                    if (GameManager.instance != null && GameManager.instance.interactionText != null)
+                    if (textComponent != null)
                     {
-                        GameManager.instance.interactionText.text = requirementFailureText;
+                        textComponent.text = requirementFailureText;
                     }
                 }
             }
@@ -282,10 +307,12 @@ public class InteractableObject : MonoBehaviour
         isInteracting = false;
         interactionState = 0;
 
+        TMP_Text textComponent = GetActiveTextComponent();
+
         // Tắt text UI
-        if (GameManager.instance != null && GameManager.instance.interactionText != null)
+        if (textComponent != null)
         {
-            GameManager.instance.interactionText.gameObject.SetActive(false);
+            textComponent.gameObject.SetActive(false);
         }
 
         // Mở khóa chuyển động nhân vật
@@ -293,5 +320,33 @@ public class InteractableObject : MonoBehaviour
         {
             playerController.canMove = true;
         }
+
     }
+    void OnEnable()
+    {
+        HexaPuzzleManager.OnPuzzleCompleted += ForceTextRefresh;
+    }
+
+    void OnDisable()
+    {
+        HexaPuzzleManager.OnPuzzleCompleted -= ForceTextRefresh;
+    }
+
+    // Phương thức này sẽ được gọi khi câu đố kết thúc
+    void ForceTextRefresh()
+    {
+        TMP_Text textComponent = GetActiveTextComponent();
+
+        // Chạy lại logic kiểm tra OnTriggerEnter/OnTriggerStay của vật thể này
+        if (playerInRange)
+        {
+            // Cập nhật text UI ngay lập tức
+            if (textComponent != null)
+            {
+                textComponent.text = myText; // myText của đối tượng tương tác này
+                textComponent.gameObject.SetActive(true);
+            }
+        }
+    }
+
 }
