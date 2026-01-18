@@ -1,12 +1,32 @@
 ﻿using UnityEngine;
 
-public class FixedCameraLookAtPlayer : MonoBehaviour
+// Đổi tên class thành CameraFollow để khớp với tên file.
+public class CameraFollow : MonoBehaviour
 {
-    // Kéo và thả đối tượng nhân vật vào đây trong Inspector
-    public Transform playerTarget;
+    // Không cần biến public để kéo thả nữa, vì nó sẽ tự tìm Player
+    private Transform playerTarget;
 
     // Tốc độ xoay của camera (để việc xoay mượt mà hơn)
     public float rotationSpeed = 5.0f;
+
+    void Awake()
+    {
+        // Gắn playerTarget ngay khi Scene được tải.
+        // Khắc phục lỗi CS0117 bằng cách sử dụng FindObjectOfType<T>()
+        // để tìm đối tượng Player trong Scene.
+
+        Character_movement playerComponent = FindObjectOfType<Character_movement>();
+
+        if (playerComponent != null)
+        {
+            playerTarget = playerComponent.transform;
+            Debug.Log("Camera đã tìm thấy và thiết lập Player Target.");
+        }
+        else
+        {
+            Debug.LogError("Lỗi: Không tìm thấy Character_movement trong Scene. Đảm bảo Player được load/sinh ra trước Camera.");
+        }
+    }
 
     void LateUpdate()
     {

@@ -27,6 +27,15 @@ EditorBuildSettings:
     path: Assets/Scene4_Office/Office.unity
     guid: ae4360a52a0e52940a7c7125eca3a96f
   - enabled: 1
-    path: Assets/Scene6/New Scene.unity
+    path: Assets/Scene5_OfficeRoof/Office_Rooftop.unity
+    guid: 94eea77d3958166438b075f624523698
+  - enabled: 1
+    path: Assets/2nd_Cutscene/Cutscene_BMU.unity
+    guid: 02d83766d1508f5478bc090f49547cc5
+  - enabled: 1
+    path: Assets/Scene6_Ses3_Bottom/Ses3_Bottom.unity
+    guid: 1c0a52d8b02bac1428c7b3e5e3994b5b
+  - enabled: 1
+    path: Assets/SceneEndCredit/New Scene.unity
     guid: c5e89a7e0c8a420428fe521246e3b6a3
   m_configObjects: {}

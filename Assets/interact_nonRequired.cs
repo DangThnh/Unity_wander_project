@@ -10,7 +10,9 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
 
     [Header("Teleport Settings")]
     public string destinationSceneName; // Tên Scene đích
-    public string destinationSpawnPointName; // Điểm xuất hiện trong Scene mới
+    // Biến này được giữ lại để thiết lập trong Inspector, nhưng không còn được sử dụng
+    // để gán cho GameManager nữa.
+    public string destinationSpawnPointName; // Điểm xuất hiện trong Scene mới 
 
     [Header("Fade Settings")]
     public float fadeSpeed = 1.0f; // Tốc độ mờ màn hình (Fade In/Out) tính bằng giây
@@ -26,7 +28,6 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
     private int selectedOption = 0; // 0 = Yes, 1 = No
     private bool isInteracting = false; // Trạng thái tương tác
 
-    // SỬA LỖI CUỐI CÙNG CHO CS1061: Đổi tên thành tên độc đáo để tránh xung đột kế thừa
     private bool isSceneTransitionActive = false; // Trạng thái chuyển cảnh
 
     // Tham chiếu
@@ -118,7 +119,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         {
             playerInRange = false;
             // Chỉ kết thúc tương tác nếu không đang trong quá trình chuyển cảnh
-            if (!isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
+            if (!isSceneTransitionActive)
             {
                 EndInteraction();
             }
@@ -128,13 +129,13 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
     void Update()
     {
         // Hiển thị UI ngay lập tức khi nhân vật ở trong vùng và không có tương tác/fade nào đang diễn ra
-        if (playerInRange && !isInteracting && !isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
+        if (playerInRange && !isInteracting && !isSceneTransitionActive)
         {
             ShowUI();
         }
 
         // Xử lý khi UI đang bật
-        if (isInteracting && !isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
+        if (isInteracting && !isSceneTransitionActive)
         {
             HandleUIInput();
         }
@@ -187,7 +188,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         }
 
         // Mở khóa chuyển động của nhân vật (chỉ khi không đang Fade)
-        if (!isSceneTransitionActive && playerController != null) // SỬ DỤNG TÊN MỚI
+        if (!isSceneTransitionActive && playerController != null)
         {
             playerController.canMove = true;
         }
@@ -223,7 +224,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
             if (selectedOption == 0) // Kiểm tra nếu chọn Yes (Tải Scene)
             {
                 // Bắt đầu trình tự Fade và Load Scene
-                if (!isSceneTransitionActive) // SỬ DỤNG TÊN MỚI
+                if (!isSceneTransitionActive)
                 {
                     StartCoroutine(FadeAndLoadScene());
                 }
@@ -262,7 +263,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
             yield break;
         }
 
-        isSceneTransitionActive = true; // SỬ DỤNG TÊN MỚI
+        isSceneTransitionActive = true;
         HideUI(); // Ẩn Question Panel và đã khóa chuyển động nhân vật trước đó
 
         faderCanvasGroup.blocksRaycasts = true; // Chặn tương tác
@@ -286,8 +287,11 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
     {
         if (GameManager.instance != null)
         {
-            GameManager.instance.desiredSpawnPointName = destinationSpawnPointName;
-            GameManager.instance.isFirstLoad = false;
+            // Đã loại bỏ hai dòng gây lỗi:
+            // GameManager.instance.desiredSpawnPointName = destinationSpawnPointName;
+            // GameManager.instance.isFirstLoad = false;
+
+            // Chỉ thực hiện tải Scene đích
             SceneManager.LoadScene(destinationSceneName);
         }
     }

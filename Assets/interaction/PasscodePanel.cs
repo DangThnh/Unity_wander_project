@@ -18,10 +18,10 @@ public class PasscodePanel : MonoBehaviour
 
     private string currentInput = "";
     private bool isSolved = false;
-    private bool isPlayerInRange = false;
+    // ĐÃ XÓA: private bool isPlayerInRange = false; // Loại bỏ cảnh báo CS0414
 
     // Hướng dẫn
-    private string pressEToExitPrompt = "Press E to exit";
+    // ĐÃ XÓA: private string pressEToExitPrompt = "Press E to exit"; // Loại bỏ cảnh báo CS0414
     private string wrongPasscodePrompt = "Wrong Passcode!";
     private string correctPasscodePrompt = "Correct!";
 
@@ -64,8 +64,12 @@ public class PasscodePanel : MonoBehaviour
             {
                 if (char.IsDigit(c))
                 {
-                    currentInput += c;
-                    UpdateDisplay();
+                    // Thêm giới hạn để ngăn nhập liệu dài hơn mật khẩu
+                    if (currentInput.Length < passcode.Length)
+                    {
+                        currentInput += c;
+                        UpdateDisplay();
+                    }
                     break;
                 }
             }

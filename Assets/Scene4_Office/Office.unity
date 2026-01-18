@@ -1210,7 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &236717121
 MonoBehaviour:
@@ -1782,7 +1781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &343159339
 MonoBehaviour:
@@ -2176,7 +2174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!81 &436795532
 AudioListener:
@@ -2998,7 +2995,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &642920407
 MonoBehaviour:
@@ -3215,6 +3211,7 @@ MonoBehaviour:
   - {fileID: 343159337}
   - {fileID: 1614475005}
   currentZone: {fileID: 0}
+  isCutscenePlaying: 0
 --- !u!1 &691537809
 GameObject:
   m_ObjectHideFlags: 0
@@ -4577,7 +4574,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &866126923
 MonoBehaviour:
@@ -4909,7 +4905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000091552734, y: 0}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &932592824
@@ -5262,7 +5258,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &979355391
 MonoBehaviour:
@@ -5605,7 +5600,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &1025249714
 MonoBehaviour:
@@ -5719,8 +5713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116402792}
   - component: {fileID: 1116402793}
-  - component: {fileID: 1116402794}
-  - component: {fileID: 1116402795}
+  - component: {fileID: 1116402796}
   m_Layer: 0
   m_Name: Elevator Board
   m_TagString: Untagged
@@ -5765,31 +5758,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.3, y: 0.2, z: 0.3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1116402794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116402791}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8600636f5746b354481a5e34dd9c205e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 
-  spawnActionId: 
-  isSpecialInteraction: 1
-  requiredItemId: secu_card
-  specialInteractionText: Access granted!
-  requirementFailureText: It seems you are missing a key item to proceed.
-  isSpecialSpawnInteraction: 0
-  objectToSpawnPrefab: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: Security card required!
---- !u!114 &1116402795
+--- !u!114 &1116402796
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5798,25 +5767,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1116402791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3342205311a00944d9a11c0c3203252d, type: 3}
+  m_Script: {fileID: 11500000, guid: 83d6bde53100445439d30296f5aa1826, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiManager: {fileID: 263415301}
-  uniqueId: 
-  spawnActionId: 
-  isSpecialInteraction: 1
+  destinationSceneName: Office_Rooftop
+  destinationSpawnPointName: Office_Rooftop_Spawn
   requiredItemId: secu_card
-  specialInteractionText: Access granted!
-  requirementFailureText: I have to find a security card to activate this
-  triggersSceneChange: 1
-  targetSceneIndex: 7
-  fadeOutDuration: 1.5
-  isSpecialSpawnInteraction: 0
-  objectToSpawnPrefab: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: Security card required!
+  requirementFailureText: I have to find a security card to activate this.
+  fadeSpeed: 1
+  blackScreenDuration: 1.5
+  myQuestion: Do you want to proceeds
+  myYesText: Yes
+  myNoText: No
 --- !u!65 &1172984381
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6507,16 +6469,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: Just a drawer.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: Just a drawer.
 --- !u!1 &1224469934
 GameObject:
   m_ObjectHideFlags: 0
@@ -6914,10 +6877,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
+  - {fileID: 11400000, guid: 5da344246bbe82d49b53b4e2377fc0dc, type: 2}
   craftingRecipes:
   - itemA: {fileID: 11400000, guid: b680290f2534580478d8c782b8160009, type: 2}
     itemB: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}
     resultItem: {fileID: 11400000, guid: 47535320da483b14c96099118e3edc27, type: 2}
+  - itemA: {fileID: 11400000, guid: ca805bdd5e7e4fb48a3f06fe54350bc4, type: 2}
+    itemB: {fileID: 11400000, guid: cfb1e7b969bdc664991b0cf833243ce8, type: 2}
+    resultItem: {fileID: 11400000, guid: dd8adebdd606ea84193bb31ec7cc17ea, type: 2}
+  - itemA: {fileID: 11400000, guid: dd8adebdd606ea84193bb31ec7cc17ea, type: 2}
+    itemB: {fileID: 11400000, guid: 6c6b83fe27516a6438e29f44b182cab0, type: 2}
+    resultItem: {fileID: 11400000, guid: 6a160906e96e57a40b96719e78c2fe60, type: 2}
 --- !u!4 &1330619593
 Transform:
   m_ObjectHideFlags: 0
@@ -7168,7 +7138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &1438006425
 MonoBehaviour:
@@ -7911,16 +7880,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: Just a drawer.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: Just a drawer.
 --- !u!1 &1539771721
 GameObject:
   m_ObjectHideFlags: 0
@@ -8254,7 +8224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &1614475007
 MonoBehaviour:
@@ -8278,87 +8247,91 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.21
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.52
+      value: 3.45
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.08
+      value: -9.7
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.9999998
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0.00067959796
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0.078
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Name
       value: animation
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 179d8b132081545438a16fd0e08a08b2, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 16fcdbc989c398746909c4e154afbdc6, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 4b2141b6e16322e4f93304fc619801ba, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 7ce7c63615a550d4b9005b0f4d84837e, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[4]
       value: 
       objectReference: {fileID: 2100000, guid: b3794704e39bd224a936e7456507368a, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[5]
       value: 
       objectReference: {fileID: 2100000, guid: b03a63c7c357d384b95f8bd09a7f38f3, type: 2}
@@ -8366,25 +8339,25 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1640270331}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1640270330}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1640270334}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1640270333}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1640270332}
-  m_SourcePrefab: {fileID: 100100000, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
 --- !u!1 &1640270329 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
   m_PrefabInstance: {fileID: 1640270328}
   m_PrefabAsset: {fileID: 0}
 --- !u!54 &1640270330
@@ -8458,7 +8431,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640270329}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
   m_Controller: {fileID: 9100000, guid: 7417fdb43c1109e448a00fc096c79c27, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -8482,15 +8455,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89eb316d6a3c3554d87ecb400c809ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpawnPoint: {fileID: 641333051633042048}
+  defaultSpawnPoint: {fileID: 0}
   canMove: 1
-  speed: 3
-  rotationSpeed: 180
---- !u!4 &1640270335 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
-  m_PrefabInstance: {fileID: 1640270328}
-  m_PrefabAsset: {fileID: 0}
+  speed: 2
+  rotationSpeed: 160
 --- !u!1 &1646296296
 GameObject:
   m_ObjectHideFlags: 0
@@ -8798,7 +8766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &1688965027
 MonoBehaviour:
@@ -9031,10 +8998,6 @@ MonoBehaviour:
   yesText: {fileID: 293533663}
   noText: {fileID: 1260449097}
   spawnPointManager: {fileID: 397637503}
-  spawnPosition: {x: 0, y: 0, z: 0}
-  spawnRotation: {x: 0, y: 0, z: 0, w: 0}
-  isFirstLoad: 1
-  desiredSpawnPointName: OfficeSpawnPoint
 --- !u!65 &1748958154
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9145,16 +9108,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: An elevator, I need to get to higher floors.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: An elevator, I need to get to higher floors.
 --- !u!65 &1791061384
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9429,7 +9393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 1640270335}
   rotationSpeed: 5
 --- !u!114 &1851126335
 MonoBehaviour:
@@ -10307,17 +10270,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: secu_card
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: I can see the card from here, but i can't possibly take it. I need to think
+    of something that could help me with...
+  requirementFailureText: If only i have something long to reach it.
+  specialInteractionText: Now I can take the card with my sticky stick.
+  afterInteractionText: 
+  itemData: {fileID: 11400000, guid: 5da344246bbe82d49b53b4e2377fc0dc, type: 2}
   isSpecialInteraction: 1
   requiredItemId: sticky_stick
-  specialInteractionText: Now I can take the card with my sticky stick.
-  requirementFailureText: If only i have something long to reach it.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: 
-  itemData: {fileID: 11400000, guid: 5da344246bbe82d49b53b4e2377fc0dc, type: 2}
-  myText: I can see the card from here, but i can't possibly take it. I need to think
-    of something that could help me with...
 --- !u!4 &2057171451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f4fe8772a150bf84d8b0f04a9eb0a2f8, type: 3}
@@ -12345,16 +12309,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: A locker, nothing inside.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: A locker, nothing inside.
 --- !u!1 &2949301076780977149
 GameObject:
   m_ObjectHideFlags: 0
@@ -13499,16 +13464,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: 
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: 
 --- !u!114 &4645411003737309373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14211,7 +14177,7 @@ GameObject:
   - component: {fileID: 7019946237265472577}
   - component: {fileID: 36176302638368190}
   m_Layer: 0
-  m_Name: Session
+  m_Name: Session_Elevator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14986,16 +14952,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: A locker, nothing inside.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: A locker, nothing inside.
 --- !u!4 &7685259906729944646
 Transform:
   m_ObjectHideFlags: 0
@@ -15563,16 +15530,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: There's so much stuff around, I can't get through it.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: There's so much stuff around, I can't get through it.
 --- !u!4 &8379382011113152565
 Transform:
   m_ObjectHideFlags: 0
@@ -15852,17 +15820,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: radio
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: An old radio, it has really long antenna. Hey, maybe I can use it antenna
+    rod as a stick, it could be useful.
+  requirementFailureText: 
+  specialInteractionText: 
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: 
-  requirementFailureText: 
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}
-  myText: An old radio, it has really long antenna. Hey, maybe I can use it antenna
-    rod as a stick, it could be useful.
 --- !u!1001 &8708054010678490871
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15877,15 +15846,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7547058432065787334, guid: 0283bce2fbfab7a4dabe3789b01fb5c4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.41
+      value: -1.576811
       objectReference: {fileID: 0}
     - target: {fileID: 7547058432065787334, guid: 0283bce2fbfab7a4dabe3789b01fb5c4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43
+      value: 0.34244102
       objectReference: {fileID: 0}
     - target: {fileID: 7547058432065787334, guid: 0283bce2fbfab7a4dabe3789b01fb5c4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.31
+      value: -4.202147
       objectReference: {fileID: 0}
     - target: {fileID: 7547058432065787334, guid: 0283bce2fbfab7a4dabe3789b01fb5c4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15976,16 +15945,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: The door won't budge. It's locked from the inside
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: The door won't budge. It's locked from the inside
 --- !u!23 &8962279952583657268
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16168,16 +16138,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: A bookshelf.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: A bookshelf.
 --- !u!4 &9103254288496038616
 Transform:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Đổi tên class để phù hợp hơn với chức năng tương tác
 public class DoorPasscodeVendingMachine : MonoBehaviour
 {
     // Kéo và thả TextMeshProUGUI từ Inspector vào đây
@@ -20,6 +21,16 @@ public class DoorPasscodeVendingMachine : MonoBehaviour
     // Tham chiếu đến bảng nhập passcode
     public PasscodePanelVendingMachine passcodePanel;
 
+    // === Cài đặt Spawn Object (Lấy cảm hứng từ InteractableObject) ===
+    [Header("Spawn Object Settings")]
+    [Tooltip("Đánh dấu nếu cánh cửa này sẽ spawn một vật phẩm sau khi mở.")]
+    public bool isSpawnInteraction = false;
+    [Tooltip("ID duy nhất cho hành động spawn này. Cần thiết để ngăn việc spawn lại sau khi lưu/tải game.")]
+    public string spawnActionId;
+    public GameObject objectToSpawnPrefab;
+    public Transform spawnPoint;
+    // ===============================================================
+
     private bool playerInRange = false;
     private bool isOpened = false;
     private bool isRotating = false;
@@ -32,6 +43,25 @@ public class DoorPasscodeVendingMachine : MonoBehaviour
         {
             Debug.LogError("BoxCollider not found on the door object!");
         }
+    }
+
+    // Thêm hàm Start để kiểm tra cảnh báo và trạng thái
+    void Start()
+    {
+        // Kiểm tra cảnh báo nếu thiếu các tham chiếu quan trọng cho spawn
+        if (isSpawnInteraction)
+        {
+            if (string.IsNullOrEmpty(spawnActionId))
+            {
+                Debug.LogWarning($"Door {gameObject.name}: isSpawnInteraction is true but spawnActionId is missing. State will not be saved.");
+            }
+            if (objectToSpawnPrefab == null || spawnPoint == null)
+            {
+                Debug.LogWarning($"Door {gameObject.name}: Missing objectToSpawnPrefab or spawnPoint for spawn interaction.");
+            }
+        }
+
+        // Cần phải đảm bảo GameManager.instance tồn tại để thực hiện spawn/lưu trạng thái
     }
 
     void Update()
@@ -69,7 +99,8 @@ public class DoorPasscodeVendingMachine : MonoBehaviour
             playerInRange = true;
             if (interactionText != null && !isOpened)
             {
-                interactionText.text = "";
+                // Hiển thị gợi ý tương tác
+                interactionText.text = "Press E to interact";
             }
         }
     }
@@ -92,6 +123,37 @@ public class DoorPasscodeVendingMachine : MonoBehaviour
         {
             doorCollider.enabled = false;
         }
+
+        // === LOGIC SPAWN OBJECT MỚI ===
+        if (isSpawnInteraction && objectToSpawnPrefab != null && spawnPoint != null && GameManager.instance != null)
+        {
+            // Chỉ spawn nếu hành động chưa được hoàn thành và ID đã được cung cấp
+            if (!string.IsNullOrEmpty(spawnActionId) && !GameManager.instance.completedSpawnActions.Contains(spawnActionId))
+            {
+                // Tạo vật thể tại vị trí spawnPoint
+                GameObject spawnedObject = Instantiate(objectToSpawnPrefab, spawnPoint.position, spawnPoint.rotation);
+
+                // Giữ lại vật thể đã được sinh ra (sử dụng DontDestroyOnLoad theo mẫu tham chiếu)
+                DontDestroyOnLoad(spawnedObject);
+
+                // Đánh dấu hành động spawn đã hoàn thành
+                GameManager.instance.completedSpawnActions.Add(spawnActionId);
+
+                Debug.Log($"Door '{gameObject.name}' unlocked. Successfully spawned object '{objectToSpawnPrefab.name}' for action ID '{spawnActionId}'.");
+            }
+            else if (!string.IsNullOrEmpty(spawnActionId))
+            {
+                // Thông báo nếu hành động đã được hoàn thành trước đó
+                Debug.Log($"Door {gameObject.name}: Object already spawned for action ID '{spawnActionId}'. Skipping spawn.");
+            }
+            else
+            {
+                // Nếu không có ID, ta vẫn spawn nhưng không lưu trạng thái (Chỉ dành cho debug/testing)
+                Instantiate(objectToSpawnPrefab, spawnPoint.position, spawnPoint.rotation);
+                Debug.LogWarning($"Door {gameObject.name}: SpawnActionId is missing, spawning without saving state.");
+            }
+        }
+        // ===================================
     }
 
     public void EndInteraction()

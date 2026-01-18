@@ -22,7 +22,7 @@ public class PasscodePanelVendingMachine : MonoBehaviour
     // Đã loại bỏ biến isPlayerInRange vì nó không cần thiết trong Panel
 
     // Hướng dẫn
-    private string pressEToExitPrompt = "Press E to exit";
+    // ĐÃ XÓA: private string pressEToExitPrompt = "Press E to exit"; // Loại bỏ cảnh báo CS0414
     private string wrongPasscodePrompt = "Out of stock!";
     private string correctPasscodePrompt = "Hidden password confirmed!";
 
@@ -73,8 +73,12 @@ public class PasscodePanelVendingMachine : MonoBehaviour
                 // 1. Kiểm tra chữ số
                 if (char.IsDigit(c))
                 {
-                    currentInput += c;
-                    UpdateDisplay();
+                    // Thêm giới hạn để ngăn nhập liệu dài hơn mật khẩu
+                    if (currentInput.Length < passcode.Length)
+                    {
+                        currentInput += c;
+                        UpdateDisplay();
+                    }
                     break;
                 }
 
@@ -82,8 +86,12 @@ public class PasscodePanelVendingMachine : MonoBehaviour
                 char upperC = char.ToUpper(c);
                 if (allowedLetters.Contains(upperC.ToString()))
                 {
-                    currentInput += upperC; // Lưu dưới dạng chữ hoa
-                    UpdateDisplay();
+                    // Thêm giới hạn để ngăn nhập liệu dài hơn mật khẩu
+                    if (currentInput.Length < passcode.Length)
+                    {
+                        currentInput += upperC; // Lưu dưới dạng chữ hoa
+                        UpdateDisplay();
+                    }
                     break;
                 }
             }
@@ -112,10 +120,14 @@ public class PasscodePanelVendingMachine : MonoBehaviour
     public void OnNumberClick(string number)
     {
         // Hàm này có thể được gọi từ các button UI
-        if (!isSolved)
+        if (!isSolved && currentInput.Length < passcode.Length)
         {
-            currentInput += number;
-            UpdateDisplay();
+            // Kiểm tra xem ký tự được click có hợp lệ không (chữ số hoặc chữ cái cho phép)
+            if (char.IsDigit(number[0]) || allowedLetters.Contains(char.ToUpper(number[0]).ToString()))
+            {
+                currentInput += char.ToUpper(number[0]); // Đảm bảo lưu chữ hoa
+                UpdateDisplay();
+            }
         }
     }
 

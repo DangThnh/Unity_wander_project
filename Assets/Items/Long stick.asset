@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cf1e65448c58114bb2e57415d91a1e6, type: 3}
   m_Name: Long stick
   m_EditorClassIdentifier: 
-  itemName: Long stick
+  itemName: Long Stick
   uniqueId: antenna_stick
   itemIcon: {fileID: 21300000, guid: 5a38884ca4e498647b2a0ae38479772c, type: 3}
   itemDescription: A long stick taken from the antenna of an old radio.

@@ -3,7 +3,7 @@ using TMPro;
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class InteractableObjectEndCredit : MonoBehaviour
+public class TriggerSceneInteract : MonoBehaviour
 {
     // === Cần phải gán trong Inspector (Thêm UIManager vào đây) ===
     [Header("Manager References")]

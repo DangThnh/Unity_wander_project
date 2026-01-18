@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Duct Tape
   uniqueId: duct_tape_01
   itemIcon: {fileID: 21300000, guid: adfaeb3d1447d854bab07571e21c6772, type: 3}
-  itemDescription: A roll of tape strong enough to hold anything together
+  itemDescription: A roll of tape strong enough to hold anything together.

@@ -12,7 +12,7 @@ public class VideoIntroManager : MonoBehaviour
     // Kéo VideoPlayer Component vào đây
     public VideoPlayer videoPlayer;
     // Index của scene Menu (Giả định là scene index 1)
-    public int mainMenuSceneIndex = 1;
+    public int nextSceneIndex = 1;
 
     [Header("UI Effects")]
     // Panel/Image đen phủ toàn màn hình (Dùng để Fade to Black)
@@ -45,7 +45,7 @@ public class VideoIntroManager : MonoBehaviour
         if (videoPlayer == null || videoPlayer.clip == null)
         {
             Debug.LogError("VideoPlayer hoặc VideoClip chưa được gán! Tự động chuyển đến Menu.");
-            SceneManager.LoadScene(mainMenuSceneIndex);
+            SceneManager.LoadScene(nextSceneIndex);
             return;
         }
 
@@ -134,12 +134,12 @@ public class VideoIntroManager : MonoBehaviour
         {
             // Nếu chưa fade xong, chúng ta chuyển cảnh ngay sau 1 khung hình
             // hoặc bạn có thể gọi lại FadeCoroutine với thời gian 0.1s
-            SceneManager.LoadScene(mainMenuSceneIndex);
+            SceneManager.LoadScene(nextSceneIndex);
         }
         else
         {
             // Màn hình đã tối, chuyển cảnh ngay lập tức
-            SceneManager.LoadScene(mainMenuSceneIndex);
+            SceneManager.LoadScene(nextSceneIndex);
         }
     }
 }

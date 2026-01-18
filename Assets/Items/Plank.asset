@@ -15,4 +15,4 @@ MonoBehaviour:
   itemName: Wooden Plank
   uniqueId: plank_01
   itemIcon: {fileID: 21300000, guid: c50a394494de33e47a3a7804f436ccf6, type: 3}
-  itemDescription: Strong wooden plank. Could make a bridge
+  itemDescription: Strong wooden plank. Could make a bridge.

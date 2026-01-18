@@ -317,17 +317,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
-  isSpecialInteraction: 0
-  requiredItemId: 
+  localInteractionText: {fileID: 0}
+  myText: Books, just be there for decoration.
+  requirementFailureText: It seems you are missing a key item to proceed.
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
-  requirementFailureText: It seems you are missing a key item to proceed.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
+  isSpecialInteraction: 0
+  requiredItemId: 
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: Books, just be there for decoration.
 --- !u!224 &138303873 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8881390951061640814, guid: a139467ea61ae1847b3e3d9f241f4a90, type: 3}
@@ -545,10 +546,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationSceneName: Outside
-  questionPanel: {fileID: 703596943}
-  yesText: {fileID: 1224855233}
-  noText: {fileID: 834631133}
-  destinationSpawnPoint: {fileID: 4103751057902471996, guid: bfbc7fbca5193554896d7cdb79fa3804, type: 3}
+  destinationSpawnPointName: 
+  myQuestion: Do you want to step through the door?
+  myYesText: Yes
+  myNoText: No
 --- !u!1 &346423863 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6479137908180158667, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
@@ -624,17 +625,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
-  isSpecialInteraction: 0
-  requiredItemId: 
+  localInteractionText: {fileID: 0}
+  myText: I don't think i want to sleep now.
+  requirementFailureText: It seems you are missing a key item to proceed.
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
-  requirementFailureText: It seems you are missing a key item to proceed.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
+  isSpecialInteraction: 0
+  requiredItemId: 
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: I don't think i want to sleep now.
 --- !u!1 &355607002 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2089681278631474171, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
@@ -675,17 +677,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
-  isSpecialInteraction: 0
-  requiredItemId: 
+  localInteractionText: {fileID: 0}
+  myText: My favourite spot.
+  requirementFailureText: It seems you are missing a key item to proceed.
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
-  requirementFailureText: It seems you are missing a key item to proceed.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
+  isSpecialInteraction: 0
+  requiredItemId: 
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: My favourite spot.
 --- !u!65 &355607008
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -768,17 +771,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
-  isSpecialInteraction: 0
-  requiredItemId: 
+  localInteractionText: {fileID: 0}
+  myText: My laptop, don't wanna touch it for now.
+  requirementFailureText: It seems you are missing a key item to proceed.
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
-  requirementFailureText: It seems you are missing a key item to proceed.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
+  isSpecialInteraction: 0
+  requiredItemId: 
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: My laptop, don't wanna touch it for now.
 --- !u!1 &476969757 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3497965556255975921, guid: dd88cefc1b9953b4880675eb8413a743, type: 3}
@@ -820,10 +824,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
+  - {fileID: 11400000, guid: a3c058c0663a4ac40b06986cdb67590d, type: 2}
+  - {fileID: 11400000, guid: 9c607a49beb647c44a32110e7bd15447, type: 2}
+  - {fileID: 11400000, guid: 5da344246bbe82d49b53b4e2377fc0dc, type: 2}
   craftingRecipes:
   - itemA: {fileID: 11400000, guid: b680290f2534580478d8c782b8160009, type: 2}
     itemB: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}
     resultItem: {fileID: 11400000, guid: 47535320da483b14c96099118e3edc27, type: 2}
+  - itemA: {fileID: 11400000, guid: ca805bdd5e7e4fb48a3f06fe54350bc4, type: 2}
+    itemB: {fileID: 11400000, guid: cfb1e7b969bdc664991b0cf833243ce8, type: 2}
+    resultItem: {fileID: 11400000, guid: dd8adebdd606ea84193bb31ec7cc17ea, type: 2}
+  - itemA: {fileID: 11400000, guid: dd8adebdd606ea84193bb31ec7cc17ea, type: 2}
+    itemB: {fileID: 11400000, guid: 6c6b83fe27516a6438e29f44b182cab0, type: 2}
+    resultItem: {fileID: 11400000, guid: 6a160906e96e57a40b96719e78c2fe60, type: 2}
 --- !u!4 &480666779
 Transform:
   m_ObjectHideFlags: 0
@@ -880,7 +893,8 @@ Transform:
   m_LocalPosition: {x: 21.331266, y: 7.427285, z: -33.11577}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3731226683655797625}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &530608400 stripped
@@ -923,16 +937,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: Fridge.
+  requirementFailureText: It seems you are missing a key item to proceed.
+  specialInteractionText: You have something, use it.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
-  specialInteractionText: You have something, use it.
-  requirementFailureText: It seems you are missing a key item to proceed.
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: Fridge.
 --- !u!65 &530608406
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -973,91 +988,95 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.35
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.15
+      value: 6.6
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.25
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.350571
+      value: -7.9
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0061522494
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9999811
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -180.705
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -5477749408508380018, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: -5477749408508380018, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.87
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Name
       value: animation
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 179d8b132081545438a16fd0e08a08b2, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 16fcdbc989c398746909c4e154afbdc6, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 4b2141b6e16322e4f93304fc619801ba, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 7ce7c63615a550d4b9005b0f4d84837e, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[4]
       value: 
       objectReference: {fileID: 2100000, guid: b3794704e39bd224a936e7456507368a, type: 2}
-    - target: {fileID: 8417361359673230750, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - target: {fileID: 8417361359673230750, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       propertyPath: m_Materials.Array.data[5]
       value: 
       objectReference: {fileID: 2100000, guid: b03a63c7c357d384b95f8bd09a7f38f3, type: 2}
@@ -1065,27 +1084,22 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1080142359}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1080142358}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1080142362}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1080142364}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1080142365}
-  m_SourcePrefab: {fileID: 100100000, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
---- !u!4 &566550093 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
-  m_PrefabInstance: {fileID: 566550092}
-  m_PrefabAsset: {fileID: 0}
+  m_SourcePrefab: {fileID: 100100000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
 --- !u!1 &589996057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1101,7 +1115,7 @@ GameObject:
   - component: {fileID: 589996062}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1174,7 +1188,7 @@ Transform:
   m_GameObject: {fileID: 589996057}
   serializedVersion: 2
   m_LocalRotation: {x: 0.094132595, y: -0.84246814, z: 0.24996834, w: 0.46787015}
-  m_LocalPosition: {x: 9.03, y: 2.9799998, z: -5.46}
+  m_LocalPosition: {x: 8.5, y: 3, z: -5.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1192,7 +1206,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 566550093}
   rotationSpeed: 5
 --- !u!114 &589996062
 MonoBehaviour:
@@ -1350,17 +1363,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
-  isSpecialInteraction: 0
-  requiredItemId: 
+  localInteractionText: {fileID: 0}
+  myText: My wardrobe, nothing much to wear.
+  requirementFailureText: It seems you are missing a key item to proceed.
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
-  requirementFailureText: It seems you are missing a key item to proceed.
+  afterInteractionText: You put it down, would you like to use it
+  itemData: {fileID: 0}
+  isSpecialInteraction: 0
+  requiredItemId: 
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  myText: My wardrobe, nothing much to wear.
 --- !u!65 &610850649
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1586,10 +1600,6 @@ MonoBehaviour:
   yesText: {fileID: 1224855233}
   noText: {fileID: 834631133}
   spawnPointManager: {fileID: 491545979}
-  spawnPosition: {x: 0, y: 0, z: 0}
-  spawnRotation: {x: 0, y: 0, z: 0, w: 0}
-  isFirstLoad: 1
-  desiredSpawnPointName: 
 --- !u!1 &834631131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1918,6 +1928,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
       propertyPath: m_Name
       value: Session_1_room
+      objectReference: {fileID: 0}
+    - target: {fileID: 4678499517731882079, guid: 7f19ff4576fb39641b2a434a5499091c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.4638016
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -2315,7 +2329,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1080142355 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 04ad143c61f535d4086c535bf0c12749, type: 3}
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
   m_PrefabInstance: {fileID: 566550092}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1080142358
@@ -2330,10 +2344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89eb316d6a3c3554d87ecb400c809ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpawnPoint: {fileID: 3731226683655797625}
+  defaultSpawnPoint: {fileID: 0}
   canMove: 1
   speed: 3
-  rotationSpeed: 180
+  rotationSpeed: 160
 --- !u!95 &1080142359
 Animator:
   serializedVersion: 5
@@ -2343,7 +2357,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1080142355}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
   m_Controller: {fileID: 9100000, guid: 7417fdb43c1109e448a00fc096c79c27, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -3104,7 +3118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27ef4182fcd3d534dbf3c2fe052ac832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTarget: {fileID: 566550093}
   rotationSpeed: 5
 --- !u!114 &1646836097
 MonoBehaviour:
@@ -3547,49 +3560,49 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 491545980}
     m_Modifications:
-    - target: {fileID: 3929254367583543681, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 3929254367583543681, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_Name
       value: DefaultSpawnPoint
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.902
+      value: -14.429266
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: -7.3272853
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7.739
+      value: 25.376768
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+    - target: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -3597,10 +3610,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
 --- !u!4 &3731226683655797625 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: 8603270373938170301, guid: 2304ccd5dee68414b87fdc029803c1a2, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8603270373938170301, guid: dc148964938074f40a9dd8f0da18b5df, type: 3}
   m_PrefabInstance: {fileID: 3731226683655797624}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5191728559848962863
@@ -4096,7 +4109,6 @@ SceneRoots:
   - {fileID: 1220486971}
   - {fileID: 589996060}
   - {fileID: 1646836095}
-  - {fileID: 3731226683655797624}
   - {fileID: 947209899}
   - {fileID: 2040312742}
   - {fileID: 480666779}

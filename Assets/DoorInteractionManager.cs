@@ -1,28 +1,35 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class DoorInteractionManager : MonoBehaviour
 {
     // Cài đặt chuyển phòng
+    [Header("Scene Transition Settings")]
     public string destinationSceneName;
 
-    // Cài đặt UI
-    public GameObject questionPanel;
-    public TextMeshProUGUI yesText;
-    public TextMeshProUGUI noText;
-    // Điểm xuất hiện trong scene mới
-    public Transform destinationSpawnPoint;
+    // Điểm xuất hiện trong scene mới (Sử dụng tên chuỗi để GameManager xử lý)
+    [Tooltip("Tên điểm spawn trong Scene đích (phải khớp với tên điểm trong SpawnPointManager).")]
+    public string destinationSpawnPointName;
+
+    [Header("UI & State Settings")]
+    public string myQuestion = "Do you want to step through the door?";
+    public string myYesText = "Yes";
+    public string myNoText = "No";
 
     // Cài đặt trạng thái
     private bool playerInRange = false;
     private int selectedOption = 0; // 0 = Yes, 1 = No
-    private bool isInteracting = false; // Trạng thái tương tác
+    private bool isInteracting = false; // Trạng thái tương tác (UI đang hiển thị)
 
     // Tham chiếu đến script điều khiển nhân vật
     private Character_movement playerController;
-
     private Animator playerAnimator;
+
+    // Tham chiếu UI cục bộ (sẽ được lấy từ GameManager)
+    private TextMeshProUGUI questionText;
+    private GameObject questionPanel;
 
     // Thiết lập kích thước font chữ
     private float defaultFontSize = 36f;
@@ -30,9 +37,21 @@ public class DoorInteractionManager : MonoBehaviour
 
     void Start()
     {
-        if (questionPanel != null)
+        // Khởi tạo các tham chiếu UI từ GameManager khi Start
+        if (GameManager.instance != null)
         {
-            questionPanel.SetActive(false);
+            questionPanel = GameManager.instance.questionPanel;
+
+            // Cần tìm Question Text trong Panel (giống logic trong InteractionManager_RequiredItemTeleport)
+            if (questionPanel != null)
+            {
+                questionText = questionPanel.GetComponentInChildren<TextMeshProUGUI>();
+                questionPanel.SetActive(false);
+            }
+        }
+        else
+        {
+            Debug.LogError("[DoorInteraction] GameManager.instance is null!");
         }
     }
 
@@ -52,11 +71,8 @@ public class DoorInteractionManager : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            // Tắt UI nếu nhân vật rời đi và không tương tác
-            if (!isInteracting)
-            {
-                HideUI();
-            }
+            // Tắt UI nếu nhân vật rời đi
+            EndInteraction();
         }
     }
 
@@ -67,17 +83,8 @@ public class DoorInteractionManager : MonoBehaviour
         {
             ShowUI();
         }
-        // Kết thúc tương tác khi UI đang bật và người chơi bấm E
-        else if (isInteracting && Input.GetKeyDown(KeyCode.Return))
-        {
-            // Thoát khỏi tương tác mà không cần chuyển scene
-            if (selectedOption == 1) // Kiểm tra nếu chọn No
-            {
-                EndInteraction();
-            }
-        }
 
-        // Xử lý khi UI đang bật
+        // Xử lý Input khi UI đang bật
         if (isInteracting)
         {
             HandleUIInput();
@@ -86,9 +93,25 @@ public class DoorInteractionManager : MonoBehaviour
 
     void ShowUI()
     {
+        if (questionPanel == null || GameManager.instance == null) return;
+
         isInteracting = true;
         questionPanel.SetActive(true);
         selectedOption = 0; // Mặc định chọn Yes
+
+        // Thiết lập nội dung text
+        if (questionText != null) questionText.text = myQuestion;
+        if (GameManager.instance.yesText != null)
+        {
+            GameManager.instance.yesText.text = myYesText;
+            GameManager.instance.yesText.gameObject.SetActive(true);
+        }
+        if (GameManager.instance.noText != null)
+        {
+            GameManager.instance.noText.text = myNoText;
+            GameManager.instance.noText.gameObject.SetActive(true);
+        }
+
         UpdateSelectionUI();
 
         // Khóa chuyển động của nhân vật
@@ -105,8 +128,10 @@ public class DoorInteractionManager : MonoBehaviour
 
     void HideUI()
     {
-        isInteracting = false;
-        questionPanel.SetActive(false);
+        if (questionPanel != null)
+        {
+            questionPanel.SetActive(false);
+        }
 
         // Mở khóa chuyển động của nhân vật
         if (playerController != null)
@@ -117,19 +142,23 @@ public class DoorInteractionManager : MonoBehaviour
 
     void EndInteraction()
     {
-        // Tắt UI và tiếp tục chơi
+        isInteracting = false;
         HideUI();
     }
 
     void UpdateSelectionUI()
     {
-        if (yesText != null)
+        // Sử dụng tham chiếu từ GameManager
+        if (GameManager.instance != null)
         {
-            yesText.fontSize = (selectedOption == 0) ? selectedFontSize : defaultFontSize;
-        }
-        if (noText != null)
-        {
-            noText.fontSize = (selectedOption == 1) ? selectedFontSize : defaultFontSize;
+            if (GameManager.instance.yesText != null)
+            {
+                GameManager.instance.yesText.fontSize = (selectedOption == 0) ? selectedFontSize : defaultFontSize;
+            }
+            if (GameManager.instance.noText != null)
+            {
+                GameManager.instance.noText.fontSize = (selectedOption == 1) ? selectedFontSize : defaultFontSize;
+            }
         }
     }
 
@@ -145,21 +174,44 @@ public class DoorInteractionManager : MonoBehaviour
         // Xác nhận lựa chọn bằng phím Enter
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            // Trong hàm HandleUIInput() của DoorInteractionManager
-            if (selectedOption == 0)
+            if (selectedOption == 0) // Chọn Yes: Chuyển Scene
             {
-                if (GameManager.instance != null)
-                {
-                    // Lưu vị trí và hướng của cửa vào GameManager
-                    GameManager.instance.spawnPosition = destinationSpawnPoint.position;
-                    GameManager.instance.spawnRotation = destinationSpawnPoint.rotation;
-
-                    // Đảm bảo biến isFirstLoad đã được đặt thành false
-                    GameManager.instance.isFirstLoad = false;
-                }
-                SceneManager.LoadScene(destinationSceneName);
-                HideUI();
+                // BẮT ĐẦU COROUTINE FADE VÀ LOAD SCENE
+                StartCoroutine(FadeAndLoadScene());
+            }
+            else // Chọn No: Thoát tương tác
+            {
+                EndInteraction();
             }
         }
+    }
+
+    // Thêm Coroutine Fade và Load Scene để đồng bộ với script kia
+    private IEnumerator FadeAndLoadScene()
+    {
+        if (GameManager.instance == null)
+        {
+            Debug.LogError("GameManager is null. Cannot proceed with scene load.");
+            yield break;
+        }
+
+        EndInteraction(); // Ẩn UI và mở khóa di chuyển
+
+        // KHÔNG CÓ FADER TRONG SCRIPT NÀY, NÊN TẢI NGAY LẬP TỨC
+        // Nếu muốn hiệu ứng fade, bạn cần phải tìm/gọi Fader UI giống như InteractionManager_RequiredItemTeleport.
+
+        // --- Logic Load Scene mới và Spawn Point ---
+
+        // 1. Thiết lập Spawn Point mong muốn (SỬA LỖI Ở ĐÂY)
+        // Thay thế: GameManager.instance.spawnPosition = destinationSpawnPoint.position;
+        // Bằng:
+        GameManager.instance.SetNextSpawnPoint(destinationSpawnPointName);
+
+        Debug.Log($"[DoorInteraction] Đặt SpawnPointName: {destinationSpawnPointName}. Tải Scene: {destinationSceneName}");
+
+        // 2. Tải Scene mới
+        SceneManager.LoadScene(destinationSceneName);
+
+        // Script này kết thúc sau khi Scene được tải. GameManager sẽ tiếp quản.
     }
 }

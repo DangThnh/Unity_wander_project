@@ -49,6 +49,9 @@ public class InventoryUI : MonoBehaviour
 
     void Update()
     {
+
+        if (GameState.isInputLocked) return;
+
         // 1. Xử lý khi đang hiển thị kết quả chế tạo (ƯU TIÊN HÀNG ĐẦU)
         if (isShowingResult)
         {

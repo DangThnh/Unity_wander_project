@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Screwdriver
   m_EditorClassIdentifier: 
   itemName: Screwdriver
-  uniqueId: 
+  uniqueId: screwdriver_01
   itemIcon: {fileID: 21300000, guid: 6cd7f98f775411b4bbf04308b60f4274, type: 3}
   itemDescription: A normal screwdriver.
