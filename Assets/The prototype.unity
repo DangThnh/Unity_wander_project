@@ -824,9 +824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
-  - {fileID: 11400000, guid: a3c058c0663a4ac40b06986cdb67590d, type: 2}
-  - {fileID: 11400000, guid: 9c607a49beb647c44a32110e7bd15447, type: 2}
-  - {fileID: 11400000, guid: 5da344246bbe82d49b53b4e2377fc0dc, type: 2}
   craftingRecipes:
   - itemA: {fileID: 11400000, guid: b680290f2534580478d8c782b8160009, type: 2}
     itemB: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}

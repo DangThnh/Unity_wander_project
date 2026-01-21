@@ -385,6 +385,7 @@
 "Assets/Puzzle/Hexagon puzzle/FusePuzzleTrigger.cs"
 "Assets/Puzzle/Hexagon puzzle/HexaCylinder.cs"
 "Assets/Puzzle/Hexagon puzzle/HexaPuzzleManager.cs"
+"Assets/Scene5_OfficeRoof/QuestionPanelController.cs"
 "Assets/Scene6_Ses3_Bottom/CutsceneController.cs"
 "Assets/Scene6_Ses3_Bottom/GameState.cs"
 "Assets/SceneEndCredit/CreditManager.cs"

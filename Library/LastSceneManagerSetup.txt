@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scene5_OfficeRoof/Office_Rooftop.unity
+- path: Assets/Scene7_Stair/Stairs.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -5773,6 +5773,8 @@ MonoBehaviour:
   destinationSceneName: Office_Rooftop
   destinationSpawnPointName: Office_Rooftop_Spawn
   requiredItemId: secu_card
+  text1: You discover an ancient portal...
+  text2HasItem: The key in your pocket begins to glow.
   requirementFailureText: I have to find a security card to activate this.
   fadeSpeed: 1
   blackScreenDuration: 1.5
@@ -6877,7 +6879,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
-  - {fileID: 11400000, guid: 5da344246bbe82d49b53b4e2377fc0dc, type: 2}
   craftingRecipes:
   - itemA: {fileID: 11400000, guid: b680290f2534580478d8c782b8160009, type: 2}
     itemB: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}

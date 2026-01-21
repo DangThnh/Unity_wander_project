@@ -1847,6 +1847,7 @@ GameObject:
   - component: {fileID: 301169740}
   - component: {fileID: 301169742}
   - component: {fileID: 301169741}
+  - component: {fileID: 301169743}
   m_Layer: 5
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
@@ -1970,6 +1971,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301169739}
   m_CullTransparentMesh: 1
+--- !u!223 &301169743
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301169739}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 10
+  m_TargetDisplay: 0
 --- !u!1 &341178970
 GameObject:
   m_ObjectHideFlags: 0
@@ -3474,7 +3498,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.5}
-  m_Center: {x: -0.25, y: 0, z: 0}
+  m_Center: {x: -0.25, y: 0, z: -0.02}
 --- !u!65 &606476509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3513,9 +3537,9 @@ MonoBehaviour:
   requiresItemCondition: 1
   requiredItemId: screwdriver_01
   requiredItemFailureLine: The battery case is securely locked with screws.
-  firstLine: The battery case is securely locked with screws.
-  secondLine: I can open it with my screwdriver. Press "E" to use.
-  thirdLine: You have received a Battery.
+  firstLine: The battery case of the BMU.
+  secondLine: I can open it with my screwdriver. (Press "E" to use)
+  thirdLine: You have received a Dead Battery.
 --- !u!1 &657582286
 GameObject:
   m_ObjectHideFlags: 0
@@ -4391,7 +4415,7 @@ Transform:
   m_GameObject: {fileID: 750934063}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.629631, y: 0.09999466, z: -0.59999895}
+  m_LocalPosition: {x: 1.5296307, y: 0.09999466, z: -0.59999895}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4433,10 +4457,13 @@ MonoBehaviour:
   destinationSceneName: Cutscene_BMU
   destinationSpawnPointName: 
   requiredItemId: chargedbattery_01
+  text1: We can control the BMU from here.
+  text2HasItem: '"Battery is charged and ready to use"'
   requirementFailureText: '"Error: Low power supply - Activation failed. Please check
     the battery compartment on the right side."'
   fadeSpeed: 2
   blackScreenDuration: 4
+  customQuestionText: {fileID: 301169741}
   myQuestion: Do you want to proceed?
   myYesText: Yes
   myNoText: No
@@ -4935,8 +4962,8 @@ MonoBehaviour:
   statusLight: {fileID: 432244952}
   lockedInteractionMessage: This door doesn't have a handle. I can't open it
   lockedMessageDuration: 2
-  unlockedInteractionMessage: Press 'E' to Open
-  closeInteractionMessage: Press 'E' to Close
+  unlockedInteractionMessage: 
+  closeInteractionMessage: 
   isLocked: 1
 --- !u!65 &843031414
 BoxCollider:
@@ -5689,6 +5716,7 @@ GameObject:
   - component: {fileID: 1020634759}
   - component: {fileID: 1020634758}
   - component: {fileID: 1020634757}
+  - component: {fileID: 1020634760}
   m_Layer: 5
   m_Name: NoText
   m_TagString: Untagged
@@ -5743,8 +5771,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5800,7 +5828,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020634756}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5810,8 +5838,31 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 62, y: -192}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!223 &1020634760
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020634756}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 10
+  m_TargetDisplay: 0
 --- !u!1001 &1035866008
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7945,10 +7996,10 @@ MonoBehaviour:
   uniqueId: 
   spawnActionId: 
   localInteractionText: {fileID: 1827598563}
-  myText: A regular drawer.
-  requirementFailureText: It seems you are missing a key item to proceed.
-  specialInteractionText: You have something, use it.
-  afterInteractionText: You put it down, would you like to use it
+  myText: A drawer.
+  requirementFailureText: 
+  specialInteractionText: 
+  afterInteractionText: 
   itemData: {fileID: 0}
   isSpecialInteraction: 0
   requiredItemId: 
@@ -8223,6 +8274,105 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 7, y: 5, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1434151321
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1434151322}
+  - component: {fileID: 1434151324}
+  - component: {fileID: 1434151323}
+  - component: {fileID: 1434151325}
+  m_Layer: 5
+  m_Name: BG
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1434151322
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434151321}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2099157060}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1000, y: 1000}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1434151323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434151321}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.3529412}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1434151324
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434151321}
+  m_CullTransparentMesh: 1
+--- !u!223 &1434151325
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434151321}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &1434897714
 GameObject:
   m_ObjectHideFlags: 0
@@ -9547,8 +9697,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9675,7 +9825,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
-  - {fileID: 11400000, guid: 6a160906e96e57a40b96719e78c2fe60, type: 2}
   craftingRecipes:
   - itemA: {fileID: 11400000, guid: ca805bdd5e7e4fb48a3f06fe54350bc4, type: 2}
     itemB: {fileID: 11400000, guid: cfb1e7b969bdc664991b0cf833243ce8, type: 2}
@@ -11631,8 +11780,8 @@ MonoBehaviour:
   statusLight: {fileID: 432244952}
   lockedInteractionMessage: This door doesn't have a handle. I can't open it
   lockedMessageDuration: 2
-  unlockedInteractionMessage: Press 'E' to Open
-  closeInteractionMessage: Press 'E' to Close
+  unlockedInteractionMessage: 
+  closeInteractionMessage: 
   isLocked: 1
 --- !u!1 &1868625493
 GameObject:
@@ -11838,8 +11987,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12126,6 +12275,7 @@ GameObject:
   - component: {fileID: 1957244431}
   - component: {fileID: 1957244432}
   - component: {fileID: 1957244433}
+  - component: {fileID: 1957244434}
   m_Layer: 5
   m_Name: YesText
   m_TagString: Untagged
@@ -12140,7 +12290,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957244430}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12150,7 +12300,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -76, y: -192}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 200, y: -30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1957244432
 CanvasRenderer:
@@ -12207,8 +12357,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12249,6 +12399,29 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!223 &1957244434
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957244430}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 10
+  m_TargetDisplay: 0
 --- !u!1 &1963493274
 GameObject:
   m_ObjectHideFlags: 0
@@ -12319,7 +12492,7 @@ MonoBehaviour:
   requiresItemCondition: 0
   requiredItemId: 
   requiredItemFailureLine: 
-  firstLine: A regular drawer.
+  firstLine: A drawer.
   secondLine: There is something inside.
   thirdLine: You have received a fuse.
 --- !u!65 &1963656009
@@ -12869,8 +13042,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -12930,6 +13103,7 @@ GameObject:
   - component: {fileID: 2025522333}
   - component: {fileID: 2025522335}
   - component: {fileID: 2025522334}
+  - component: {fileID: 2025522336}
   m_Layer: 5
   m_Name: QuestionText
   m_TagString: Untagged
@@ -12944,7 +13118,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025522332}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12954,7 +13128,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -150}
-  m_SizeDelta: {x: 0, y: 50}
+  m_SizeDelta: {x: -218, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2025522334
 MonoBehaviour:
@@ -12976,7 +13150,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do you want to go to climb up?
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
   m_sharedMaterial: {fileID: -986505973206975042, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
@@ -13003,8 +13177,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13053,6 +13227,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025522332}
   m_CullTransparentMesh: 1
+--- !u!223 &2025522336
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2025522332}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 10
+  m_TargetDisplay: 0
 --- !u!1 &2052813674
 GameObject:
   m_ObjectHideFlags: 0
@@ -13275,6 +13472,7 @@ RectTransform:
   - {fileID: 2025522333}
   - {fileID: 1957244431}
   - {fileID: 1020634759}
+  - {fileID: 1434151322}
   m_Father: {fileID: 1526463344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -13295,14 +13493,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
