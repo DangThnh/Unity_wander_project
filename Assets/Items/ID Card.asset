@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: ID Card
   m_EditorClassIdentifier: 
   itemName: ID Card
+  uniqueId: 
   itemIcon: {fileID: 21300000, guid: 89e485da54f112a4b8f2a7d57888aba7, type: 3}
-  itemDescription: My school ID card, i don't like school at all.
+  itemDescription: Staff ID card.

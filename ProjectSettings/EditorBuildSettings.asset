@@ -36,6 +36,12 @@ EditorBuildSettings:
     path: Assets/Scene6_Ses3_Bottom/Ses3_Bottom.unity
     guid: 1c0a52d8b02bac1428c7b3e5e3994b5b
   - enabled: 1
+    path: Assets/Scene7_Stair/Stairs.unity
+    guid: 1198126e76318f24392233012ae3de20
+  - enabled: 1
+    path: Assets/Scene8_EndAnimation/EndAnimation.unity
+    guid: 2ac9ad8044c289e4798fbe7cfe5b5e38
+  - enabled: 1
     path: Assets/SceneEndCredit/New Scene.unity
     guid: c5e89a7e0c8a420428fe521246e3b6a3
   m_configObjects: {}

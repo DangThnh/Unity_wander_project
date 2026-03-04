@@ -1,58 +1,62 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class MissionBriefingTrigger : MonoBehaviour
 {
-    // Public variables to be set in the Inspector
     [Header("Briefing UI Settings")]
-    [Tooltip("UI Text element to display the mission briefing.")]
     public TextMeshProUGUI briefingTextUI;
-    [Tooltip("The text lines for the mission briefing. Press E to advance.")]
     [TextArea(3, 10)]
     public string[] briefingTexts;
+    [Range(0.01f, 0.1f)]
+    public float typingSpeed = 0.05f;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    public AudioClip typingSound;
 
     [Header("Camera Settings")]
-    [Tooltip("The list of cameras to switch between during the briefing.")]
     public GameObject[] briefingCameras;
-    [Tooltip("Number of text lines to read before switching to the next camera.")]
     [Range(1, 10)]
     public int textsPerCameraChange = 2;
 
-    // Private variables for tracking state
+    // State tracking
     private int currentTextIndex = 0;
     private int currentCameraIndex = 0;
     private bool isBriefingActive = false;
-    private bool hasBeenActivated = false;
+    private bool isTyping = false;
+    private Coroutine typingCoroutine;
+
+    // Static variable to ensure only plays once per scene
+    private static bool hasBeenActivatedInThisScene = false;
+
     private Camera mainGameCamera;
     private Character_movement playerController;
     private Animator playerAnimator;
 
     void Start()
     {
-        // Hide the briefing UI at the start
-        if (briefingTextUI != null)
+        if (briefingTextUI != null) briefingTextUI.gameObject.SetActive(false);
+
+        // Cấu hình Audio Source thành 2D tự động
+        if (audioSource != null)
         {
-            briefingTextUI.gameObject.SetActive(false);
+            audioSource.spatialBlend = 0f;
+            audioSource.playOnAwake = false;
         }
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // Check if the player has entered the trigger and the briefing hasn't run yet
-        if (other.CompareTag("Player") && !hasBeenActivated)
+        // Kiểm tra Player và đảm bảo chỉ chạy 1 lần duy nhất trong Scene
+        if (other.CompareTag("Player") && !hasBeenActivatedInThisScene)
         {
-            hasBeenActivated = true;
-            // Get references to the player's components
+            hasBeenActivatedInThisScene = true;
             playerController = other.GetComponent<Character_movement>();
             playerAnimator = other.GetComponent<Animator>();
 
-            // Find and store the main game camera
-            if (Camera.main != null)
-            {
-                mainGameCamera = Camera.main;
-            }
+            if (Camera.main != null) mainGameCamera = Camera.main;
 
             StartBriefing();
         }
@@ -60,8 +64,7 @@ public class MissionBriefingTrigger : MonoBehaviour
 
     void Update()
     {
-        // Only listen for input if the briefing is active
-        if (isBriefingActive)
+        if (isBriefingActive && !isTyping)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -73,24 +76,27 @@ public class MissionBriefingTrigger : MonoBehaviour
     private void StartBriefing()
     {
         isBriefingActive = true;
+        GameState.isInputLocked = true;
 
-        // Lock player movement and set to idle animation
-        if (playerController != null)
+        // Vô hiệu hóa CameraManager
+        if (CameraManager.instance != null)
         {
-            playerController.canMove = false;
+            CameraManager.instance.isCutscenePlaying = true;
+            CameraManager.instance.enabled = false;
         }
+
+        // --- DỪNG NHÂN VẬT TRIỆT ĐỂ ---
+        if (playerController != null) playerController.enabled = false;
         if (playerAnimator != null)
         {
             playerAnimator.SetBool("IsMoving", false);
+            playerAnimator.SetFloat("Speed", 0f); // Nếu bạn dùng Blend Tree
+            // Ép Animator về trạng thái Idle ngay lập tức để không bị kẹt animation chạy
+            playerAnimator.Play("Armature|Idle_main", 0, 0f);
         }
 
-        // Show briefing UI
-        if (briefingTextUI != null)
-        {
-            briefingTextUI.gameObject.SetActive(true);
-        }
+        if (briefingTextUI != null) briefingTextUI.gameObject.SetActive(true);
 
-        // Start with the first text and camera
         currentTextIndex = 0;
         currentCameraIndex = 0;
         ShowNextText();
@@ -98,78 +104,94 @@ public class MissionBriefingTrigger : MonoBehaviour
 
     private void ShowNextText()
     {
-        // Check if all text lines have been displayed
         if (currentTextIndex >= briefingTexts.Length)
         {
             EndBriefing();
             return;
         }
 
-        // Display the current text line
-        if (briefingTextUI != null)
-        {
-            briefingTextUI.text = briefingTexts[currentTextIndex];
-        }
-
-        // Check if it's time to switch the camera
+        // Chuyển camera nếu đến lượt
         if (briefingCameras.Length > 0 && currentTextIndex % textsPerCameraChange == 0)
         {
             SwitchCamera();
         }
 
-        // Move to the next text line for the next key press
+        // Bắt đầu hiệu ứng đánh máy
+        if (typingCoroutine != null) StopCoroutine(typingCoroutine);
+        typingCoroutine = StartCoroutine(TypeText(briefingTexts[currentTextIndex]));
+
         currentTextIndex++;
+    }
+
+    IEnumerator TypeText(string line)
+    {
+        isTyping = true;
+        briefingTextUI.text = "";
+
+        foreach (char letter in line.ToCharArray())
+        {
+            briefingTextUI.text += letter;
+
+            // Phát âm thanh typing (2D)
+            if (audioSource != null && typingSound != null)
+            {
+                audioSource.pitch = Random.Range(0.95f, 1.05f); // Một chút ngẫu nhiên cho tự nhiên
+                audioSource.PlayOneShot(typingSound);
+            }
+
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
+        isTyping = false;
     }
 
     private void SwitchCamera()
     {
-        // Disable the current camera if one is active
-        if (currentCameraIndex > 0)
+        if (mainGameCamera != null) mainGameCamera.enabled = false;
+
+        foreach (GameObject camObj in briefingCameras)
         {
-            briefingCameras[currentCameraIndex - 1].SetActive(false);
-        }
-        else if (mainGameCamera != null)
-        {
-            mainGameCamera.gameObject.SetActive(false);
+            if (camObj != null) camObj.SetActive(false);
         }
 
-        // Activate the next camera in the list
-        if (briefingCameras.Length > currentCameraIndex)
+        if (briefingCameras.Length > currentCameraIndex && briefingCameras[currentCameraIndex] != null)
         {
-            briefingCameras[currentCameraIndex].SetActive(true);
+            GameObject targetObj = briefingCameras[currentCameraIndex];
+            targetObj.SetActive(true);
+            Camera targetCam = targetObj.GetComponent<Camera>();
+            if (targetCam != null)
+            {
+                targetCam.enabled = true;
+                targetCam.depth = 100;
+            }
+            currentCameraIndex++;
         }
-
-        // Increment camera index, looping if necessary
-        currentCameraIndex++;
     }
 
     private void EndBriefing()
     {
         isBriefingActive = false;
 
-        // Restore player movement
-        if (playerController != null)
+        foreach (GameObject camObj in briefingCameras)
         {
-            playerController.canMove = true;
+            if (camObj != null) camObj.SetActive(false);
         }
 
-        // Restore original camera
-        if (briefingCameras.Length > 0 && currentCameraIndex > 0)
+        if (CameraManager.instance != null)
         {
-            briefingCameras[currentCameraIndex - 1].SetActive(false);
-        }
-        if (mainGameCamera != null)
-        {
-            mainGameCamera.gameObject.SetActive(true);
+            CameraManager.instance.enabled = true;
+            CameraManager.instance.isCutscenePlaying = false;
+            if (mainGameCamera != null) mainGameCamera.enabled = true;
+            CameraManager.instance.InitializeCamerasForNewScene();
         }
 
-        // Hide briefing UI
-        if (briefingTextUI != null)
-        {
-            briefingTextUI.gameObject.SetActive(false);
-        }
+        // Trả lại quyền di chuyển cho Player
+        if (playerController != null) playerController.enabled = true;
+        GameState.isInputLocked = false;
 
-        // Permanently disable this script so it can't be used again
+        if (briefingTextUI != null) briefingTextUI.gameObject.SetActive(false);
+
+        // Vô hiệu hóa script này để không bao giờ chạy lại trong scene này
         this.enabled = false;
     }
 }

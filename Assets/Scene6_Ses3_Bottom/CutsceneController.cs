@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.Playables;
+using System.Collections;
 
 public class CutsceneController : MonoBehaviour
 {
     public PlayableDirector director;
+    public GameObject introCamera;
 
     void Awake()
     {
@@ -21,15 +23,37 @@ public class CutsceneController : MonoBehaviour
 
     void OnCutsceneFinished(PlayableDirector aDirector)
     {
-        // Mở khóa Input
+        // 1. Tắt Intro Camera trước
+        if (introCamera != null) introCamera.SetActive(false);
+
+        // 2. Mở khóa Input
         GameState.isInputLocked = false;
 
+        // 3. Xử lý CameraManager qua một Coroutine để đảm bảo tính ổn định
+        StartCoroutine(EnableGameplayCamera());
+
+        director.Stop();
+    }
+
+    IEnumerator EnableGameplayCamera()
+    {
         if (CameraManager.instance != null)
         {
+            // 1. Mở khóa trạng thái trước
             CameraManager.instance.isCutscenePlaying = false;
-            CameraManager.instance.InitializeCamerasForNewScene();
-        }
 
-        director.Stop(); // Giải phóng Camera
+            // 2. Ép CameraManager quét lại và bật MainCamera TRƯỚC
+            CameraManager.instance.InitializeCamerasForNewScene();
+
+            // 3. Đợi một nhịp cực ngắn để Unity đăng ký Camera mới
+            yield return new WaitForEndOfFrame();
+
+            // 4. SAU ĐÓ MỚI TẮT Intro Camera
+            if (introCamera != null)
+            {
+                introCamera.SetActive(false);
+                Debug.Log("Intro Camera đã tắt.");
+            }
+        }
     }
 }

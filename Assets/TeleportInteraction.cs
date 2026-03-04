@@ -43,8 +43,8 @@ public class TeleportInteraction : MonoBehaviour
     private bool isShowingPreText = false;
     private bool isFading = false;
 
-    private float defaultFontSize = 36f;
-    private float selectedFontSize = 48f;
+    private float defaultFontSize = 24f;
+    private float selectedFontSize = 32f;
 
     void Start()
     {

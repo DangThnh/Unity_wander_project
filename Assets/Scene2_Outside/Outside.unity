@@ -367,23 +367,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &159247026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1492723851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927b563025059c141a160e18b5ab660e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destinationSceneName: The prototype
-  destinationSpawnPointName: 
-  myQuestion: Do you want to step through the door?
-  myYesText: Yes
-  myNoText: No
 --- !u!1 &171962342
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Do you want to go in?
+  m_text: Proceed?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
   m_sharedMaterial: {fileID: -986505973206975042, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
@@ -698,8 +681,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -869,7 +852,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1080,8 +1063,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1525,10 +1508,9 @@ MonoBehaviour:
   spawnActionId: 
   localInteractionText: {fileID: 0}
   myText: Wait, is this a key? Someone must have left it.
-  requirementFailureText: It seems you are missing a key item to proceed.
-  specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
-    kh\xF3a, h\xE3y d\xF9ng n\xF3."
-  afterInteractionText: You put it down, would you like to use it
+  requirementFailureText: 
+  specialInteractionText: 
+  afterInteractionText: 
   itemData: {fileID: 11400000, guid: a3c058c0663a4ac40b06986cdb67590d, type: 2}
   isSpecialInteraction: 0
   requiredItemId: 
@@ -1577,6 +1559,81 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 80, y: 16.01784, z: 66.17055}
   m_Center: {x: 10, y: 2.787706, z: -30.7742}
+--- !u!1 &623670516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 623670517}
+  - component: {fileID: 623670519}
+  - component: {fileID: 623670518}
+  m_Layer: 5
+  m_Name: Fader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &623670517
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623670516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1485307736}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &623670518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623670516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &623670519
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 623670516}
+  m_CullTransparentMesh: 1
 --- !u!1 &724562714
 GameObject:
   m_ObjectHideFlags: 0
@@ -1779,9 +1836,62 @@ MonoBehaviour:
   destinationSpawnPointName: SpawnPointRooftop
   fadeSpeed: 1
   blackScreenDuration: 2
-  myQuestion: Do you want to go up? You can't go back down
+  myQuestion: Do you want to go up? You can't go back down.
   myYesText: Yes
   myNoText: No
+--- !u!1 &886594232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 886594233}
+  - component: {fileID: 886594234}
+  m_Layer: 0
+  m_Name: WallStair (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &886594233
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886594232}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.99, y: 0.99, z: 1.9783442}
+  m_LocalScale: {x: 1.5, y: 2, z: 0.01}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1492723854}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &886594234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886594232}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.4, y: 1, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &914402313
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,6 +2034,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 524294337}
     m_Modifications:
+    - target: {fileID: 3619347067723462779, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619347067723462779, guid: 79e003f10183fb0469937374121275d0, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 6936674059079610893, guid: 79e003f10183fb0469937374121275d0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2603,7 +2721,7 @@ Transform:
   m_GameObject: {fileID: 991824711}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.18362, y: 1.3438582, z: 3.358}
+  m_LocalPosition: {x: -10.18362, y: 1.3438582, z: 3.178344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2628,7 +2746,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.6, z: 2.5}
+  m_Size: {x: 1, y: 2.6, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1006565068
 GameObject:
@@ -2974,6 +3092,124 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1485307731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1485307736}
+  - component: {fileID: 1485307735}
+  - component: {fileID: 1485307734}
+  - component: {fileID: 1485307733}
+  - component: {fileID: 1485307737}
+  m_Layer: 5
+  m_Name: CanvasFader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1485307733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485307731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1485307734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485307731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1485307735
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485307731}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1485307736
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485307731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 623670517}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+--- !u!114 &1485307737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1485307731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f684883f214ae194e8253209c5f3579e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 623670518}
+  fadeSpeed: 1
+  startDelay: 0.5
 --- !u!1001 &1492723850
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3067,6 +3303,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 816461932}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 886594233}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: -516098083770646512, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
       insertIndex: -1
@@ -3088,7 +3327,7 @@ PrefabInstance:
       addedObject: {fileID: 1492723853}
     - targetCorrespondingSourceObject: {fileID: 8416272007918961125, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 159247026}
+      addedObject: {fileID: 1721302392}
     - targetCorrespondingSourceObject: {fileID: 5148817236446094103, guid: 4e205df00bf20bd4ab88a3b782c48cb5, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1492723857}
@@ -3123,7 +3362,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.198812, y: 2.5885787, z: 0}
+  m_Size: {x: 1.198812, y: 2.5885787, z: 0.2}
   m_Center: {x: 0.40059403, y: 0.2942893, z: -0.85874283}
 --- !u!4 &1492723854 stripped
 Transform:
@@ -3197,8 +3436,8 @@ MonoBehaviour:
   uniqueId: box_01
   spawnActionId: 
   localInteractionText: {fileID: 0}
-  myText: My neighbor said they would move it by this afternoon. But everything stay
-    the same, that bastard.
+  myText: "They said they would be done moving in by evening,\u2026 but its still
+    there, that bastard\u2026 "
   requirementFailureText: It seems you are missing a key item to proceed.
   specialInteractionText: "B\u1EA1n \u0111\xE3 c\xF3 m\u1ED9t chi\u1EBFc ch\xECa
     kh\xF3a, h\xE3y d\xF9ng n\xF3."
@@ -3245,10 +3484,10 @@ MonoBehaviour:
   uniqueId: door_01
   spawnActionId: 
   localInteractionText: {fileID: 0}
-  myText: It's locked, but maybe i can find some ways to get past this.
-  requirementFailureText: It seems like it needs a key to be unlocked.
-  specialInteractionText: You have a key, you can unlock it. Press E to use.
-  afterInteractionText: You put it down, would you like to use it
+  myText: It's locked.
+  requirementFailureText: I got to find a key.
+  specialInteractionText: You have a key, you can unlock it. (Press E to use)
+  afterInteractionText: 
   itemData: {fileID: 0}
   isSpecialInteraction: 1
   requiredItemId: key_01
@@ -3329,7 +3568,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3488,6 +3727,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1517224394}
   m_CullTransparentMesh: 1
+--- !u!114 &1721302392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492723851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8600636f5746b354481a5e34dd9c205e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueId: 
+  spawnActionId: 
+  localInteractionText: {fileID: 0}
+  myText: I don't think I'll go back inside.
+  requirementFailureText: 
+  specialInteractionText: 
+  afterInteractionText: 
+  itemData: {fileID: 0}
+  isSpecialInteraction: 0
+  requiredItemId: 
+  isSpecialSpawnInteraction: 0
+  objectToSpawnPrefab: {fileID: 0}
+  spawnPoint: {fileID: 0}
 --- !u!1 &1779144897
 GameObject:
   m_ObjectHideFlags: 0
@@ -4359,7 +4623,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2139600414}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e6aeb7e411c76d74dbbd326a0e46a19b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -4428,6 +4692,7 @@ MonoBehaviour:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1485307736}
   - {fileID: 526374889}
   - {fileID: 1492723850}
   - {fileID: 2139600413}

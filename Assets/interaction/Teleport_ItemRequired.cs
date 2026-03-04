@@ -7,68 +7,52 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
 {
     private const string FADER_GROUP_NAME = "Panel";
 
+    [Header("UI Assignments (Kéo thả vào đây)")]
+    public GameObject myQuestionPanel;    // Panel chứa câu hỏi
+    public TextMeshProUGUI myQuestionText; // Text nội dung câu hỏi/thông báo
+    public TextMeshProUGUI myYesText;      // Text cho lựa chọn Yes
+    public TextMeshProUGUI myNoText;       // Text cho lựa chọn No
+    public CanvasGroup faderCanvasGroup;   // Màn hình đen để fade
+
     [Header("Teleport Settings")]
     public string destinationSceneName;
     public string destinationSpawnPointName;
 
     [Header("Requirement Settings")]
-    public string requiredItemId; // Để trống nếu không cần item
-    public string text1 = "You discover an ancient portal..."; // Luôn hiện đầu tiên
-    public string text2HasItem = "The key in your pocket begins to glow."; // Hiện nếu có item
+    public string requiredItemId;
+    public string text1 = "You discover an ancient portal...";
+    public string text2HasItem = "The key in your pocket begins to glow.";
     public string requirementFailureText = "It seems you lack the necessary item to activate this.";
 
     [Header("Fade Settings")]
     public float fadeSpeed = 1.0f;
     public float blackScreenDuration = 0.5f;
 
-    [Header("UI Settings")]
-    public TextMeshProUGUI customQuestionText; // Option gán text thủ công
+    [Header("UI Text Content")]
     public string myQuestion = "Do you want to step across?";
-    public string myYesText = "Yes";
-    public string myNoText = "No";
+    public string yesButtonLabel = "Yes";
+    public string noButtonLabel = "No";
+
+    [Header("Font Settings")]
+    public float defaultFontSize = 16f;
+    public float selectedFontSize = 22f;
 
     private bool playerInRange = false;
     private int selectedOption = 0; // 0 = Yes, 1 = No
     private bool isInteracting = false;
     private bool isSceneTransitionActive = false;
-
-    // Quản lý các bước tương tác
-    // 0: Idle, 1: Text 1, 2: Text 2 (Has Item), 3: Question Panel, 4: Failure Message
     private int interactionStep = 0;
 
     private Character_movement playerController;
     private Animator playerAnimator;
-    private CanvasGroup faderCanvasGroup;
-
-    private TextMeshProUGUI questionText;
-    private TextMeshProUGUI yesText;
-    private TextMeshProUGUI noText;
-
-    private float defaultFontSize = 16f;
-    private float selectedFontSize = 22f;
 
     void Start()
     {
-        StartCoroutine(SetupTextAndFader());
-    }
-
-    private IEnumerator SetupTextAndFader()
-    {
-        while (GameManager.instance == null || GameManager.instance.questionPanel == null)
-            yield return null;
-
+        // Nếu bạn quên gán fader, script sẽ cố gắng tìm theo tên một lần cuối
         if (faderCanvasGroup == null)
         {
             GameObject faderObj = GameObject.Find(FADER_GROUP_NAME);
-            if (faderObj != null)
-                faderCanvasGroup = faderObj.GetComponent<CanvasGroup>();
-        }
-
-        if (GameManager.instance.questionPanel != null)
-        {
-            questionText = (customQuestionText != null) ? customQuestionText : GameManager.instance.questionPanel.GetComponentInChildren<TextMeshProUGUI>();
-            yesText = GameManager.instance.yesText;
-            noText = GameManager.instance.noText;
+            if (faderObj != null) faderCanvasGroup = faderObj.GetComponent<CanvasGroup>();
         }
 
         HideUI();
@@ -95,7 +79,6 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
 
     void Update()
     {
-        // Thêm kiểm tra GetKeyDown để tránh việc thực thi liên tục trong một frame
         if (playerInRange && !isSceneTransitionActive && Input.GetKeyDown(KeyCode.E))
         {
             HandleInteractionFlow();
@@ -120,13 +103,10 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
             case 1:
                 CheckRequirementsAndProceed();
                 break;
-
             case 2:
                 ShowQuestionPanel();
                 break;
-
             case 4:
-                // Cần return ngay sau khi gọi End để tránh các logic Update phía sau can thiệp
                 EndInteraction();
                 break;
         }
@@ -157,6 +137,7 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
             return;
         }
 
+        // Vẫn gọi InventoryManager.instance vì đây thường là Singleton quản lý dữ liệu toàn cục
         bool hasItem = (InventoryManager.instance != null && InventoryManager.instance.HasItem(requiredItemId));
 
         if (hasItem)
@@ -173,32 +154,32 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
 
     void ShowTextOnly(string content)
     {
-        if (GameManager.instance.questionPanel != null)
+        if (myQuestionPanel != null)
         {
-            GameManager.instance.questionPanel.SetActive(true);
-            if (questionText != null) questionText.text = content;
-            if (yesText != null) yesText.gameObject.SetActive(false);
-            if (noText != null) noText.gameObject.SetActive(false);
+            myQuestionPanel.SetActive(true);
+            if (myQuestionText != null) myQuestionText.text = content;
+            if (myYesText != null) myYesText.gameObject.SetActive(false);
+            if (myNoText != null) myNoText.gameObject.SetActive(false);
         }
     }
 
     void ShowQuestionPanel()
     {
         interactionStep = 3;
-        if (GameManager.instance.questionPanel != null)
+        if (myQuestionPanel != null)
         {
-            GameManager.instance.questionPanel.SetActive(true);
-            if (questionText != null) questionText.text = myQuestion;
+            myQuestionPanel.SetActive(true);
+            if (myQuestionText != null) myQuestionText.text = myQuestion;
 
-            if (yesText != null)
+            if (myYesText != null)
             {
-                yesText.gameObject.SetActive(true);
-                yesText.text = myYesText;
+                myYesText.gameObject.SetActive(true);
+                myYesText.text = yesButtonLabel;
             }
-            if (noText != null)
+            if (myNoText != null)
             {
-                noText.gameObject.SetActive(true);
-                noText.text = myNoText;
+                myNoText.gameObject.SetActive(true);
+                myNoText.text = noButtonLabel;
             }
 
             selectedOption = 0;
@@ -214,7 +195,7 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
             UpdateSelectionUI();
         }
 
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Space))
         {
             if (selectedOption == 0) StartCoroutine(FadeAndLoadScene());
             else EndInteraction();
@@ -223,17 +204,16 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
 
     void UpdateSelectionUI()
     {
-        if (yesText != null) yesText.fontSize = (selectedOption == 0) ? selectedFontSize : defaultFontSize;
-        if (noText != null) noText.fontSize = (selectedOption == 1) ? selectedFontSize : defaultFontSize;
+        if (myYesText != null) myYesText.fontSize = (selectedOption == 0) ? selectedFontSize : defaultFontSize;
+        if (myNoText != null) myNoText.fontSize = (selectedOption == 1) ? selectedFontSize : defaultFontSize;
     }
 
     void HideUI()
     {
-        if (GameManager.instance != null && GameManager.instance.questionPanel != null)
+        if (myQuestionPanel != null)
         {
-            // Reset text về rỗng trước khi ẩn panel để tránh "ghost text" ở lần hiện sau
-            if (questionText != null) questionText.text = "";
-            GameManager.instance.questionPanel.SetActive(false);
+            if (myQuestionText != null) myQuestionText.text = "";
+            myQuestionPanel.SetActive(false);
         }
     }
 
@@ -257,11 +237,14 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
         HideUI();
         faderCanvasGroup.blocksRaycasts = true;
 
-        while (faderCanvasGroup.alpha < 1)
+        float timer = 0;
+        while (timer < fadeSpeed)
         {
-            faderCanvasGroup.alpha += Time.deltaTime / fadeSpeed;
+            timer += Time.deltaTime;
+            faderCanvasGroup.alpha = timer / fadeSpeed;
             yield return null;
         }
+        faderCanvasGroup.alpha = 1;
 
         yield return new WaitForSeconds(blackScreenDuration);
         SceneManager.LoadScene(destinationSceneName);
