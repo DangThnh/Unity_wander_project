@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            // Đảm bảo đối tượng này không bị hủy khi chuyển scene
+            //Đảm bảo đối tượng này không bị hủy khi chuyển scene
             DontDestroyOnLoad(gameObject);
         }
         else

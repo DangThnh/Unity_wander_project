@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scene7_Stair/Stairs.unity
+- path: Assets/Main Menu/MainMenuScene.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

@@ -278,7 +278,7 @@ public class InteractableObject : MonoBehaviour
                 {
                     GameObject spawnedObject = Instantiate(objectToSpawnPrefab, spawnPoint.position, spawnPoint.rotation);
                     // Giữ lại vật thể đã được sinh ra
-                    DontDestroyOnLoad(spawnedObject);
+                    //DontDestroyOnLoad(spawnedObject);
                     // Đánh dấu hành động spawn đã hoàn thành
                     GameManager.instance.completedSpawnActions.Add(spawnActionId);
                 }

@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9254a85c2de72a447a6877884347dd92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5210de6403197e4ba24568fd3a94423, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5283,7 +5283,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Insert passcode
+  m_text: Enter code
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
   m_sharedMaterial: {fileID: -986505973206975042, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
@@ -5376,7 +5376,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 77.65001}
+  m_AnchoredPosition: {x: 0, y: 94.30003}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &896451240
@@ -6338,7 +6338,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035866009}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e6aeb7e411c76d74dbbd326a0e46a19b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -6603,7 +6603,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065471115}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 642d5dacd246de3469f557ad5e84edd8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7874,7 +7874,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1252445717}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 642d5dacd246de3469f557ad5e84edd8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -10818,7 +10818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Insert passcode
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
   m_sharedMaterial: {fileID: -986505973206975042, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
@@ -10911,7 +10911,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 77.65001}
+  m_AnchoredPosition: {x: 0, y: 1.1499939}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1721058665
@@ -11024,7 +11024,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9254a85c2de72a447a6877884347dd92, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fb2b8f2ed29a7bf47a61aaeb9bcf83bc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -26567,7 +26567,7 @@ MonoBehaviour:
   localInteractionText: {fileID: 1827598563}
   myText: A jumper cable
   requirementFailureText: 32
-  specialInteractionText: Do you want to take this jumper cable? Press "E" to take.
+  specialInteractionText: Do you want to take this jumper cable? (Press E to take)
   afterInteractionText: 23
   itemData: {fileID: 11400000, guid: cfb1e7b969bdc664991b0cf833243ce8, type: 2}
   isSpecialInteraction: 1

@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1993,7 +1993,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 579474348}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &579474350
 Camera:
   m_ObjectHideFlags: 0
@@ -3788,7 +3788,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127137931}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1127137934
 Camera:
   m_ObjectHideFlags: 0
@@ -4444,6 +4444,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1268762361}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1268762363}
   m_SourcePrefab: {fileID: 100100000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
 --- !u!1 &1268762355 stripped
 GameObject:
@@ -4549,6 +4552,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9738fed3022a2f2469b5c2c42b66a650, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!81 &1268762363
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268762355}
+  m_Enabled: 1
 --- !u!1 &1288262527 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 54765066060b1f340a8e83c1521f34d5, type: 3}
@@ -4917,7 +4928,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1401721742}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1401721745
 Camera:
   m_ObjectHideFlags: 0

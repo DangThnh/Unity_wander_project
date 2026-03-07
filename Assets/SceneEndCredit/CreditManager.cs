@@ -1,48 +1,65 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro; // Đảm bảo sử dụng thư viện TextMeshPro
+using UnityEngine.UI; // Cần thiết để sử dụng component Image
+using TMPro;
 using System.Collections;
 
 public class CreditSceneManager : MonoBehaviour
 {
     [Header("UI References")]
-    [Tooltip("Kéo TextMeshProUGUI của dòng chữ 'Press E to continue' vào đây.")]
+    [Tooltip("Dòng chữ 'Press E to continue'.")]
     public TextMeshProUGUI continueText;
 
+    [Tooltip("Kéo Image màu đen che toàn màn hình vào đây (Fade Overlay).")]
+    public Image fadeOverlayImage;
+
     [Header("Settings")]
-    [Tooltip("Scene Index của Main Menu (Scene 1).")]
+    [Tooltip("Scene Index của Main Menu.")]
     public int mainMenuSceneIndex = 1;
 
-    [Tooltip("Tốc độ nhấp nháy (giá trị càng thấp, nhấp nháy càng nhanh). Ví dụ: 0.5f")]
+    [Tooltip("Tốc độ nhấp nháy chữ (giây).")]
     public float blinkSpeed = 0.5f;
 
+    [Tooltip("Thời gian để màn hình tối hoàn toàn (giây).")]
+    public float fadeDuration = 1.0f;
+
+    [Tooltip("Khoảng dừng sau khi màn hình đã tối đen trước khi chuyển Scene.")]
+    public float delayBeforeLoad = 0.5f;
+
     private bool isBlinking = false;
+    private bool isTransitioning = false;
 
     void Start()
     {
-        // Khởi động hiệu ứng nhấp nháy ngay khi Scene được tải
+        // Khởi tạo Image ở trạng thái trong suốt hoàn toàn
+        if (fadeOverlayImage != null)
+        {
+            Color c = fadeOverlayImage.color;
+            c.a = 0;
+            fadeOverlayImage.color = c;
+            fadeOverlayImage.gameObject.SetActive(true); // Đảm bảo object đang bật
+            fadeOverlayImage.raycastTarget = false; // Không chặn tương tác lúc đầu
+        }
+
         if (continueText != null)
         {
             StartBlinking();
         }
         else
         {
-            Debug.LogError("Continue Text (TextMeshProUGUI) chưa được gán trong CreditSceneManager.");
+            Debug.LogError("Chưa gán Continue Text trong Inspector!");
         }
     }
 
     void Update()
     {
-        // Kiểm tra input của người chơi
-        if (Input.GetKeyDown(KeyCode.E))
+        // Kiểm tra phím E và đảm bảo không đang thực hiện chuyển cảnh
+        if (Input.GetKeyDown(KeyCode.E) && !isTransitioning)
         {
-            LoadMainMenu();
+            StartCoroutine(TransitionToMainMenu());
         }
     }
 
-    /// <summary>
-    /// Bắt đầu Coroutine để làm chữ nhấp nháy.
-    /// </summary>
     private void StartBlinking()
     {
         if (!isBlinking)
@@ -52,37 +69,54 @@ public class CreditSceneManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Coroutine để làm chữ nhấp nháy giữa hiển thị và ẩn.
-    /// </summary>
     IEnumerator BlinkTextCoroutine()
     {
         while (isBlinking)
         {
-            // Tắt Text
-            continueText.enabled = false;
-            yield return new WaitForSeconds(blinkSpeed);
-
-            // Bật Text
-            continueText.enabled = true;
+            continueText.enabled = !continueText.enabled;
             yield return new WaitForSeconds(blinkSpeed);
         }
     }
 
     /// <summary>
-    /// Tải lại Scene Main Menu.
+    /// Thực hiện quá trình tối dần màn hình và chuyển Scene.
     /// </summary>
-    private void LoadMainMenu()
+    IEnumerator TransitionToMainMenu()
     {
-        Debug.Log("Loading Main Menu (Scene " + mainMenuSceneIndex + ")...");
-        // Dừng hiệu ứng nhấp nháy trước khi chuyển Scene
-        StopAllCoroutines();
+        isTransitioning = true;
+        isBlinking = false;
+
+        // Đảm bảo chữ hiện lên cố định trước khi mờ đi
+        if (continueText != null) continueText.enabled = true;
+
+        if (fadeOverlayImage != null)
+        {
+            fadeOverlayImage.raycastTarget = true; // Chặn bấm phím/chuột trong khi đang load
+
+            float timer = 0;
+            Color tempColor = fadeOverlayImage.color;
+
+            // Vòng lặp làm tăng Alpha của Image từ 0 lên 1
+            while (timer < fadeDuration)
+            {
+                timer += Time.deltaTime;
+                tempColor.a = Mathf.Clamp01(timer / fadeDuration);
+                fadeOverlayImage.color = tempColor;
+                yield return null;
+            }
+        }
+
+        // Nhịp dừng ngắn để tạo cảm giác mượt mà (giống Main Menu logic)
+        yield return new WaitForSeconds(delayBeforeLoad);
+
+        // Chuyển Scene
+        Debug.Log("Đang chuyển sang Scene: " + mainMenuSceneIndex);
         SceneManager.LoadScene(mainMenuSceneIndex);
     }
 
-    // Đảm bảo dừng nhấp nháy nếu script bị hủy
     private void OnDisable()
     {
         isBlinking = false;
+        StopAllCoroutines();
     }
 }

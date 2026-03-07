@@ -3033,7 +3033,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 960545009}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 642d5dacd246de3469f557ad5e84edd8, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -3288,7 +3288,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1025293013}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e6aeb7e411c76d74dbbd326a0e46a19b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -7989,13 +7989,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
-  craftingRecipes:
-  - itemA: {fileID: 11400000, guid: ca805bdd5e7e4fb48a3f06fe54350bc4, type: 2}
-    itemB: {fileID: 11400000, guid: cfb1e7b969bdc664991b0cf833243ce8, type: 2}
-    resultItem: {fileID: 11400000, guid: dd8adebdd606ea84193bb31ec7cc17ea, type: 2}
-  - itemA: {fileID: 11400000, guid: dd8adebdd606ea84193bb31ec7cc17ea, type: 2}
-    itemB: {fileID: 11400000, guid: 6c6b83fe27516a6438e29f44b182cab0, type: 2}
-    resultItem: {fileID: 11400000, guid: 6a160906e96e57a40b96719e78c2fe60, type: 2}
+  craftingRecipes: []
 --- !u!4 &2029407330
 Transform:
   m_ObjectHideFlags: 0
