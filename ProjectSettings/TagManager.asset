@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CutsceneCam
   - RoomFloor
+  - Outside
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - Water
   - UI
   - IndoorRoom
-  - 
+  - post-process layer
   - 
   - 
   - 
