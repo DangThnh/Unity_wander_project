@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveIconPrefab: {fileID: 8351865176778361677, guid: 67af2f1acdd063a4fa2c438e240de70c, type: 3}
   displayDuration: 2
-  validSaveSceneIndices: 0300000004000000050000000600000007000000090000000a000000
+  validSaveSceneIndices: 03000000040000000600000007000000080000000a0000000b000000
 --- !u!4 &879084125
 Transform:
   m_ObjectHideFlags: 0
@@ -2146,7 +2146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstLevelName: Tutorial
   initialDelay: 1
-  fadeDuration: 1.5
+  fadeDuration: 2
   fadeOverlay: {fileID: 32017580}
   musicSource: {fileID: 1581635447}
   sfxSource: {fileID: 493642132}
