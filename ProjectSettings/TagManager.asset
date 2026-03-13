@@ -8,6 +8,7 @@ TagManager:
   - RoomFloor
   - Outside
   - DreamStair
+  - Grass
   layers:
   - Default
   - TransparentFX

@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveIconPrefab: {fileID: 8351865176778361677, guid: 67af2f1acdd063a4fa2c438e240de70c, type: 3}
   displayDuration: 2
-  validSaveSceneIndices: 03000000040000000600000007000000080000000a0000000b000000
+  validSaveSceneIndices: 030000000400000006000000080000000a0000000c0000000d000000
 --- !u!4 &879084125
 Transform:
   m_ObjectHideFlags: 0

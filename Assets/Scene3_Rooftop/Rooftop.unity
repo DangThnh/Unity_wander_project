@@ -2779,10 +2779,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d363e7ccabc692748adcb364a6876da4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationSceneName: Office
-  destinationSpawnPointName: OfficeSpawnPoint
-  fadeSpeed: 1
-  blackScreenDuration: 0.5
+  destinationSceneName: Inter2
+  destinationSpawnPointName: 
+  fadeSpeed: 2
+  blackScreenDuration: 2
   myQuestion: Do you want to go in?
   myYesText: Yes
   myNoText: No

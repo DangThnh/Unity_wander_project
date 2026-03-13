@@ -5,16 +5,16 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639086290542207906
-    m_Hash: 2188627933
+      ticks: 639090193853278165
+    m_Hash: 3220670531
   m_LockFileStatus:
     m_FilePath: C:/Unity Project/New Unity Project/Packages/packages-lock.json
     m_PathExists: 1
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 639086290542284773
-    m_Hash: 746037005
+      ticks: 639090193853383022
+    m_Hash: 3304742188
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
 m_LocalPackages:
@@ -22,12 +22,12 @@ m_LocalPackages:
 m_ProjectPath: C:/Unity Project/New Unity Project/Packages
 m_EditorVersion: 2022.3.62f3 (96770f904ca7)
 m_ResolvedPackages:
-- packageId: com.unity.cinemachine@2.10.5
+- packageId: com.unity.cinemachine@2.10.6
   testable: 0
   isDirectDependency: 1
-  version: 2.10.5
+  version: 2.10.6
   source: 1
-  resolvedPath: C:\Unity Project\New Unity Project\Library\PackageCache\com.unity.cinemachine@2.10.5
+  resolvedPath: C:\Unity Project\New Unity Project\Library\PackageCache\com.unity.cinemachine@2.10.6
   assetPath: Packages/com.unity.cinemachine
   name: com.unity.cinemachine
   displayName: Cinemachine
@@ -199,13 +199,13 @@ m_ResolvedPackages:
     configSource: 0
   hideInEditor: 1
   isAssetStorePackage: 0
-  datePublishedTicks: 638932756632190000
+  datePublishedTicks: 639075633429950000
   documentationUrl: https://docs.unity3d.com/Packages/com.unity.cinemachine@2.10/manual/index.html
   hasRepository: 1
   repository:
     type: git
     url: https://github.com/Unity-Technologies/com.unity.cinemachine.git
-    revision: 87d5dbb847c5fae7125aa05286e81b6bb012076f
+    revision: 12f52e0b6d85a7c55bf8053b146e40fe62247808
     path: 
   unityLifecycle:
     version: 2.10.3
@@ -279,11 +279,13 @@ m_ResolvedPackages:
     - 3.5.0
     - 3.5.1
     - 3.5.3
+    - 3.5.4
     compatible:
     - 3.4.0
     - 3.5.0
     - 3.5.1
     - 3.5.3
+    - 3.5.4
     recommended: 3.4.0
     deprecated: []
   dependencies:
