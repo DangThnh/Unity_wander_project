@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1358f188c9f98241a310281fa61abc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBGM: {fileID: 8300000, guid: eaf752a984ec2a6499dc029c98f40a90, type: 3}
+  sceneBGM: {fileID: 8300000, guid: 9545df4d2e4d6104695a0ec267ae1511, type: 3}
 --- !u!4 &109106259
 Transform:
   m_ObjectHideFlags: 0
@@ -1551,6 +1551,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: key_01
   spawnActionId: 
+  audioSource: {fileID: 2139600421}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: Wait, is this a key? Someone must have left it.
   requirementFailureText: 
@@ -3480,6 +3485,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: box_01
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: "They said they would be done moving in by evening,\u2026 but its still
     there, that bastard\u2026 "
@@ -3528,6 +3538,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: door_01
   spawnActionId: 
+  audioSource: {fileID: 2139600421}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 8300000, guid: b7a759200bc2d0241baf2ee37d58b5fb, type: 3}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: It's locked.
   requirementFailureText: I got to find a key.
@@ -3786,6 +3801,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: I don't think I'll go back inside.
   requirementFailureText: 

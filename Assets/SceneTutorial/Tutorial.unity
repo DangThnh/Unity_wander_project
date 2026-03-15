@@ -729,26 +729,33 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Use WASD to move
 
-    E to interact
+    E to interact/continue
 
-    M to change camera
+    Enter to confirm
 
-    C to
-    open inventory
+    M
+    to change camera
+
+    C to open inventory
 
 
-    When in inventory, you can combine items by pointing
+    When in inventory, you can combine
+    items by pointing
 
-    to
-    one item and pressing K, then pointing to another item
+    to one item and pressing K, then pointing to another item
 
-    and pressing K, then
-    you will get a new item, some puzzles require combination of items to proceed
+    and
+    pressing K, then you will get a new item, some puzzles require combination of
+    items to proceed
+
+
+    This game requires a lots of camera usage, there will
+    be items only to be found by one camera per entire scene. Make sure you use them.
 
 
     This
-    game requires a lots of camera usage, there will be items only to be found by
-    one camera per entire scene. Make sure you use them.'
+    game features an auto-save function. When the auto-save icon appears, please
+    do not close the game or turn off your system.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
   m_sharedMaterial: {fileID: -986505973206975042, guid: 0383e4bc97e1b1d499d344b776ab84da, type: 2}
@@ -775,14 +782,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16
-  m_fontSizeBase: 16
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 1
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 32
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

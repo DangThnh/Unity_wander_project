@@ -1,29 +1,20 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI; // Cần thiết để sử dụng component Image
+using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CreditSceneManager : MonoBehaviour
 {
     [Header("UI References")]
-    [Tooltip("Dòng chữ 'Press E to continue'.")]
     public TextMeshProUGUI continueText;
-
-    [Tooltip("Kéo Image màu đen che toàn màn hình vào đây (Fade Overlay).")]
     public Image fadeOverlayImage;
 
     [Header("Settings")]
-    [Tooltip("Scene Index của Main Menu.")]
     public int mainMenuSceneIndex = 1;
-
-    [Tooltip("Tốc độ nhấp nháy chữ (giây).")]
     public float blinkSpeed = 0.5f;
-
-    [Tooltip("Thời gian để màn hình tối hoàn toàn (giây).")]
-    public float fadeDuration = 1.0f;
-
-    [Tooltip("Khoảng dừng sau khi màn hình đã tối đen trước khi chuyển Scene.")]
+    public float fadeDuration = 1.5f; // Tăng một chút cho mượt
     public float delayBeforeLoad = 0.5f;
 
     private bool isBlinking = false;
@@ -31,29 +22,25 @@ public class CreditSceneManager : MonoBehaviour
 
     void Start()
     {
-        // Khởi tạo Image ở trạng thái trong suốt hoàn toàn
+        // Khởi tạo trạng thái Fade (Bắt đầu từ đen hoặc trong suốt tùy bạn)
         if (fadeOverlayImage != null)
         {
             Color c = fadeOverlayImage.color;
             c.a = 0;
             fadeOverlayImage.color = c;
-            fadeOverlayImage.gameObject.SetActive(true); // Đảm bảo object đang bật
-            fadeOverlayImage.raycastTarget = false; // Không chặn tương tác lúc đầu
+            fadeOverlayImage.gameObject.SetActive(true);
+            fadeOverlayImage.raycastTarget = false;
         }
 
         if (continueText != null)
         {
             StartBlinking();
         }
-        else
-        {
-            Debug.LogError("Chưa gán Continue Text trong Inspector!");
-        }
     }
 
     void Update()
     {
-        // Kiểm tra phím E và đảm bảo không đang thực hiện chuyển cảnh
+        // Kiểm tra phím E để quay lại Menu
         if (Input.GetKeyDown(KeyCode.E) && !isTransitioning)
         {
             StartCoroutine(TransitionToMainMenu());
@@ -73,30 +60,25 @@ public class CreditSceneManager : MonoBehaviour
     {
         while (isBlinking)
         {
-            continueText.enabled = !continueText.enabled;
+            if (continueText != null) continueText.enabled = !continueText.enabled;
             yield return new WaitForSeconds(blinkSpeed);
         }
     }
 
-    /// <summary>
-    /// Thực hiện quá trình tối dần màn hình và chuyển Scene.
-    /// </summary>
     IEnumerator TransitionToMainMenu()
     {
         isTransitioning = true;
         isBlinking = false;
 
-        // Đảm bảo chữ hiện lên cố định trước khi mờ đi
         if (continueText != null) continueText.enabled = true;
 
+        // 1. Hiệu ứng Fade Out sang Đen
         if (fadeOverlayImage != null)
         {
-            fadeOverlayImage.raycastTarget = true; // Chặn bấm phím/chuột trong khi đang load
-
+            fadeOverlayImage.raycastTarget = true;
             float timer = 0;
             Color tempColor = fadeOverlayImage.color;
 
-            // Vòng lặp làm tăng Alpha của Image từ 0 lên 1
             while (timer < fadeDuration)
             {
                 timer += Time.deltaTime;
@@ -106,12 +88,46 @@ public class CreditSceneManager : MonoBehaviour
             }
         }
 
-        // Nhịp dừng ngắn để tạo cảm giác mượt mà (giống Main Menu logic)
+        // 2. THỰC HIỆN DỌN DẸP TRIỆT ĐỂ
+        CleanUpGameState();
+
         yield return new WaitForSeconds(delayBeforeLoad);
 
-        // Chuyển Scene
-        Debug.Log("Đang chuyển sang Scene: " + mainMenuSceneIndex);
-        SceneManager.LoadScene(mainMenuSceneIndex);
+        // 3. LOAD SCENE
+        Debug.Log("Resetting and Loading Menu Scene...");
+        SceneManager.LoadScene(mainMenuSceneIndex, LoadSceneMode.Single);
+    }
+
+    private void CleanUpGameState()
+    {
+        // A. Hủy các Singleton/Managers cứng đầu
+        // Thay vì tìm theo tên (dễ sai), ta tìm các Object được đánh dấu DontDestroyOnLoad
+        // Cách tốt nhất là gọi một hàm Reset chuyên biệt từ GameManager của bạn nếu có
+
+        string[] managersToDestroy = { "GameManager", "InventoryManager", "GlobalAudio", "PlayerStatus" };
+        foreach (string managerName in managersToDestroy)
+        {
+            GameObject obj = GameObject.Find(managerName);
+            if (obj != null)
+            {
+                Destroy(obj);
+            }
+        }
+
+        // B. QUAN TRỌNG: Reset các biến Static (Nếu bạn có)
+        // Ví dụ: Inventory.Instance.Clear(); hoặc ScoreManager.CurrentScore = 0;
+        // Bạn phải gọi thủ công ở đây nếu không chúng sẽ tồn tại mãi mãi.
+
+        // C. Reset hệ thống vật lý và thời gian
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = 0.02f * Time.timeScale;
+
+        // D. Giải phóng bộ nhớ không còn sử dụng
+        System.GC.Collect();
+
+        // E. Cấu hình lại Cursor cho Main Menu
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void OnDisable()

@@ -27,9 +27,9 @@ public class DoorController : MonoBehaviour
     [Tooltip("Thời gian (giây) thông báo khóa sẽ hiển thị.")]
     public float lockedMessageDuration = 2.0f;
     [Tooltip("Nội dung text hiển thị khi cửa đã MỞ KHÓA và đóng.")]
-    public string unlockedInteractionMessage = "Press 'E' to Open";
+    public string unlockedInteractionMessage = "";
     [Tooltip("Nội dung text hiển thị khi cửa đã MỞ KHÓA và đang mở.")]
-    public string closeInteractionMessage = "Press 'E' to Close";
+    public string closeInteractionMessage = "";
 
 
     [Header("State")]

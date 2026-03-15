@@ -9,6 +9,7 @@ TagManager:
   - Outside
   - DreamStair
   - Grass
+  - MetalStep
   layers:
   - Default
   - TransparentFX

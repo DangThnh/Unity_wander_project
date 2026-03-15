@@ -7292,7 +7292,6 @@ GameObject:
   m_Component:
   - component: {fileID: 679741795}
   - component: {fileID: 679741794}
-  - component: {fileID: 679741793}
   - component: {fileID: 679741792}
   - component: {fileID: 679741791}
   - component: {fileID: 679741790}
@@ -7424,14 +7423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
---- !u!81 &679741793
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679741787}
-  m_Enabled: 0
 --- !u!20 &679741794
 Camera:
   m_ObjectHideFlags: 0

@@ -122,6 +122,176 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4540035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4540036}
+  - component: {fileID: 4540039}
+  - component: {fileID: 4540038}
+  - component: {fileID: 4540037}
+  m_Layer: 0
+  m_Name: Text1 (10)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4540036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5499997, y: 72.450005, z: 2.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512740334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &4540037
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540035}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &4540038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: Those bastards are only chasing their fortunes and profits.
+  typingSpeed: 0.08
+  displayDurationAfterDone: 3
+  uiTextElement: {fileID: 1179287962}
+  dialoguePanel: {fileID: 1737931410}
+  typingAudioSource: {fileID: 4540037}
+  typingClip: {fileID: 0}
+--- !u!65 &4540039
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4540035}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &16161002
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +609,7 @@ GameObject:
   - component: {fileID: 47595971}
   m_Layer: 0
   m_Name: Group1 (9)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -475,7 +645,7 @@ GameObject:
   - component: {fileID: 64870839}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -715,7 +885,7 @@ GameObject:
   - component: {fileID: 73486581}
   m_Layer: 0
   m_Name: Group1 (10)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -751,7 +921,7 @@ GameObject:
   - component: {fileID: 76492967}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -804,7 +974,7 @@ GameObject:
   - component: {fileID: 78490071}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1044,7 +1214,7 @@ GameObject:
   - component: {fileID: 94818512}
   m_Layer: 0
   m_Name: Group1 (3)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1080,7 +1250,7 @@ GameObject:
   - component: {fileID: 103037225}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1121,6 +1291,176 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 0.1, z: 3.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &110577193
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 110577194}
+  - component: {fileID: 110577197}
+  - component: {fileID: 110577196}
+  - component: {fileID: 110577195}
+  m_Layer: 0
+  m_Name: Text1 (13)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &110577194
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110577193}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5499997, y: 91, z: 2.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512740334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &110577195
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110577193}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &110577196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110577193}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: While the leaders enjoy their luxury life to the fullest.
+  typingSpeed: 0.08
+  displayDurationAfterDone: 3
+  uiTextElement: {fileID: 1179287962}
+  dialoguePanel: {fileID: 1737931410}
+  typingAudioSource: {fileID: 110577195}
+  typingClip: {fileID: 0}
+--- !u!65 &110577197
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110577193}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &117237425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1472,7 @@ GameObject:
   - component: {fileID: 117237426}
   m_Layer: 0
   m_Name: Group1 (12)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1168,7 +1508,7 @@ GameObject:
   - component: {fileID: 130574243}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1237,7 +1577,7 @@ Transform:
   m_GameObject: {fileID: 130723671}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: 97.2, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: 53.90001, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1351,8 +1691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: Come on, me, just a little more!
-  typingSpeed: 0.12
+  dialogueText: "This exhaustion is nothing compared to the destruction out there\u2026 "
+  typingSpeed: 0.08
   displayDurationAfterDone: 3
   uiTextElement: {fileID: 1179287962}
   dialoguePanel: {fileID: 1737931410}
@@ -1391,7 +1731,7 @@ GameObject:
   - component: {fileID: 131241199}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1444,7 +1784,7 @@ GameObject:
   - component: {fileID: 141343638}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1497,7 +1837,7 @@ GameObject:
   - component: {fileID: 152397156}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1550,7 +1890,7 @@ GameObject:
   - component: {fileID: 157405876}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1843,6 +2183,176 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &175849508
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 175849509}
+  - component: {fileID: 175849512}
+  - component: {fileID: 175849511}
+  - component: {fileID: 175849510}
+  m_Layer: 0
+  m_Name: Text1 (15)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &175849509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175849508}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5499997, y: 106.15, z: -1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512740334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &175849510
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175849508}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &175849511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175849508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: "And by then\u2026the world will reborn a new."
+  typingSpeed: 0.1
+  displayDurationAfterDone: 3
+  uiTextElement: {fileID: 1179287962}
+  dialoguePanel: {fileID: 1737931410}
+  typingAudioSource: {fileID: 175849510}
+  typingClip: {fileID: 0}
+--- !u!65 &175849512
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175849508}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &194595005
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +2365,7 @@ GameObject:
   - component: {fileID: 194595007}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1908,7 +2418,7 @@ GameObject:
   - component: {fileID: 199172959}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1961,7 +2471,7 @@ GameObject:
   - component: {fileID: 200286277}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2320,7 +2830,7 @@ GameObject:
   - component: {fileID: 218856079}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2478,7 +2988,7 @@ GameObject:
   - component: {fileID: 224181416}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2603,7 +3113,7 @@ GameObject:
   - component: {fileID: 245784470}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2656,7 +3166,7 @@ GameObject:
   - component: {fileID: 256670823}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2861,7 +3371,7 @@ GameObject:
   - component: {fileID: 276354590}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3158,7 +3668,7 @@ GameObject:
   - component: {fileID: 313593845}
   m_Layer: 0
   m_Name: Group1 (14)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3194,7 +3704,7 @@ GameObject:
   - component: {fileID: 314184156}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3435,7 +3945,7 @@ GameObject:
   - component: {fileID: 323028253}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3796,7 +4306,7 @@ MonoBehaviour:
   text2HasItem: 
   requirementFailureText: 
   fadeSpeed: 4
-  blackScreenDuration: 2
+  blackScreenDuration: 3
   myQuestion: Do you want to open the door? You might not come back...
   yesButtonLabel: Yes
   noButtonLabel: No
@@ -3983,7 +4493,7 @@ GameObject:
   - component: {fileID: 403273119}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4036,7 +4546,7 @@ GameObject:
   - component: {fileID: 416131510}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4089,7 +4599,7 @@ GameObject:
   - component: {fileID: 419414709}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4158,7 +4668,7 @@ Transform:
   m_GameObject: {fileID: 425568947}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: -2.1500015, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: -8.300001, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4272,8 +4782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: When I was little, I used to play games with my older brother. Good
-    times.
+  dialogueText: "Welp\u2026There are no other ways anyways. Long road ahead."
   typingSpeed: 0.05
   displayDurationAfterDone: 5
   uiTextElement: {fileID: 1179287962}
@@ -4301,6 +4810,176 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 3.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &440342134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440342135}
+  - component: {fileID: 440342138}
+  - component: {fileID: 440342137}
+  - component: {fileID: 440342136}
+  m_Layer: 0
+  m_Name: Text1 (11)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440342135
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440342134}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5499997, y: 78.65001, z: 2.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512740334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &440342136
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440342134}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &440342137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440342134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: Ignore the signs of the inevitable.
+  typingSpeed: 0.08
+  displayDurationAfterDone: 3
+  uiTextElement: {fileID: 1179287962}
+  dialoguePanel: {fileID: 1737931410}
+  typingAudioSource: {fileID: 440342136}
+  typingClip: {fileID: 0}
+--- !u!65 &440342138
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440342134}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &483656785
 GameObject:
   m_ObjectHideFlags: 0
@@ -4312,7 +4991,7 @@ GameObject:
   - component: {fileID: 483656786}
   m_Layer: 0
   m_Name: Group1 (20)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4452,7 +5131,7 @@ GameObject:
   - component: {fileID: 504176262}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4558,7 +5237,7 @@ GameObject:
   - component: {fileID: 504803337}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4611,7 +5290,7 @@ GameObject:
   - component: {fileID: 506159626}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4810,7 +5489,7 @@ GameObject:
   - component: {fileID: 512474622}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4879,7 +5558,7 @@ Transform:
   m_GameObject: {fileID: 535532726}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: 16.55, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: 16.449999, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4993,7 +5672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: But it doesn't matter.
+  dialogueText: "It\u2019s been quite a while now."
   typingSpeed: 0.05
   displayDurationAfterDone: 2.5
   uiTextElement: {fileID: 1179287962}
@@ -5127,7 +5806,7 @@ GameObject:
   - component: {fileID: 548612502}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5179,7 +5858,7 @@ GameObject:
   - component: {fileID: 551693482}
   m_Layer: 0
   m_Name: Group1 (21)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5646,7 +6325,7 @@ GameObject:
   - component: {fileID: 581875937}
   m_Layer: 0
   m_Name: Group1 (6)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5682,7 +6361,7 @@ GameObject:
   - component: {fileID: 585173778}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5735,7 +6414,7 @@ GameObject:
   - component: {fileID: 585906358}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6292,7 +6971,7 @@ GameObject:
   - component: {fileID: 621760361}
   m_Layer: 0
   m_Name: Group1 (7)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6328,7 +7007,7 @@ GameObject:
   - component: {fileID: 627154608}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6652,6 +7331,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 645835202}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 645835208}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 645835207}
   m_SourcePrefab: {fileID: 100100000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
 --- !u!1 &645835200 stripped
 GameObject:
@@ -6672,7 +7357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpawnPoint: {fileID: 0}
   canMove: 1
-  speed: 10
+  speed: 2.2
   rotationSpeed: 160
 --- !u!114 &645835202
 MonoBehaviour:
@@ -6762,6 +7447,129 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
   m_PrefabInstance: {fileID: 645835198}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &645835207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645835200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa453a2aebd86f42aad65361a1b3149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainAudios:
+  - tag: RoomFloor
+    clips:
+    - {fileID: 8300000, guid: 04f847b772e2bb24fb4c3731799ff357, type: 3}
+    - {fileID: 8300000, guid: db5d27b162587d7489f2c7fcf972c81e, type: 3}
+    - {fileID: 8300000, guid: b3abd383eab8ab643abf203bc26a8e66, type: 3}
+  - tag: Outside
+    clips:
+    - {fileID: 8300000, guid: 75ea669fdd17436469ad82548b5eeb64, type: 3}
+    - {fileID: 8300000, guid: ccb59b6b3cac3d44bab1fbf1b2c33c7f, type: 3}
+    - {fileID: 8300000, guid: fb79ce57044562940bcd46ed25a186a6, type: 3}
+  rayDistance: 0.5
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!82 &645835208
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645835200}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &648395770
 GameObject:
   m_ObjectHideFlags: 0
@@ -6773,7 +7581,7 @@ GameObject:
   - component: {fileID: 648395771}
   m_Layer: 0
   m_Name: Group1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6861,7 +7669,7 @@ GameObject:
   - component: {fileID: 654570235}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7060,7 +7868,7 @@ GameObject:
   - component: {fileID: 684300105}
   m_Layer: 0
   m_Name: Group1 (13)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7096,7 +7904,7 @@ GameObject:
   - component: {fileID: 718067756}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7284,6 +8092,176 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 150, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &749788133
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 749788134}
+  - component: {fileID: 749788137}
+  - component: {fileID: 749788136}
+  - component: {fileID: 749788135}
+  m_Layer: 0
+  m_Name: Text1 (12)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &749788134
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749788133}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5499997, y: 84.850006, z: 2.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512740334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &749788135
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749788133}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &749788136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749788133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: And now the people have to bear the consequences.
+  typingSpeed: 0.08
+  displayDurationAfterDone: 3
+  uiTextElement: {fileID: 1179287962}
+  dialoguePanel: {fileID: 1737931410}
+  typingAudioSource: {fileID: 749788135}
+  typingClip: {fileID: 0}
+--- !u!65 &749788137
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749788133}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &751015557
 GameObject:
   m_ObjectHideFlags: 0
@@ -7453,7 +8431,7 @@ GameObject:
   - component: {fileID: 753004663}
   m_Layer: 0
   m_Name: Group1 (16)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7489,7 +8467,7 @@ GameObject:
   - component: {fileID: 753984143}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7542,7 +8520,7 @@ GameObject:
   - component: {fileID: 754263114}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7766,7 +8744,7 @@ GameObject:
   - component: {fileID: 769403450}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7807,6 +8785,51 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6, y: 0.1, z: 3.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &771750892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771750894}
+  - component: {fileID: 771750893}
+  m_Layer: 0
+  m_Name: MusicTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &771750893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771750892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1358f188c9f98241a310281fa61abc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneBGM: {fileID: 8300000, guid: 9545df4d2e4d6104695a0ec267ae1511, type: 3}
+--- !u!4 &771750894
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771750892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.5994153, y: 1.0338075, z: -7.8622475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &790989683
 GameObject:
   m_ObjectHideFlags: 0
@@ -8205,6 +9228,176 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &865128273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865128274}
+  - component: {fileID: 865128277}
+  - component: {fileID: 865128276}
+  - component: {fileID: 865128275}
+  m_Layer: 0
+  m_Name: Text1 (14)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &865128274
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865128273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5499997, y: 99.95, z: -1.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512740334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &865128275
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865128273}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &865128276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865128273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: But what come have to come.
+  typingSpeed: 0.08
+  displayDurationAfterDone: 3
+  uiTextElement: {fileID: 1179287962}
+  dialoguePanel: {fileID: 1737931410}
+  typingAudioSource: {fileID: 865128275}
+  typingClip: {fileID: 0}
+--- !u!65 &865128277
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865128273}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &875119490
 GameObject:
   m_ObjectHideFlags: 0
@@ -8405,7 +9598,7 @@ GameObject:
   - component: {fileID: 899818468}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8640,7 +9833,7 @@ GameObject:
   - component: {fileID: 981975902}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8692,7 +9885,7 @@ GameObject:
   - component: {fileID: 984609387}
   m_Layer: 0
   m_Name: Group1 (2)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8728,7 +9921,7 @@ GameObject:
   - component: {fileID: 993945220}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8781,7 +9974,7 @@ GameObject:
   - component: {fileID: 1001313729}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8978,7 +10171,7 @@ GameObject:
   - component: {fileID: 1021305755}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9031,7 +10224,7 @@ GameObject:
   - component: {fileID: 1025978703}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9324,7 +10517,7 @@ GameObject:
   - component: {fileID: 1053547299}
   m_Layer: 0
   m_Name: Group1 (8)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9360,7 +10553,7 @@ GameObject:
   - component: {fileID: 1053737440}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9492,7 +10685,7 @@ GameObject:
   - component: {fileID: 1082077643}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9545,7 +10738,7 @@ GameObject:
   - component: {fileID: 1090187377}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9598,7 +10791,7 @@ GameObject:
   - component: {fileID: 1101428260}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9651,7 +10844,7 @@ GameObject:
   - component: {fileID: 1109796408}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9944,7 +11137,7 @@ GameObject:
   - component: {fileID: 1138770535}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10159,7 +11352,7 @@ GameObject:
   - component: {fileID: 1146539353}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10212,7 +11405,7 @@ GameObject:
   - component: {fileID: 1150736909}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10265,7 +11458,7 @@ GameObject:
   - component: {fileID: 1152381834}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10505,7 +11698,7 @@ GameObject:
   - component: {fileID: 1168404749}
   m_Layer: 0
   m_Name: Group1 (17)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10675,7 +11868,7 @@ GameObject:
   - component: {fileID: 1211161244}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10823,7 +12016,7 @@ Transform:
   m_GameObject: {fileID: 1224370689}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: 28.9, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: 22.949999, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10937,7 +12130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: Because everything will come to an end eventually.
+  dialogueText: And I can barely catch my breath.
   typingSpeed: 0.08
   displayDurationAfterDone: 4
   uiTextElement: {fileID: 1179287962}
@@ -10977,7 +12170,7 @@ GameObject:
   - component: {fileID: 1235423803}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11030,7 +12223,7 @@ GameObject:
   - component: {fileID: 1238408715}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11135,7 +12328,7 @@ GameObject:
   - component: {fileID: 1246175431}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11188,7 +12381,7 @@ GameObject:
   - component: {fileID: 1257067781}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11241,7 +12434,7 @@ GameObject:
   - component: {fileID: 1270278578}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11399,7 +12592,7 @@ GameObject:
   - component: {fileID: 1297978891}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11451,7 +12644,7 @@ GameObject:
   - component: {fileID: 1307483047}
   m_Layer: 0
   m_Name: Group1 (11)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11592,7 +12785,7 @@ GameObject:
   - component: {fileID: 1318535108}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11645,7 +12838,7 @@ GameObject:
   - component: {fileID: 1321877993}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11860,7 +13053,7 @@ Transform:
   m_GameObject: {fileID: 1332029450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: 10, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: 10.599998, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11974,7 +13167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: The world seemed to have come to a standstill.
+  dialogueText: "Man\u2026just how many floors remaining?"
   typingSpeed: 0.05
   displayDurationAfterDone: 4
   uiTextElement: {fileID: 1179287962}
@@ -12063,7 +13256,7 @@ GameObject:
   - component: {fileID: 1370852685}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12116,7 +13309,7 @@ GameObject:
   - component: {fileID: 1381428286}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12169,7 +13362,7 @@ GameObject:
   - component: {fileID: 1384576876}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12526,7 +13719,7 @@ GameObject:
   - component: {fileID: 1407251912}
   m_Layer: 0
   m_Name: FloorCollider
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12690,7 +13883,7 @@ Transform:
   m_GameObject: {fileID: 1410191053}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: 78.350006, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: 47.700005, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12804,8 +13997,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: I'm so tired. Huff huff.
-  typingSpeed: 0.12
+  dialogueText: "But still\u2026 "
+  typingSpeed: 0.1
   displayDurationAfterDone: 3
   uiTextElement: {fileID: 1179287962}
   dialoguePanel: {fileID: 1737931410}
@@ -12832,6 +14025,176 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 3.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1419183801
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1419183802}
+  - component: {fileID: 1419183805}
+  - component: {fileID: 1419183804}
+  - component: {fileID: 1419183803}
+  m_Layer: 0
+  m_Name: Text1 (9)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1419183802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419183801}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5499997, y: 66.25001, z: 2.25}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1512740334}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1419183803
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419183801}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1419183804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419183801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueText: This planet is coming to an end.
+  typingSpeed: 0.1
+  displayDurationAfterDone: 3
+  uiTextElement: {fileID: 1179287962}
+  dialoguePanel: {fileID: 1737931410}
+  typingAudioSource: {fileID: 1419183803}
+  typingClip: {fileID: 0}
+--- !u!65 &1419183805
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419183801}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 3.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1423136140
 GameObject:
   m_ObjectHideFlags: 0
@@ -12844,7 +14207,7 @@ GameObject:
   - component: {fileID: 1423136142}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13149,7 +14512,7 @@ GameObject:
   - component: {fileID: 1440823067}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13202,7 +14565,7 @@ GameObject:
   - component: {fileID: 1449608255}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13289,8 +14652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: Climbing stairs like this reminds me of a scene from a very old game
-    I used to play.
+  dialogueText: "Oh that\u2019s just great. Stairs\u2026 "
   typingSpeed: 0.05
   displayDurationAfterDone: 5
   uiTextElement: {fileID: 1179287962}
@@ -13425,7 +14787,7 @@ GameObject:
   - component: {fileID: 1460967154}
   m_Layer: 0
   m_Name: Group1 (19)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13728,7 +15090,7 @@ GameObject:
   - component: {fileID: 1502785881}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13860,6 +15222,13 @@ Transform:
   - {fileID: 1533816458}
   - {fileID: 1410191054}
   - {fileID: 130723672}
+  - {fileID: 1419183802}
+  - {fileID: 4540036}
+  - {fileID: 440342135}
+  - {fileID: 749788134}
+  - {fileID: 110577194}
+  - {fileID: 865128274}
+  - {fileID: 175849509}
   m_Father: {fileID: 1584284336}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1513470580
@@ -13874,7 +15243,7 @@ GameObject:
   - component: {fileID: 1513470582}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14022,7 +15391,7 @@ GameObject:
   - component: {fileID: 1524848192}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14091,7 +15460,7 @@ Transform:
   m_GameObject: {fileID: 1533816457}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: 59.850002, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: 41.5, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14205,8 +15574,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: How long does it take to go up this staircase?
-  typingSpeed: 0.1
+  dialogueText: "Didn\u2019t thought of getting myself into such extreme exercise! "
+  typingSpeed: 0.08
   displayDurationAfterDone: 4
   uiTextElement: {fileID: 1179287962}
   dialoguePanel: {fileID: 1737931410}
@@ -14339,7 +15708,7 @@ GameObject:
   - component: {fileID: 1552632118}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14391,7 +15760,7 @@ GameObject:
   - component: {fileID: 1573263299}
   m_Layer: 0
   m_Name: Group1 (5)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14556,7 +15925,7 @@ GameObject:
   - component: {fileID: 1588072270}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14609,7 +15978,7 @@ GameObject:
   - component: {fileID: 1588729244}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14756,7 +16125,7 @@ GameObject:
   - component: {fileID: 1688730728}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15351,7 +16720,7 @@ GameObject:
   - component: {fileID: 1740287667}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15632,7 +17001,7 @@ GameObject:
   - component: {fileID: 1757508957}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15685,7 +17054,7 @@ GameObject:
   - component: {fileID: 1759209163}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15738,7 +17107,7 @@ GameObject:
   - component: {fileID: 1759224257}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16176,7 +17545,7 @@ GameObject:
   - component: {fileID: 1834185941}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16322,7 +17691,7 @@ GameObject:
   - component: {fileID: 1866570478}
   m_Layer: 0
   m_Name: Group1 (18)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16452,7 +17821,7 @@ GameObject:
   - component: {fileID: 1880623292}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16834,7 +18203,7 @@ Transform:
   m_GameObject: {fileID: 1917947668}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5499997, y: 47.5, z: 2.25}
+  m_LocalPosition: {x: 0.5499997, y: 29.149998, z: 2.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16948,8 +18317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: Wow i kinda feel tired now.
-  typingSpeed: 0.1
+  dialogueText: My legs started to feel numb.
+  typingSpeed: 0.08
   displayDurationAfterDone: 3
   uiTextElement: {fileID: 1179287962}
   dialoguePanel: {fileID: 1737931410}
@@ -17039,7 +18408,7 @@ GameObject:
   - component: {fileID: 1923189353}
   m_Layer: 0
   m_Name: Group1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17075,7 +18444,7 @@ GameObject:
   - component: {fileID: 1931402332}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17222,7 +18591,7 @@ GameObject:
   - component: {fileID: 1940269606}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17275,7 +18644,7 @@ GameObject:
   - component: {fileID: 1949291429}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17458,7 +18827,7 @@ GameObject:
   - component: {fileID: 1968095141}
   m_Layer: 0
   m_Name: Stair1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17511,7 +18880,7 @@ GameObject:
   - component: {fileID: 2001100275}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17765,7 +19134,7 @@ GameObject:
   - component: {fileID: 2038833235}
   m_Layer: 0
   m_Name: Floor1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17914,7 +19283,7 @@ GameObject:
   - component: {fileID: 2049387101}
   m_Layer: 0
   m_Name: Floor1 (2)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18091,7 +19460,7 @@ GameObject:
   - component: {fileID: 2077435105}
   m_Layer: 0
   m_Name: Group1 (4)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18180,7 +19549,7 @@ GameObject:
   - component: {fileID: 2104698884}
   m_Layer: 0
   m_Name: Stair1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18332,7 +19701,7 @@ GameObject:
   - component: {fileID: 2126538961}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18384,7 +19753,7 @@ GameObject:
   - component: {fileID: 2128025091}
   m_Layer: 0
   m_Name: Group1 (15)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18420,7 +19789,7 @@ GameObject:
   - component: {fileID: 2137920550}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18473,7 +19842,7 @@ GameObject:
   - component: {fileID: 2142588229}
   m_Layer: 0
   m_Name: Floor1 (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18630,3 +19999,4 @@ SceneRoots:
   - {fileID: 1142501678}
   - {fileID: 1139166294}
   - {fileID: 763991216}
+  - {fileID: 771750894}

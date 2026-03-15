@@ -44,6 +44,19 @@ public class CameraInterScene3 : MonoBehaviour
 
         CalculateCameraLogic();
         ApplySmoothMovement();
+
+        if (mainCamera != null)
+        {
+            Camera cam = mainCamera.GetComponent<Camera>();
+            if (cam != null)
+            {
+                // Đảm bảo cullingMask bao gồm cả Layer của nhân vật
+                // Giả sử nhân vật ở Layer "Player" hoặc Layer 0 (Default)
+                // cam.cullingMask |= (1 << LayerMask.NameToLayer("YourCharacterLayer"));
+
+                Debug.Log("Camera " + cam.name + " đang render với FOV: " + cam.fieldOfView);
+            }
+        }
     }
 
     void CalculateCameraLogic()

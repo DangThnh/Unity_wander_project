@@ -171,6 +171,8 @@ public class HexaPuzzleManager : MonoBehaviour
     // Xử lý khi giải đố thành công
     private void HandleCorrectSequence()
     {
+        GetComponent<HexaPuzzleAudioManager>()?.PlayCorrect();
+
         if (messageCoroutine != null) StopCoroutine(messageCoroutine);
         messageCoroutine = StartCoroutine(SolveSequenceAndDeactivate());
     }
@@ -212,6 +214,7 @@ public class HexaPuzzleManager : MonoBehaviour
     // Actions on incorrect puzzle attempt
     private void HandleWrongSequence()
     {
+        GetComponent<HexaPuzzleAudioManager>()?.PlayError();
         SetMessageText(ERROR_MESSAGE);
         Debug.Log("Puzzle check failed. Wrong sequence. Reverting instruction text shortly.");
 
@@ -259,6 +262,8 @@ public class HexaPuzzleManager : MonoBehaviour
 
     private void ChangeCylinderSelection(int direction)
     {
+        GetComponent<HexaPuzzleAudioManager>()?.PlaySwitch();
+
         if (cylinders == null || cylinders.Count == 0) return;
 
         if (currentCylinderIndex >= 0 && currentCylinderIndex < cylinders.Count && cylinders[currentCylinderIndex] != null)
@@ -278,9 +283,13 @@ public class HexaPuzzleManager : MonoBehaviour
 
     private void RotateSelectedCylinder()
     {
+        GetComponent<HexaPuzzleAudioManager>()?.PlayRotate();
+
         if (cylinders == null || currentCylinderIndex < 0 || currentCylinderIndex >= cylinders.Count || cylinders[currentCylinderIndex] == null) return;
 
         cylinders[currentCylinderIndex].RotateClockwise();
+
+        
 
         Debug.Log($"Cylinder {currentCylinderIndex + 1} rotated. Current Symbol Index: {cylinders[currentCylinderIndex].currentSymbolIndex}");
     }

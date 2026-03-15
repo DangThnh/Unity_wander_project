@@ -5,75 +5,84 @@ using System.Collections.Generic;
 public class InteractableObject : MonoBehaviour
 {
     // === Cài đặt ID và Trạng thái ===
-    // Cần phải gán một ID duy nhất cho mỗi vật phẩm trong Inspector
     public string uniqueId;
-    public string spawnActionId; // ID duy nhất cho hành động spawn này
+    public string spawnActionId;
+
+    // === Cài đặt Âm thanh Linh hoạt (Cập nhật) ===
+    [Header("Audio Settings")]
+    [Tooltip("AudioSource dùng để phát âm thanh. Nếu để trống, sẽ tự tìm trên object này.")]
+    public AudioSource audioSource;
+
+    [Tooltip("Âm thanh khi bắt đầu tương tác (mở hộp thoại).")]
+    public AudioClip startInteractionSound;
+
+    [Tooltip("Âm thanh khi nhặt được item mới vào Inventory.")]
+    public AudioClip pickupSound;
+
+    [Tooltip("Âm thanh khi sử dụng/mất một item từ Inventory (ví dụ dùng chìa khóa).")]
+    public AudioClip useItemSound;
+
+    [Tooltip("Âm thanh khi một vật thể được triệu hồi (Spawn).")]
+    public AudioClip spawnObjectSound;
 
     // === Tham chiếu UI Text ===
     [Header("UI Text Settings")]
-    [Tooltip("Gán Text UI Component (TextMeshProUGUI) trực tiếp nếu không muốn dùng tham chiếu toàn cục từ GameManager.")]
-    public TMP_Text localInteractionText; // TRƯỜNG MỚI ĐƯỢC THÊM VÀO
+    public TMP_Text localInteractionText;
     public string myText = "My bookshelf.";
-    [Tooltip("Thông báo hiển thị nếu thiếu item yêu cầu cho cả tương tác đặc biệt và nhặt item.")]
     public string requirementFailureText = "It seems you are missing a key item to proceed.";
     public string specialInteractionText = "You have something, use it.";
     public string afterInteractionText = "You put it down, would you like to use it";
 
     // === Cài đặt Item và Tương tác Đặc biệt ===
     [Header("Special Interaction Settings")]
-    public Item itemData; // Nếu là một món đồ có thể nhặt, gán itemData vào đây
-
-    // Cài đặt cho tương tác đặc biệt (ví dụ: mở cửa, hoặc nhặt item bằng key)
+    public Item itemData;
     public bool isSpecialInteraction = false;
-    [Tooltip("ID của item cần có trong kho đồ để tương tác/nhặt item này.")]
-    public string requiredItemId; // ID của item cần có trong kho đồ để tương tác đặc biệt hoặc nhặt item này
-
-    // Cài đặt cho tương tác đặc biệt mới (tạo vật thể)
+    public string requiredItemId;
     public bool isSpecialSpawnInteraction = false;
     public GameObject objectToSpawnPrefab;
     public Transform spawnPoint;
 
-    // Cài đặt trạng thái
     private bool playerInRange = false;
     private bool isInteracting = false;
-    // 0: không tương tác, 1: thoại đầu, 2: nhắc nhở nhặt item (Thành công - Không tiêu thụ requiredItemId)
-    // 3: special interaction (Thành công - TIÊU THỤ requiredItemId & CÓ THỂ nhặt item)
-    // 4: special spawn interaction (Thành công)
-    // 5: Thông báo thất bại (Cần bấm E lần nữa để kết thúc).
     private int interactionState = 0;
-
-    // Tham chiếu đến script nhân vật
     private Character_movement playerController;
     private Animator playerAnimator;
 
-    // PHƯƠNG THỨC TRỢ GIÚP MỚI: Ưu tiên tham chiếu cục bộ, sau đó là tham chiếu toàn cục
     private TMP_Text GetActiveTextComponent()
     {
-        if (localInteractionText != null)
-        {
-            return localInteractionText;
-        }
-        if (GameManager.instance != null)
-        {
-            return GameManager.instance.interactionText;
-        }
+        if (localInteractionText != null) return localInteractionText;
+        if (GameManager.instance != null) return GameManager.instance.interactionText;
         return null;
+    }
+
+    // Hàm hỗ trợ phát âm thanh tổng quát
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null)
+        {
+            if (audioSource != null)
+            {
+                audioSource.PlayOneShot(clip);
+            }
+            else
+            {
+                AudioSource.PlayClipAtPoint(clip, transform.position);
+            }
+        }
     }
 
     void Start()
     {
-        // Kiểm tra xem vật phẩm này đã được nhặt chưa
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
+
         if (GameManager.instance != null && GameManager.instance.collectedItemIds.Contains(uniqueId))
         {
-            // Nếu đã nhặt, hủy bỏ đối tượng ngay lập tức
             Destroy(gameObject);
             return;
         }
 
-        // Kiểm tra xem hành động spawn đã hoàn thành chưa
         if (GameManager.instance != null && GameManager.instance.completedSpawnActions.Contains(spawnActionId))
         {
-            // Nếu đã spawn, hủy đối tượng ban đầu để tránh trùng lặp
             Destroy(gameObject);
             return;
         }
@@ -100,19 +109,10 @@ public class InteractableObject : MonoBehaviour
 
     void Update()
     {
-        // Chỉ tương tác khi nhân vật ở trong vùng và bấm E
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            if (!isInteracting)
-            {
-                // Bắt đầu quá trình tương tác
-                StartInteraction();
-            }
-            else
-            {
-                // Tiếp tục/kết thúc tương tác dựa vào trạng thái hiện tại
-                ContinueInteraction();
-            }
+            if (!isInteracting) StartInteraction();
+            else ContinueInteraction();
         }
     }
 
@@ -121,181 +121,121 @@ public class InteractableObject : MonoBehaviour
         isInteracting = true;
         interactionState = 1;
 
-        TMP_Text textComponent = GetActiveTextComponent();
+        // Phát âm thanh khi bắt đầu tương tác
+        PlaySound(startInteractionSound);
 
-        // Hiển thị text đầu tiên
+        TMP_Text textComponent = GetActiveTextComponent();
         if (textComponent != null)
         {
             textComponent.gameObject.SetActive(true);
             textComponent.text = myText;
-            // Giữ lại debug log để kiểm tra tham chiếu
-            Debug.Log($"Interactable '{gameObject.name}' is setting text on: {textComponent.gameObject.name}");
-        }
-        else
-        {
-            Debug.LogError("Interaction Text Component is missing!");
         }
 
-        // Khóa chuyển động nhân vật
-        if (playerController != null)
-        {
-            playerController.canMove = false;
-        }
-        if (playerAnimator != null)
-        {
-            playerAnimator.SetBool("IsMoving", false);
-        }
+        if (playerController != null) playerController.canMove = false;
+        if (playerAnimator != null) playerAnimator.SetBool("IsMoving", false);
     }
 
     void ContinueInteraction()
     {
         TMP_Text textComponent = GetActiveTextComponent();
 
-        // Xử lý tương tác nhặt đồ (có itemData và KHÔNG phải tương tác đặc biệt khác)
+        // 1. DẠNG NHẶT ĐỒ THÔNG THƯỜNG
         if (itemData != null && !isSpecialInteraction && !isSpecialSpawnInteraction)
         {
-            // Lần nhấn E thứ hai (trạng thái 1)
             if (interactionState == 1)
             {
-                // Kiểm tra xem có yêu cầu item không
                 bool isRequired = !string.IsNullOrEmpty(requiredItemId);
-                // Kiểm tra xem người chơi có item yêu cầu không (hoặc không cần item)
                 bool hasRequiredItem = isRequired ? InventoryManager.instance.HasItem(requiredItemId) : true;
 
                 if (hasRequiredItem)
                 {
-                    // THÀNH CÔNG: Chuyển sang nhắc nhở nhặt item (state 2) - KHÔNG TIÊU THỤ item kích hoạt
                     interactionState = 2;
                     if (textComponent != null)
-                    {
-                        // Hiển thị itemData.itemName thay vì requiredItemId
                         textComponent.text = "Do you want to take this " + itemData.itemName + "? (Press E to take)";
-                    }
                 }
                 else
                 {
-                    // THẤT BẠI: Chuyển sang trạng thái thông báo thất bại (state 5)
                     interactionState = 5;
-                    if (textComponent != null)
-                    {
-                        textComponent.text = requirementFailureText;
-                    }
+                    if (textComponent != null) textComponent.text = requirementFailureText;
                 }
             }
-            // Lần nhấn E thứ ba (trạng thái 2 - Thành công)
             else if (interactionState == 2)
             {
-                // Hành động nhặt đồ (Không xóa requiredItemId)
                 InventoryManager.instance.AddItem(itemData);
-                GameManager.instance.collectedItemIds.Add(uniqueId);
+                PlaySound(pickupSound); // PHÁT ÂM THANH NHẶT ĐỒ
 
+                GameManager.instance.collectedItemIds.Add(uniqueId);
                 Destroy(gameObject);
                 EndInteraction();
             }
-            // Lần nhấn E thứ ba (trạng thái 5 - Thất bại)
-            else if (interactionState == 5)
-            {
-                // Nhấn E để kết thúc sau khi xem thông báo thất bại
-                EndInteraction();
-            }
+            else if (interactionState == 5) EndInteraction();
         }
-        // Xử lý tương tác đặc biệt (TIÊU THỤ requiredItemId, CÓ THỂ nhặt itemData HOẶC chỉ kích hoạt)
+        // 2. DẠNG TƯƠNG TÁC ĐẶC BIỆT CÓ THỂ NHẬN ĐỒ
         else if (isSpecialInteraction && !isSpecialSpawnInteraction)
         {
             if (interactionState == 1)
             {
-                bool hasRequiredItem = InventoryManager.instance.HasItem(requiredItemId);
-                if (hasRequiredItem)
+                if (InventoryManager.instance.HasItem(requiredItemId))
                 {
                     interactionState = 3;
-                    if (textComponent != null)
-                    {
-                        // Hiển thị text đặc biệt, có thể đề cập đến việc sử dụng item
-                        textComponent.text = specialInteractionText;
-                    }
+                    if (textComponent != null) textComponent.text = specialInteractionText;
                 }
                 else
                 {
-                    // Thất bại: Chuyển sang trạng thái thông báo thất bại (state 5)
                     interactionState = 5;
-                    if (textComponent != null)
-                    {
-                        textComponent.text = requirementFailureText;
-                    }
+                    if (textComponent != null) textComponent.text = requirementFailureText;
                 }
             }
             else if (interactionState == 3)
             {
-                // 1. LUÔN LUÔN xóa item kích hoạt (requiredItemId)
+                // Sử dụng item yêu cầu
                 InventoryManager.instance.RemoveItem(requiredItemId);
+                PlaySound(useItemSound); // PHÁT ÂM THANH SỬ DỤNG ITEM
 
-                // 2. Nhận item mới (itemData) nếu nó được gán cho vật thể
                 if (itemData != null)
                 {
                     InventoryManager.instance.AddItem(itemData);
+                    PlaySound(pickupSound); // PHÁT ÂM THANH NHẬN ITEM MỚI
                 }
 
-                // 3. Đánh dấu đã hoàn thành và hủy đối tượng
                 GameManager.instance.collectedItemIds.Add(uniqueId);
                 Destroy(gameObject);
                 EndInteraction();
             }
-            // Thêm xử lý để kết thúc sau khi xem thông báo thất bại
-            else if (interactionState == 5)
-            {
-                EndInteraction();
-            }
+            else if (interactionState == 5) EndInteraction();
         }
-        // Xử lý tương tác đặc biệt (tạo vật thể)
+        // 3. DẠNG SPAWN VẬT THỂ
         else if (isSpecialSpawnInteraction)
         {
-            // Kiểm tra lần nhấn E thứ hai để hiển thị afterInteractionText
             if (interactionState == 1)
             {
-                bool hasRequiredItem = InventoryManager.instance.HasItem(requiredItemId);
-                if (hasRequiredItem)
+                if (InventoryManager.instance.HasItem(requiredItemId))
                 {
                     interactionState = 4;
-                    if (textComponent != null)
-                    {
-                        textComponent.text = afterInteractionText;
-                    }
+                    if (textComponent != null) textComponent.text = afterInteractionText;
                 }
                 else
                 {
-                    // Thất bại: Chuyển sang trạng thái thông báo thất bại (state 5)
                     interactionState = 5;
-                    if (textComponent != null)
-                    {
-                        textComponent.text = requirementFailureText;
-                    }
+                    if (textComponent != null) textComponent.text = requirementFailureText;
                 }
             }
-            // Kiểm tra lần nhấn E thứ ba để tạo vật thể
             else if (interactionState == 4)
             {
                 if (objectToSpawnPrefab != null && spawnPoint != null)
                 {
-                    GameObject spawnedObject = Instantiate(objectToSpawnPrefab, spawnPoint.position, spawnPoint.rotation);
-                    // Giữ lại vật thể đã được sinh ra
-                    //DontDestroyOnLoad(spawnedObject);
-                    // Đánh dấu hành động spawn đã hoàn thành
+                    Instantiate(objectToSpawnPrefab, spawnPoint.position, spawnPoint.rotation);
+                    PlaySound(spawnObjectSound); // PHÁT ÂM THANH KHI VẬT THỂ XUẤT HIỆN
                     GameManager.instance.completedSpawnActions.Add(spawnActionId);
                 }
+
                 InventoryManager.instance.RemoveItem(requiredItemId);
+                PlaySound(useItemSound); // PHÁT ÂM THANH KHI TIÊU TỐN ITEM YÊU CẦU
+
                 EndInteraction();
             }
-            // Thêm xử lý để kết thúc sau khi xem thông báo thất bại
-            else if (interactionState == 5)
-            {
-                EndInteraction();
-            }
-            else
-            {
-                EndInteraction();
-            }
+            else if (interactionState == 5) EndInteraction();
         }
-        // Nếu không phải vật phẩm hoặc đã ở trạng thái cuối, kết thúc tương tác
         else
         {
             EndInteraction();
@@ -306,47 +246,21 @@ public class InteractableObject : MonoBehaviour
     {
         isInteracting = false;
         interactionState = 0;
-
         TMP_Text textComponent = GetActiveTextComponent();
-
-        // Tắt text UI
-        if (textComponent != null)
-        {
-            textComponent.gameObject.SetActive(false);
-        }
-
-        // Mở khóa chuyển động nhân vật
-        if (playerController != null)
-        {
-            playerController.canMove = true;
-        }
-
-    }
-    void OnEnable()
-    {
-        HexaPuzzleManager.OnPuzzleCompleted += ForceTextRefresh;
+        if (textComponent != null) textComponent.gameObject.SetActive(false);
+        if (playerController != null) playerController.canMove = true;
     }
 
-    void OnDisable()
-    {
-        HexaPuzzleManager.OnPuzzleCompleted -= ForceTextRefresh;
-    }
+    void OnEnable() { HexaPuzzleManager.OnPuzzleCompleted += ForceTextRefresh; }
+    void OnDisable() { HexaPuzzleManager.OnPuzzleCompleted -= ForceTextRefresh; }
 
-    // Phương thức này sẽ được gọi khi câu đố kết thúc
     void ForceTextRefresh()
     {
         TMP_Text textComponent = GetActiveTextComponent();
-
-        // Chạy lại logic kiểm tra OnTriggerEnter/OnTriggerStay của vật thể này
-        if (playerInRange)
+        if (playerInRange && textComponent != null)
         {
-            // Cập nhật text UI ngay lập tức
-            if (textComponent != null)
-            {
-                textComponent.text = myText; // myText của đối tượng tương tác này
-                textComponent.gameObject.SetActive(true);
-            }
+            textComponent.text = myText;
+            textComponent.gameObject.SetActive(true);
         }
     }
-
 }

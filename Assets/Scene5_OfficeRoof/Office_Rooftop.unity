@@ -311,7 +311,6 @@ GameObject:
   m_Component:
   - component: {fileID: 17231390}
   - component: {fileID: 17231393}
-  - component: {fileID: 17231392}
   - component: {fileID: 17231391}
   - component: {fileID: 17231394}
   m_Layer: 0
@@ -349,14 +348,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
---- !u!81 &17231392
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 17231389}
-  m_Enabled: 1
 --- !u!20 &17231393
 Camera:
   m_ObjectHideFlags: 0
@@ -1174,6 +1165,8 @@ MonoBehaviour:
   resultItemImage: {fileID: 150530789}
   resultText: {fileID: 363278315}
   continueText: {fileID: 363278314}
+  uiAudioSource: {fileID: 1035866016}
+  craftSuccessSound: {fileID: 8300000, guid: cda50a08f9ed5ca4d9f183bb24e1a8ee, type: 3}
   playerController: {fileID: 1035866013}
   emptySlotSprite: {fileID: 21300000, guid: 314bb9fdbf7c6684b8704a0e9d85e197, type: 3}
 --- !u!4 &107485639
@@ -1641,7 +1634,6 @@ GameObject:
   m_Component:
   - component: {fileID: 208196313}
   - component: {fileID: 208196315}
-  - component: {fileID: 208196314}
   - component: {fileID: 208196316}
   - component: {fileID: 208196317}
   m_Layer: 0
@@ -1666,14 +1658,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1363471347}
   m_LocalEulerAnglesHint: {x: 20, y: -45, z: 0}
---- !u!81 &208196314
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 208196312}
-  m_Enabled: 1
 --- !u!20 &208196315
 Camera:
   m_ObjectHideFlags: 0
@@ -2016,6 +2000,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: screwdriver_01
   spawnActionId: 
+  audioSource: {fileID: 1035866016}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: You found a screwdriver.
   requirementFailureText: 
@@ -2311,6 +2300,10 @@ MonoBehaviour:
   passcode: 3H4F
   displayText: {fileID: 851584425}
   keypadUI: {fileID: 1166359279}
+  audioSource: {fileID: 451633899}
+  buttonClickClip: {fileID: 8300000, guid: c566bca0deb47d44f8fb4c5c1f5ccdd6, type: 3}
+  correctSoundClip: {fileID: 8300000, guid: e6747b7dca9c97c4e97c2bd45100b5b9, type: 3}
+  wrongSoundClip: {fileID: 8300000, guid: efc08f5b636fe2e4c92fd66807827f68, type: 3}
 --- !u!1 &362736892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2910,6 +2903,7 @@ GameObject:
   - component: {fileID: 430348872}
   - component: {fileID: 430348871}
   - component: {fileID: 430348870}
+  - component: {fileID: 430348875}
   m_Layer: 0
   m_Name: Fuse
   m_TagString: Untagged
@@ -2944,14 +2938,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a61f6669e0ad214f8500e77b66eedc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parentInteractableObject: {fileID: 657582286}
   puzzleId: ControlRoomFusePuzzle
   targetDoor: {fileID: 1863006137}
-  parentInteractableObject: {fileID: 657582286}
   puzzleManager: {fileID: 1721058667}
-  initialText: The high voltage fuse is in place. Start booting the circuit board?
-    (Press E)
-  puzzleSolvedText: Circuit complete. I heard a noise, it sounded like something
-    had been unlocked.
+  worldAudioSource: {fileID: 430348875}
+  electricHumClip: {fileID: 8300000, guid: 03bcda8089d197849b3a7026b77cdca0, type: 3}
+  startPuzzleClip: {fileID: 8300000, guid: a4686703fd84ac14b8bee22a310588b4, type: 3}
+  solvedPowerOnClip: {fileID: 8300000, guid: 2f2deb18b5f297a44a769a5b1bb54354, type: 3}
+  doorOpenClip: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+  initialText: The high voltage fuse is in place. Start the circuit puzzle? (Press
+    E)
+  puzzleSolvedText: Circuit complete. Control Room unlocked.
 --- !u!65 &430348871
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3044,6 +3042,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 430348868}
   m_Mesh: {fileID: -6292342121008413548, guid: fdc9b713a399279498baafe1f45f39fa, type: 3}
+--- !u!82 &430348875
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 430348868}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &432244952 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8136725805979348536, guid: ff9c422ae64c30b4587b35dc4b18904b, type: 3}
@@ -3166,6 +3260,7 @@ GameObject:
   - component: {fileID: 451633897}
   - component: {fileID: 451633896}
   - component: {fileID: 451633898}
+  - component: {fileID: 451633899}
   m_Layer: 0
   m_Name: Vending_machine
   m_TagString: Untagged
@@ -3252,6 +3347,104 @@ MonoBehaviour:
   spawnActionId: jumpercablespawn
   objectToSpawnPrefab: {fileID: 6487356692164912696}
   spawnPoint: {fileID: 1195754014}
+  audioSource: {fileID: 451633899}
+  openDoorClip: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+--- !u!82 &451633899
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 451633893}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!65 &470405630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3745,11 +3938,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 947671992}
   itemToGive: {fileID: 11400000, guid: 6c6b83fe27516a6438e29f44b182cab0, type: 2}
+  audioSource: {fileID: 1035866016}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
   requiresItemCondition: 1
   requiredItemId: screwdriver_01
   requiredItemFailureLine: The battery case is securely locked with screws.
   firstLine: The battery case of the BMU.
-  secondLine: I can open it with my screwdriver. (Press "E" to use)
+  secondLine: I can open it with my screwdriver. (Press E to use)
   thirdLine: You have received a Dead Battery.
 --- !u!1 &657582286
 GameObject:
@@ -3783,7 +3978,8 @@ Transform:
   m_LocalPosition: {x: 3.8351398, y: 1.8254004, z: -2.7733428}
   m_LocalScale: {x: 33.85406, y: 33.85406, z: 33.85406}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1955275476}
   m_Father: {fileID: 543450652894555687}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &657582288
@@ -4189,7 +4385,6 @@ GameObject:
   m_Component:
   - component: {fileID: 705199973}
   - component: {fileID: 705199975}
-  - component: {fileID: 705199974}
   - component: {fileID: 705199976}
   - component: {fileID: 705199977}
   m_Layer: 0
@@ -4214,14 +4409,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1363471347}
   m_LocalEulerAnglesHint: {x: 20, y: -90, z: 0}
---- !u!81 &705199974
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 705199972}
-  m_Enabled: 1
 --- !u!20 &705199975
 Camera:
   m_ObjectHideFlags: 0
@@ -4409,7 +4596,6 @@ GameObject:
   m_Component:
   - component: {fileID: 743347263}
   - component: {fileID: 743347265}
-  - component: {fileID: 743347264}
   - component: {fileID: 743347266}
   - component: {fileID: 743347267}
   m_Layer: 0
@@ -4434,14 +4620,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1363471347}
   m_LocalEulerAnglesHint: {x: 20, y: -180, z: 0}
---- !u!81 &743347264
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 743347262}
-  m_Enabled: 1
 --- !u!20 &743347265
 Camera:
   m_ObjectHideFlags: 0
@@ -4534,6 +4712,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: 'Note: TSS Plant 306 in District 18, Continent 4A, Planet XXXX (Our new
     home).'
@@ -4751,6 +4934,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: 
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -4839,6 +5027,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: A crowbar.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -4864,6 +5057,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: crowbar_01
   spawnActionId: 
+  audioSource: {fileID: 1035866016}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A crowbar lying on the table.
   requirementFailureText: 
@@ -5568,6 +5766,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: Red - Yellow - Blue - Green
   requirementFailureText: 
@@ -5797,7 +6000,6 @@ GameObject:
   m_Component:
   - component: {fileID: 971835729}
   - component: {fileID: 971835733}
-  - component: {fileID: 971835732}
   - component: {fileID: 971835731}
   - component: {fileID: 971835730}
   m_Layer: 0
@@ -5849,14 +6051,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
---- !u!81 &971835732
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971835728}
-  m_Enabled: 1
 --- !u!20 &971835733
 Camera:
   m_ObjectHideFlags: 0
@@ -6325,6 +6519,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1035866011}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1035866016}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1035866015}
   m_SourcePrefab: {fileID: 100100000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
 --- !u!1 &1035866009 stripped
 GameObject:
@@ -6401,7 +6601,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpawnPoint: {fileID: 0}
   canMove: 1
-  speed: 3
+  speed: 2.2
   rotationSpeed: 160
 --- !u!54 &1035866014
 Rigidbody:
@@ -6430,6 +6630,132 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1035866015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035866009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa453a2aebd86f42aad65361a1b3149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainAudios:
+  - tag: RoomFloor
+    clips:
+    - {fileID: 8300000, guid: 04f847b772e2bb24fb4c3731799ff357, type: 3}
+    - {fileID: 8300000, guid: db5d27b162587d7489f2c7fcf972c81e, type: 3}
+    - {fileID: 8300000, guid: b3abd383eab8ab643abf203bc26a8e66, type: 3}
+  - tag: Outside
+    clips:
+    - {fileID: 8300000, guid: 75ea669fdd17436469ad82548b5eeb64, type: 3}
+    - {fileID: 8300000, guid: ccb59b6b3cac3d44bab1fbf1b2c33c7f, type: 3}
+    - {fileID: 8300000, guid: fb79ce57044562940bcd46ed25a186a6, type: 3}
+  - tag: MetalStep
+    clips:
+    - {fileID: 8300000, guid: 953bda1be397b244b9b739b63bdaf302, type: 3}
+  rayDistance: 0.5
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!82 &1035866016
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035866009}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1037160354
 GameObject:
   m_ObjectHideFlags: 0
@@ -6576,7 +6902,7 @@ GameObject:
   - component: {fileID: 1065471117}
   m_Layer: 0
   m_Name: BMUcollider
-  m_TagString: Untagged
+  m_TagString: MetalStep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6885,6 +7211,51 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 12, y: 5, z: 0.05}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1143036191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1143036193}
+  - component: {fileID: 1143036192}
+  m_Layer: 0
+  m_Name: MusicTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1143036192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143036191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1358f188c9f98241a310281fa61abc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneBGM: {fileID: 8300000, guid: 9545df4d2e4d6104695a0ec267ae1511, type: 3}
+--- !u!4 &1143036193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143036191}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.5994153, y: 1.0338075, z: -7.8622475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1146848266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6899,6 +7270,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: 
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -6980,6 +7356,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: 'Note: Celebrating the 50th anniversary of the company''s founding - 2096.'
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -7145,6 +7526,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: 
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -7529,7 +7915,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1245003224}
   - component: {fileID: 1245003228}
-  - component: {fileID: 1245003227}
   - component: {fileID: 1245003226}
   - component: {fileID: 1245003225}
   m_Layer: 0
@@ -7581,14 +7966,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
---- !u!81 &1245003227
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1245003223}
-  m_Enabled: 1
 --- !u!20 &1245003228
 Camera:
   m_ObjectHideFlags: 0
@@ -7847,7 +8224,7 @@ GameObject:
   - component: {fileID: 1252445719}
   m_Layer: 0
   m_Name: FloorLevelCollider All
-  m_TagString: Untagged
+  m_TagString: Outside
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8636,6 +9013,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A drawer.
   requirementFailureText: 
@@ -9335,7 +9717,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1520697316}
   - component: {fileID: 1520697318}
-  - component: {fileID: 1520697317}
   - component: {fileID: 1520697319}
   - component: {fileID: 1520697320}
   m_Layer: 0
@@ -9360,14 +9741,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1363471347}
   m_LocalEulerAnglesHint: {x: 20, y: 0, z: 0}
---- !u!81 &1520697317
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1520697315}
-  m_Enabled: 1
 --- !u!20 &1520697318
 Camera:
   m_ObjectHideFlags: 0
@@ -9662,6 +10035,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: 'Note: Celebrating the 50th anniversary of the company''s founding - 2096.'
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -9725,7 +10103,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1546618171}
   - component: {fileID: 1546618173}
-  - component: {fileID: 1546618172}
   - component: {fileID: 1546618174}
   - component: {fileID: 1546618175}
   m_Layer: 0
@@ -9750,14 +10127,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1363471347}
   m_LocalEulerAnglesHint: {x: 30, y: -30, z: 0}
---- !u!81 &1546618172
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1546618170}
-  m_Enabled: 1
 --- !u!20 &1546618173
 Camera:
   m_ObjectHideFlags: 0
@@ -9924,7 +10293,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1581576058}
   - component: {fileID: 1581576057}
-  - component: {fileID: 1581576056}
   - component: {fileID: 1581576059}
   - component: {fileID: 1581576060}
   m_Layer: 0
@@ -9934,14 +10302,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1581576056
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581576055}
-  m_Enabled: 1
 --- !u!20 &1581576057
 Camera:
   m_ObjectHideFlags: 0
@@ -10924,6 +11284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1721058666}
   - component: {fileID: 1721058667}
+  - component: {fileID: 1721058668}
   m_Layer: 0
   m_Name: HexaPuzzleManager
   m_TagString: Untagged
@@ -10940,7 +11301,7 @@ Transform:
   m_GameObject: {fileID: 1721058665}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.021396061, y: -0.015661478, z: 0.36871803}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10967,6 +11328,23 @@ MonoBehaviour:
   puzzleRootGameObject: {fileID: 1987704929}
   messageTextComponent: {fileID: 1687903436}
   messageDisplayTime: 3
+--- !u!114 &1721058668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1721058665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96ebbce1a82cc30478c338bea5b3e91d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1035866016}
+  rotateClip: {fileID: 8300000, guid: d7ef62ea92664444ebdce2d7c15ab55f, type: 3}
+  switchClip: {fileID: 8300000, guid: 990e1150b5e1c0348aca472a1b153dde, type: 3}
+  correctClip: {fileID: 8300000, guid: a4686703fd84ac14b8bee22a310588b4, type: 3}
+  errorClip: {fileID: 8300000, guid: efc08f5b636fe2e4c92fd66807827f68, type: 3}
 --- !u!1 &1722964327
 GameObject:
   m_ObjectHideFlags: 0
@@ -11145,7 +11523,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1738889030}
   - component: {fileID: 1738889034}
-  - component: {fileID: 1738889033}
   - component: {fileID: 1738889032}
   - component: {fileID: 1738889031}
   m_Layer: 0
@@ -11197,14 +11574,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
---- !u!81 &1738889033
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1738889029}
-  m_Enabled: 1
 --- !u!20 &1738889034
 Camera:
   m_ObjectHideFlags: 0
@@ -12317,6 +12686,7 @@ GameObject:
   - component: {fileID: 1862432442}
   - component: {fileID: 1862432443}
   - component: {fileID: 1862432444}
+  - component: {fileID: 1862432445}
   m_Layer: 0
   m_Name: Door_locked
   m_TagString: Untagged
@@ -12395,10 +12765,111 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: {fileID: 947671992}
+  passcodePanel: {fileID: 362914596}
   hingePoint: {fileID: 585671489}
   openAngle: -90
   rotationSpeed: 2
-  passcodePanel: {fileID: 362914596}
+  audioSource: {fileID: 1862432445}
+  openDoorSound: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+  accessGrantedSound: {fileID: 8300000, guid: e6747b7dca9c97c4e97c2bd45100b5b9, type: 3}
+  accessDeniedSound: {fileID: 8300000, guid: efc08f5b636fe2e4c92fd66807827f68, type: 3}
+  interactionSound: {fileID: 8300000, guid: b7a759200bc2d0241baf2ee37d58b5fb, type: 3}
+--- !u!82 &1862432445
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862432440}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1863006133
 GameObject:
   m_ObjectHideFlags: 0
@@ -12585,6 +13056,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: 'Note: Facilities after renovation.'
   requirementFailureText: 
@@ -12879,6 +13355,8 @@ MonoBehaviour:
   hingePoint: {fileID: 276208519}
   openAngle: 90
   rotationSpeed: 3
+  openSound: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+  volume: 1
 --- !u!65 &1944707214
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12900,6 +13378,134 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.020000001, y: 0.019999998, z: 0.0283812}
   m_Center: {x: -0.0000009536743, y: 0, z: -0.012168362}
+--- !u!1 &1955275475
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1955275476}
+  - component: {fileID: 1955275477}
+  m_Layer: 0
+  m_Name: AudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1955275476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955275475}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.049875095, y: 0.000000001760635, z: -0.015622903}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 657582287}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1955275477
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955275475}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1956432416
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13203,6 +13809,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 947671992}
   itemToGive: {fileID: 11400000, guid: 43187d303f9310649924b03521f53056, type: 2}
+  audioSource: {fileID: 1035866016}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
   requiresItemCondition: 0
   requiredItemId: 
   requiredItemFailureLine: 
@@ -21829,6 +22437,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: Control Room
   requirementFailureText: 
@@ -22910,6 +23523,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A stack of barrels.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -24616,6 +25234,9 @@ MonoBehaviour:
   puzzleId: SimpleUnlockDoor
   targetDoor: {fileID: 843031413}
   postSolveDisplayTime: 3
+  unlockSound: {fileID: 8300000, guid: a4686703fd84ac14b8bee22a310588b4, type: 3}
+  dialogueNextSound: {fileID: 0}
+  volume: 1
   dialogueTexts:
   - The computer screen is on.
   confirmationText: Do you want to manually unlock the maintenance room door? (Press
@@ -25866,6 +26487,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A barrel.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -26564,6 +27190,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 1035866016}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A jumper cable
   requirementFailureText: 32
@@ -26928,6 +27559,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A barrel.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -26976,6 +27612,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A barrel.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -27058,6 +27699,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A stack of barrels.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -29444,6 +30090,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: Maintenance Room
   requirementFailureText: 
@@ -30410,6 +31061,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 947671992}
   itemToGive: {fileID: 11400000, guid: ca805bdd5e7e4fb48a3f06fe54350bc4, type: 2}
+  audioSource: {fileID: 1035866016}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
   requiresItemCondition: 1
   requiredItemId: crowbar_01
   requiredItemFailureLine: A barrel. Its lid covered in cracks. I can see some kind
@@ -30861,6 +31514,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 1827598563}
   myText: A barrel.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -31289,3 +31947,4 @@ SceneRoots:
   - {fileID: 1035866008}
   - {fileID: 1042051703}
   - {fileID: 909597847}
+  - {fileID: 1143036193}

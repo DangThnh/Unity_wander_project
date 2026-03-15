@@ -3,7 +3,7 @@ using TMPro;
 using System.Collections.Generic;
 
 /// <summary>
-/// Quản lý tương tác đơn giản theo chuỗi hội thoại và mở khóa cửa sau khi xác nhận.
+/// Quản lý tương tác đơn giản theo chuỗi hội thoại và mở khóa cửa sau khi xác nhận, kèm theo âm thanh.
 /// </summary>
 public class SimpleDoorUnlockTrigger : MonoBehaviour
 {
@@ -17,6 +17,16 @@ public class SimpleDoorUnlockTrigger : MonoBehaviour
 
     [Tooltip("Thời gian hiển thị thông báo cuối cùng (giây) trước khi tắt UI.")]
     public float postSolveDisplayTime = 3f;
+
+    // === Cài đặt Âm thanh ===
+    [Header("Audio Settings")]
+    [Tooltip("Âm thanh phát ra khi cửa được mở khóa thành công.")]
+    public AudioClip unlockSound;
+
+    [Tooltip("Âm thanh phát ra mỗi khi bấm E để chuyển dòng hội thoại (tùy chọn).")]
+    public AudioClip dialogueNextSound;
+
+    [Range(0, 1)] public float volume = 1.0f;
 
     // === Cài đặt Dialogue ===
     [Header("Dialogue Sequence")]
@@ -36,11 +46,24 @@ public class SimpleDoorUnlockTrigger : MonoBehaviour
     // === Tham chiếu Nội bộ ===
     private TextMeshProUGUI interactionText;
     private Character_movement playerController;
+    private AudioSource audioSource;
 
     // === Trạng thái Nội bộ ===
     private bool isSolved = false;
     private bool playerInRange = false;
     private int dialogueIndex = 0; // 0: Ready, 1..N: Dialogue steps, N+1: Confirmation step
+
+    void Awake()
+    {
+        // Khởi tạo AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1.0f; // Âm thanh 3D
+    }
 
     void Start()
     {
@@ -60,7 +83,6 @@ public class SimpleDoorUnlockTrigger : MonoBehaviour
             isSolved = true;
             if (targetDoor != null)
             {
-                // Mở cửa ngay khi game load nếu puzzle đã được giải
                 targetDoor.UnlockDoor();
                 Debug.Log($"Door {puzzleId} đã mở khóa trước đó.");
             }
@@ -74,7 +96,6 @@ public class SimpleDoorUnlockTrigger : MonoBehaviour
             playerInRange = true;
             playerController = other.GetComponent<Character_movement>();
 
-            // Chỉ hiển thị text đầu tiên/đã solved nếu chưa ở giữa tương tác
             if (interactionText != null)
             {
                 interactionText.text = isSolved ? successText : dialogueTexts[0] + " (Press E)";
@@ -88,156 +109,132 @@ public class SimpleDoorUnlockTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            // Đặt lại trạng thái khi người chơi rời đi
             EndInteraction();
         }
     }
 
     void Update()
     {
-        // Chỉ tương tác nếu playerInRange và bấm E
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isSolved)
         {
             HandleInteraction();
         }
     }
 
-    /// <summary>
-    /// Xử lý logic chuyển đổi giữa các bước thoại và bước xác nhận.
-    /// </summary>
     void HandleInteraction()
     {
-        // BƯỚC 0: Khởi đầu (lần nhấn E đầu tiên)
+        // Phát âm thanh chuyển dòng hội thoại (nếu có)
+        if (dialogueIndex <= dialogueTexts.Count)
+        {
+            PlaySound(dialogueNextSound);
+        }
+
         if (dialogueIndex == 0)
         {
             StartInteraction();
             return;
         }
 
-        // BƯỚC 1: Hiển thị Dialogue
         if (dialogueIndex < dialogueTexts.Count)
         {
-            // Tăng index để hiển thị dòng tiếp theo
             if (interactionText != null)
             {
                 interactionText.text = dialogueTexts[dialogueIndex];
             }
             dialogueIndex++;
         }
-        // BƯỚC 2: Chuyển sang Xác nhận (Sau khi hết dialogue)
         else if (dialogueIndex == dialogueTexts.Count)
         {
             if (interactionText != null)
             {
                 interactionText.text = confirmationText;
             }
-            // Tăng index lên trạng thái xác nhận
             dialogueIndex++;
         }
-        // BƯỚC 3: Mở khóa Cửa (Sau khi xác nhận)
         else if (dialogueIndex == dialogueTexts.Count + 1)
         {
             UnlockDoorSequence();
         }
     }
 
-    /// <summary>
-    /// Bắt đầu tương tác: Khóa người chơi và hiển thị dòng text đầu tiên.
-    /// </summary>
     void StartInteraction()
     {
-        // 1. Khóa chuyển động người chơi
         if (playerController != null)
         {
             playerController.canMove = false;
         }
 
-        // 2. Hiển thị dòng text đầu tiên
         if (interactionText != null && dialogueTexts.Count > 0)
         {
-            // Text đầu tiên đã được hiển thị trong OnTriggerEnter, đây là lần nhấn E thứ nhất
-            // Chúng ta chỉ cần chuyển sang index 1 (dòng text thứ 2)
             if (dialogueTexts.Count > 1)
             {
                 interactionText.text = dialogueTexts[1];
-                dialogueIndex = 2; // Bắt đầu từ dòng thứ 2
+                dialogueIndex = 2;
             }
             else
             {
-                // Nếu chỉ có 1 dòng text, chuyển thẳng sang xác nhận
                 interactionText.text = confirmationText;
                 dialogueIndex = dialogueTexts.Count + 1;
             }
         }
     }
 
-    /// <summary>
-    /// Mở khóa cửa, lưu trạng thái, và xử lý UI cuối cùng.
-    /// </summary>
     void UnlockDoorSequence()
     {
-        if (isSolved) return; // Tránh gọi lại
+        if (isSolved) return;
 
         isSolved = true;
-        dialogueIndex = dialogueTexts.Count + 2; // Chuyển sang trạng thái thành công/kết thúc
+        dialogueIndex = dialogueTexts.Count + 2;
 
-        // 1. Mở khóa cửa
+        // PHÁT ÂM THANH: Mở khóa thành công
+        PlaySound(unlockSound);
+
         if (targetDoor != null)
         {
             targetDoor.UnlockDoor();
             Debug.Log("Door unlocked successfully!");
         }
-        else
-        {
-            Debug.LogError("Target Door is not assigned!");
-        }
 
-        // 2. Lưu trạng thái vào GameManager
         if (GameManager.instance != null && GameManager.instance.completedPuzzles != null && !GameManager.instance.completedPuzzles.Contains(puzzleId))
         {
             GameManager.instance.completedPuzzles.Add(puzzleId);
         }
 
-        // 3. Xử lý UI cuối cùng và mở khóa người chơi thông qua Coroutine
         StartCoroutine(HandlePostSolveUIAndUnlock());
     }
 
-    /// <summary>
-    /// Coroutine xử lý UI và mở khóa nhân vật sau khi mở cửa thành công.
-    /// </summary>
     private System.Collections.IEnumerator HandlePostSolveUIAndUnlock()
     {
-        // 1. Hiển thị thông báo thành công
         if (playerInRange && interactionText != null)
         {
             interactionText.gameObject.SetActive(true);
             interactionText.text = successText;
         }
 
-        // 2. Chờ để người chơi thấy thông báo cuối cùng
         yield return new WaitForSeconds(postSolveDisplayTime);
-
-        // 3. Kết thúc tương tác
         EndInteraction();
     }
 
-    /// <summary>
-    /// Kết thúc tương tác, mở khóa người chơi và tắt UI Text.
-    /// </summary>
     void EndInteraction()
     {
         dialogueIndex = 0;
 
-        // Tắt text UI
         if (interactionText != null)
         {
             interactionText.gameObject.SetActive(false);
         }
 
-        // Mở khóa chuyển động nhân vật
         if (playerController != null)
         {
             playerController.canMove = true;
+        }
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip, volume);
         }
     }
 }

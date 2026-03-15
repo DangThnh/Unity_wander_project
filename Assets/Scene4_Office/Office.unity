@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 84133180}
   m_Layer: 0
   m_Name: Floor Collider 2
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 145898470}
   m_Layer: 0
   m_Name: Floor Collider 3
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -826,6 +826,8 @@ MonoBehaviour:
   hingePoint: {fileID: 907641075}
   openAngle: 90
   rotationSpeed: 3
+  openSound: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+  volume: 1
 --- !u!65 &169024513
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -999,7 +1001,7 @@ GameObject:
   - component: {fileID: 225299841}
   m_Layer: 0
   m_Name: FloorCollider
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1090,7 +1092,6 @@ GameObject:
   m_Component:
   - component: {fileID: 236717117}
   - component: {fileID: 236717119}
-  - component: {fileID: 236717118}
   - component: {fileID: 236717120}
   - component: {fileID: 236717121}
   m_Layer: 0
@@ -1115,14 +1116,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: 132.17, z: 0}
---- !u!81 &236717118
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 236717116}
-  m_Enabled: 1
 --- !u!20 &236717119
 Camera:
   m_ObjectHideFlags: 0
@@ -1661,7 +1654,6 @@ GameObject:
   m_Component:
   - component: {fileID: 343159335}
   - component: {fileID: 343159337}
-  - component: {fileID: 343159336}
   - component: {fileID: 343159338}
   - component: {fileID: 343159339}
   m_Layer: 0
@@ -1686,14 +1678,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: -208.32, z: 0}
---- !u!81 &343159336
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 343159334}
-  m_Enabled: 1
 --- !u!20 &343159337
 Camera:
   m_ObjectHideFlags: 0
@@ -1834,6 +1818,8 @@ MonoBehaviour:
   hingePoint: {fileID: 487371369}
   openAngle: -90
   rotationSpeed: 2
+  openSound: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+  volume: 1
 --- !u!65 &380685563
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2113,7 +2099,6 @@ GameObject:
   m_Component:
   - component: {fileID: 436795530}
   - component: {fileID: 436795533}
-  - component: {fileID: 436795532}
   - component: {fileID: 436795531}
   - component: {fileID: 436795534}
   m_Layer: 0
@@ -2151,14 +2136,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 5
---- !u!81 &436795532
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436795529}
-  m_Enabled: 1
 --- !u!20 &436795533
 Camera:
   m_ObjectHideFlags: 0
@@ -2875,7 +2852,6 @@ GameObject:
   m_Component:
   - component: {fileID: 642920403}
   - component: {fileID: 642920405}
-  - component: {fileID: 642920404}
   - component: {fileID: 642920406}
   - component: {fileID: 642920407}
   m_Layer: 0
@@ -2900,14 +2876,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: 283.439, z: 0}
---- !u!81 &642920404
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642920402}
-  m_Enabled: 1
 --- !u!20 &642920405
 Camera:
   m_ObjectHideFlags: 0
@@ -3000,7 +2968,7 @@ GameObject:
   - component: {fileID: 650936013}
   m_Layer: 0
   m_Name: Floor Collider 6
-  m_TagString: Untagged
+  m_TagString: MetalStep
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3291,6 +3259,8 @@ MonoBehaviour:
   hingePoint: {fileID: 7546506}
   openAngle: 90
   rotationSpeed: 4
+  openSound: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+  volume: 1
 --- !u!65 &704530787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4411,7 +4381,7 @@ GameObject:
   - component: {fileID: 846632497}
   m_Layer: 0
   m_Name: Floor Collider 1
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4551,7 +4521,6 @@ GameObject:
   m_Component:
   - component: {fileID: 866126919}
   - component: {fileID: 866126921}
-  - component: {fileID: 866126920}
   - component: {fileID: 866126922}
   - component: {fileID: 866126923}
   m_Layer: 0
@@ -4576,14 +4545,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: -214.327, z: 0}
---- !u!81 &866126920
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 866126918}
-  m_Enabled: 1
 --- !u!20 &866126921
 Camera:
   m_ObjectHideFlags: 0
@@ -5069,6 +5030,8 @@ MonoBehaviour:
   resultItemImage: {fileID: 1424171589}
   resultText: {fileID: 362684814}
   continueText: {fileID: 1425444941}
+  uiAudioSource: {fileID: 1640270336}
+  craftSuccessSound: {fileID: 8300000, guid: cda50a08f9ed5ca4d9f183bb24e1a8ee, type: 3}
   playerController: {fileID: 1640270334}
   emptySlotSprite: {fileID: 21300000, guid: 314bb9fdbf7c6684b8704a0e9d85e197, type: 3}
 --- !u!4 &935705314
@@ -5224,7 +5187,6 @@ GameObject:
   m_Component:
   - component: {fileID: 979355387}
   - component: {fileID: 979355389}
-  - component: {fileID: 979355388}
   - component: {fileID: 979355390}
   - component: {fileID: 979355391}
   m_Layer: 0
@@ -5249,14 +5211,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: 132.678, z: 0}
---- !u!81 &979355388
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 979355386}
-  m_Enabled: 1
 --- !u!20 &979355389
 Camera:
   m_ObjectHideFlags: 0
@@ -5447,7 +5401,7 @@ GameObject:
   - component: {fileID: 1013897462}
   m_Layer: 0
   m_Name: Floor Collider 4
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5557,7 +5511,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1025249710}
   - component: {fileID: 1025249712}
-  - component: {fileID: 1025249711}
   - component: {fileID: 1025249713}
   - component: {fileID: 1025249714}
   m_Layer: 0
@@ -5582,14 +5535,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: -58.816, z: 0}
---- !u!81 &1025249711
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025249709}
-  m_Enabled: 1
 --- !u!20 &1025249712
 Camera:
   m_ObjectHideFlags: 0
@@ -5828,7 +5773,7 @@ MonoBehaviour:
   myYesText: {fileID: 1221179166}
   myNoText: {fileID: 1947026628}
   faderCanvasGroup: {fileID: 932592824}
-  destinationSceneName: Office_Rooftop
+  destinationSceneName: Inter3
   destinationSpawnPointName: Office_Rooftop_Spawn
   requiredItemId: secu_card
   text1: This elevator requires a card to activate.
@@ -5876,7 +5821,7 @@ GameObject:
   - component: {fileID: 1185975082}
   m_Layer: 0
   m_Name: Floor Collider 5
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6028,6 +5973,51 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 1000}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1204461548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1204461550}
+  - component: {fileID: 1204461549}
+  m_Layer: 0
+  m_Name: MusicTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1204461549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204461548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1358f188c9f98241a310281fa61abc3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneBGM: {fileID: 8300000, guid: 9545df4d2e4d6104695a0ec267ae1511, type: 3}
+--- !u!4 &1204461550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204461548}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.5994153, y: 1.0338075, z: -7.8622475}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1204582316
 GameObject:
   m_ObjectHideFlags: 0
@@ -6531,8 +6521,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
-  myText: Just a drawer.
+  myText: A drawer.
   requirementFailureText: 
   specialInteractionText: 
   afterInteractionText: 
@@ -7073,7 +7068,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - {fileID: 11400000, guid: d616c295f9c9c544fa469ef47eb42c98, type: 2}
-  - {fileID: 11400000, guid: 5da344246bbe82d49b53b4e2377fc0dc, type: 2}
   craftingRecipes:
   - itemA: {fileID: 11400000, guid: b680290f2534580478d8c782b8160009, type: 2}
     itemB: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}
@@ -7237,7 +7231,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1438006421}
   - component: {fileID: 1438006423}
-  - component: {fileID: 1438006422}
   - component: {fileID: 1438006424}
   - component: {fileID: 1438006425}
   - component: {fileID: 1438006426}
@@ -7263,14 +7256,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!81 &1438006422
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1438006420}
-  m_Enabled: 1
 --- !u!20 &1438006423
 Camera:
   m_ObjectHideFlags: 0
@@ -7865,11 +7850,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 756219292}
   itemToGive: {fileID: 11400000, guid: 34732aec56a71894389a379a52ae4dee, type: 2}
+  audioSource: {fileID: 1640270336}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
   requiresItemCondition: 0
   requiredItemId: 
   requiredItemFailureLine: 
-  firstLine: Just a drawer.
-  secondLine: Wait, there's something inside!
+  firstLine: A drawer.
+  secondLine: There's something inside.
   thirdLine: You have found a key!
 --- !u!1 &1517247159
 GameObject:
@@ -8150,8 +8137,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
-  myText: Just a drawer.
+  myText: A drawer.
   requirementFailureText: It seems you are missing a key item to proceed.
   specialInteractionText: You have something, use it.
   afterInteractionText: You put it down, would you like to use it
@@ -8615,6 +8607,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1640270332}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1640270336}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1640270335}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1640270338}
   m_SourcePrefab: {fileID: 100100000, guid: e38fa5d1993901e4db3120e55ac8d3bd, type: 3}
 --- !u!1 &1640270329 stripped
 GameObject:
@@ -8718,8 +8719,142 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpawnPoint: {fileID: 0}
   canMove: 1
-  speed: 2
+  speed: 2.2
   rotationSpeed: 160
+--- !u!114 &1640270335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640270329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa453a2aebd86f42aad65361a1b3149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrainAudios:
+  - tag: RoomFloor
+    clips:
+    - {fileID: 8300000, guid: 04f847b772e2bb24fb4c3731799ff357, type: 3}
+    - {fileID: 8300000, guid: db5d27b162587d7489f2c7fcf972c81e, type: 3}
+    - {fileID: 8300000, guid: b3abd383eab8ab643abf203bc26a8e66, type: 3}
+  - tag: Outside
+    clips:
+    - {fileID: 8300000, guid: 75ea669fdd17436469ad82548b5eeb64, type: 3}
+    - {fileID: 8300000, guid: ccb59b6b3cac3d44bab1fbf1b2c33c7f, type: 3}
+    - {fileID: 8300000, guid: fb79ce57044562940bcd46ed25a186a6, type: 3}
+  - tag: MetalStep
+    clips:
+    - {fileID: 8300000, guid: 953bda1be397b244b9b739b63bdaf302, type: 3}
+  rayDistance: 0.5
+  floorLayer:
+    serializedVersion: 2
+    m_Bits: 1
+--- !u!82 &1640270336
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640270329}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!81 &1640270338
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1640270329}
+  m_Enabled: 1
 --- !u!1 &1646296296
 GameObject:
   m_ObjectHideFlags: 0
@@ -8908,10 +9043,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: {fileID: 756219292}
+  passcodePanel: {fileID: 1973942941}
   hingePoint: {fileID: 1539771722}
   openAngle: 90
   rotationSpeed: 2
-  passcodePanel: {fileID: 1973942941}
+  audioSource: {fileID: 1640270336}
+  openDoorSound: {fileID: 8300000, guid: acab32def4541e946a249de48d7d74c7, type: 3}
+  accessGrantedSound: {fileID: 8300000, guid: a4686703fd84ac14b8bee22a310588b4, type: 3}
+  accessDeniedSound: {fileID: 8300000, guid: efc08f5b636fe2e4c92fd66807827f68, type: 3}
+  interactionSound: {fileID: 8300000, guid: b7a759200bc2d0241baf2ee37d58b5fb, type: 3}
 --- !u!1 &1688965022
 GameObject:
   m_ObjectHideFlags: 0
@@ -8922,7 +9062,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1688965023}
   - component: {fileID: 1688965025}
-  - component: {fileID: 1688965024}
   - component: {fileID: 1688965026}
   - component: {fileID: 1688965027}
   m_Layer: 0
@@ -8947,14 +9086,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: -177.265, z: 0}
---- !u!81 &1688965024
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688965022}
-  m_Enabled: 1
 --- !u!20 &1688965025
 Camera:
   m_ObjectHideFlags: 0
@@ -9365,6 +9496,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: pliers_01
   spawnActionId: 
+  audioSource: {fileID: 1640270336}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: A pliers?
   requirementFailureText: 
@@ -9486,6 +9622,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: An elevator, I need to get to higher floors.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -9675,7 +9816,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1851126331}
   - component: {fileID: 1851126333}
-  - component: {fileID: 1851126332}
   - component: {fileID: 1851126334}
   - component: {fileID: 1851126335}
   m_Layer: 0
@@ -9700,14 +9840,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1520100174}
   m_LocalEulerAnglesHint: {x: 0, y: -271.69202, z: 0}
---- !u!81 &1851126332
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1851126330}
-  m_Enabled: 1
 --- !u!20 &1851126333
 Camera:
   m_ObjectHideFlags: 0
@@ -10232,7 +10364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db7be390daaf65e4ea8793f36eab1d50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preInteractionLine: I wonder where this ladder would lead me to?
+  preInteractionLine: A ladder up to nowhere.
   interactionText: {fileID: 756219292}
   questionPanel: {fileID: 1892643593}
   questionText: {fileID: 23107903}
@@ -10903,6 +11035,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: secu_card
   spawnActionId: 
+  audioSource: {fileID: 1640270336}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: "The door vent gap is too small, beside my arm isn\u2019t long enough to
     reach it."
@@ -12020,7 +12157,6 @@ GameObject:
   - component: {fileID: 5150001376908920936}
   - component: {fileID: 1019224558}
   - component: {fileID: 9102439831541299531}
-  - component: {fileID: 9102439831541299532}
   m_Layer: 0
   m_Name: book shelf
   m_TagString: Untagged
@@ -12961,6 +13097,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: A locker, nothing inside.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -14115,6 +14256,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: 
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -15228,11 +15374,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 756219292}
   itemToGive: {fileID: 11400000, guid: 5b9fde9060d21f34fac111aa02c14dcb, type: 2}
+  audioSource: {fileID: 1640270336}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
   requiresItemCondition: 0
   requiredItemId: 
   requiredItemFailureLine: 
-  firstLine: Just a trash bin.
-  secondLine: Wait there is some thing inside.
+  firstLine: A trash bin.
+  secondLine: There is some thing inside.
   thirdLine: You picked up the crumpled note.
 --- !u!4 &7189841175757876746
 Transform:
@@ -15467,12 +15615,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: {fileID: 756219292}
   itemToGive: {fileID: 11400000, guid: b680290f2534580478d8c782b8160009, type: 2}
+  audioSource: {fileID: 1640270336}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
   requiresItemCondition: 1
   requiredItemId: metal_key
   requiredItemFailureLine: "Huh\u2026this one is locked."
   firstLine: A locker.
   secondLine: Maybe I can open it with the key.
-  thirdLine: You have received a duct tape!
+  thirdLine: You have found a duct tape!
 --- !u!1 &7573990767868583501
 GameObject:
   m_ObjectHideFlags: 0
@@ -15574,6 +15724,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: A locker, nothing inside.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -16152,6 +16307,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: There's so much stuff around, I can't get through it.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -16442,10 +16602,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: radio
   spawnActionId: 
+  audioSource: {fileID: 1640270336}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: An old radio, it has really long antenna rod.
-  requirementFailureText: Hey, maybe I can use it as a stick, it could be useful.
-  specialInteractionText: I can cut the antenna with the pliers now.
+  requirementFailureText: It looks really old, like it could fall apart.
+  specialInteractionText: You can cut the antenna with the pliers. (Press E to cut)
   afterInteractionText: 
   itemData: {fileID: 11400000, guid: 1f41a9f328408da408afa7492b89baca, type: 2}
   isSpecialInteraction: 1
@@ -16566,6 +16731,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: The door won't budge. It's locked from the inside
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -16745,31 +16915,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02200001, y: 0.01181375, z: 0.04342277}
   m_Center: {x: -0.000000029802322, y: 0.007157001, z: 0.007474763}
---- !u!114 &9102439831541299532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1389553870011092976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8600636f5746b354481a5e34dd9c205e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uniqueId: 
-  spawnActionId: 
-  localInteractionText: {fileID: 0}
-  myText: A bookshelf.
-  requirementFailureText: It seems you are missing a key item to proceed.
-  specialInteractionText: You have something, use it.
-  afterInteractionText: You put it down, would you like to use it
-  itemData: {fileID: 0}
-  isSpecialInteraction: 0
-  requiredItemId: 
-  isSpecialSpawnInteraction: 0
-  objectToSpawnPrefab: {fileID: 0}
-  spawnPoint: {fileID: 0}
 --- !u!4 &9103254288496038616
 Transform:
   m_ObjectHideFlags: 0
@@ -16834,3 +16979,4 @@ SceneRoots:
   - {fileID: 803011368}
   - {fileID: 263415302}
   - {fileID: 1758483774}
+  - {fileID: 1204461550}

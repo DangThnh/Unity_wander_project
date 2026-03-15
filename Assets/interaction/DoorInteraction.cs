@@ -5,35 +5,49 @@ using TMPro;
 
 public class DoorInteraction : MonoBehaviour
 {
-    // Kéo và thả TextMeshProUGUI từ Inspector vào đây
+    [Header("UI & Text")]
     public TextMeshProUGUI interactionText;
 
-    // Cánh cửa sẽ xoay quanh điểm này
+    [Header("Cấu hình xoay")]
     public Transform hingePoint;
-
-    // Góc cửa sẽ mở
     public float openAngle = 90f;
-
-    // Tốc độ xoay của cửa
     public float rotationSpeed = 2.0f;
+
+    [Header("Âm thanh (Kéo clip vào đây)")]
+    public AudioClip openSound; // File âm thanh mở cửa
+    [Range(0, 1)] public float volume = 1.0f; // Độ lớn âm thanh
 
     private bool playerInRange = false;
     private bool isOpened = false;
-    private bool isRotating = false; // Biến mới để kiểm soát trạng thái xoay
+    private bool isRotating = false;
     private BoxCollider doorCollider;
+    private AudioSource audioSource; // Thành phần phát âm thanh
 
     void Awake()
     {
         // Lấy Box Collider của cánh cửa
         doorCollider = GetComponent<BoxCollider>();
+
+        // Thiết lập AudioSource
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            // Tự động thêm AudioSource nếu đối tượng chưa có
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+
+        // Cấu hình mặc định cho AudioSource để âm thanh nghe chân thực hơn (3D)
+        audioSource.playOnAwake = false;
+        audioSource.spatialBlend = 1.0f; // Chế độ âm thanh 3D (nghe xa gần)
+
         if (doorCollider == null)
         {
-            Debug.LogError("BoxCollider not found on the door object!");
+            Debug.LogError("Không tìm thấy BoxCollider trên đối tượng cửa!");
         }
 
         if (interactionText != null)
         {
-            interactionText.text = ""; // Ẩn văn bản khi bắt đầu
+            interactionText.text = "";
         }
     }
 
@@ -48,16 +62,13 @@ public class DoorInteraction : MonoBehaviour
         // Xoay cửa nếu nó đã được mở
         if (isRotating)
         {
-            // Lệnh đã được thay đổi để xoay hingePoint
             Quaternion targetRotation = Quaternion.Euler(0, openAngle, 0);
             hingePoint.localRotation = Quaternion.Slerp(hingePoint.localRotation, targetRotation, Time.deltaTime * rotationSpeed);
 
-            // Kiểm tra nếu đã gần đạt góc xoay mục tiêu
             if (Quaternion.Angle(hingePoint.localRotation, targetRotation) < 0.1f)
             {
-                // Dừng quá trình xoay để tiết kiệm tài nguyên
                 isRotating = false;
-                hingePoint.localRotation = targetRotation; // Đặt chính xác góc xoay cuối cùng
+                hingePoint.localRotation = targetRotation;
             }
         }
     }
@@ -69,11 +80,11 @@ public class DoorInteraction : MonoBehaviour
             playerInRange = true;
             if (interactionText != null && !isOpened)
             {
-                interactionText.text = "Press 'E' to open";
+                // Bạn có thể thêm nội dung như "Nhấn E để mở" ở đây
+                interactionText.text = "";
             }
         }
     }
-   
 
     void OnTriggerExit(Collider other)
     {
@@ -90,7 +101,19 @@ public class DoorInteraction : MonoBehaviour
     private void OpenDoor()
     {
         isOpened = true;
-        isRotating = true; // Kích hoạt biến xoay
+        isRotating = true;
+
+        // Xử lý phát âm thanh
+        if (audioSource != null && openSound != null)
+        {
+            audioSource.PlayOneShot(openSound, volume);
+        }
+
+        // Ẩn text khi đã mở
+        if (interactionText != null)
+        {
+            interactionText.text = "";
+        }
 
         // Vô hiệu hóa collider để người chơi có thể đi qua
         if (doorCollider != null)

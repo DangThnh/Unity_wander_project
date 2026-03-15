@@ -4,35 +4,25 @@ using TMPro;
 
 public class PasscodePanel : MonoBehaviour
 {
-    // Cánh cửa mà script này sẽ điều khiển
     public DoorInteractionPasscode targetDoor;
-
-    // Mật khẩu đúng
     public string passcode = "1023";
-
-    // Tham chiếu đến màn hình hiển thị
     public TextMeshProUGUI displayText;
-
-    // Các tham chiếu UI khác
     public GameObject keypadUI;
 
     private string currentInput = "";
     private bool isSolved = false;
-    // ĐÃ XÓA: private bool isPlayerInRange = false; // Loại bỏ cảnh báo CS0414
 
-    // Hướng dẫn
-    // ĐÃ XÓA: private string pressEToExitPrompt = "Press E to exit"; // Loại bỏ cảnh báo CS0414
     private string wrongPasscodePrompt = "Wrong Passcode!";
     private string correctPasscodePrompt = "Correct!";
 
     void Start()
     {
-        // Ẩn UI khi bắt đầu
         keypadUI.SetActive(false);
     }
 
     void Update()
     {
+        // Thêm kiểm tra: Chỉ cho phép nhập nếu UI đang hiện và cửa chưa được giải xong
         if (keypadUI.activeSelf && !isSolved)
         {
             HandleKeypadInput();
@@ -42,29 +32,35 @@ public class PasscodePanel : MonoBehaviour
     public void ShowKeypad()
     {
         keypadUI.SetActive(true);
+        isSolved = false; // Reset trạng thái khi mở lại
         currentInput = "";
         UpdateDisplay();
+
+        // Vô hiệu hóa di chuyển của Player nếu cần (tùy chọn)
+        // Cursor.lockState = CursorLockMode.None;
+        // Cursor.visible = true;
     }
 
     public void HideKeypad()
     {
         keypadUI.SetActive(false);
-        if (GameManager.instance != null && GameManager.instance.interactionText != null)
+
+        // Thay vì gọi GameManager (có thể gây lỗi nếu chưa set up), 
+        // hãy gọi trực tiếp thông qua targetDoor để dọn Text UI
+        if (targetDoor != null)
         {
-            GameManager.instance.interactionText.text = "";
+            targetDoor.EndInteraction();
         }
     }
 
     private void HandleKeypadInput()
     {
-        // Xử lý nhập số từ bàn phím
         if (Input.anyKeyDown)
         {
             foreach (char c in Input.inputString)
             {
                 if (char.IsDigit(c))
                 {
-                    // Thêm giới hạn để ngăn nhập liệu dài hơn mật khẩu
                     if (currentInput.Length < passcode.Length)
                     {
                         currentInput += c;
@@ -75,7 +71,6 @@ public class PasscodePanel : MonoBehaviour
             }
         }
 
-        // Xử lý các phím chức năng
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             CheckPasscode();
@@ -91,10 +86,6 @@ public class PasscodePanel : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.E))
         {
             HideKeypad();
-            if (targetDoor != null)
-            {
-                targetDoor.EndInteraction();
-            }
         }
     }
 
@@ -104,11 +95,25 @@ public class PasscodePanel : MonoBehaviour
         {
             isSolved = true;
             displayText.text = correctPasscodePrompt;
-            StartCoroutine(OpenDoorAfterDelay());
+
+            // QUAN TRỌNG: Gọi UnlockDoor từ targetDoor để kích hoạt âm thanh "Thành công"
+            if (targetDoor != null)
+            {
+                targetDoor.UnlockDoor();
+            }
+
+            StartCoroutine(ClosePanelAfterDelay());
         }
         else
         {
             displayText.text = wrongPasscodePrompt;
+
+            // QUAN TRỌNG: Gọi DenyAccess để phát âm thanh "Sai mã"
+            if (targetDoor != null)
+            {
+                targetDoor.DenyAccess();
+            }
+
             currentInput = "";
             StartCoroutine(ClearDisplayAfterDelay());
         }
@@ -121,17 +126,14 @@ public class PasscodePanel : MonoBehaviour
 
     private IEnumerator ClearDisplayAfterDelay()
     {
-        yield return new WaitForSeconds(1.5f);
-        displayText.text = "";
+        yield return new WaitForSeconds(1.0f);
+        if (!isSolved) UpdateDisplay(); // Trả lại hiển thị rỗng
     }
 
-    private IEnumerator OpenDoorAfterDelay()
+    private IEnumerator ClosePanelAfterDelay()
     {
-        yield return new WaitForSeconds(1.5f);
-        if (targetDoor != null)
-        {
-            targetDoor.UnlockDoor();
-        }
+        // Chờ một chút để người chơi thấy chữ "Correct!"
+        yield return new WaitForSeconds(1.0f);
         HideKeypad();
     }
 }

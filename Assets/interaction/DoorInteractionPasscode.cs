@@ -5,20 +5,21 @@ using TMPro;
 
 public class DoorInteractionPasscode : MonoBehaviour
 {
-    // Kéo và thả TextMeshProUGUI từ Inspector vào đây
+    [Header("UI & Interaction")]
     public TextMeshProUGUI interactionText;
+    public PasscodePanel passcodePanel;
 
-    // Cánh cửa sẽ xoay quanh điểm này
+    [Header("Door Movement")]
     public Transform hingePoint;
-
-    // Góc cửa sẽ mở
     public float openAngle = 90f;
-
-    // Tốc độ xoay của cửa
     public float rotationSpeed = 2.0f;
 
-    // Tham chiếu đến bảng nhập passcode
-    public PasscodePanel passcodePanel;
+    [Header("Sound Effects")]
+    public AudioSource audioSource; // Thành phần phát âm thanh
+    public AudioClip openDoorSound;   // Tiếng kẽo kẹt mở cửa
+    public AudioClip accessGrantedSound; // Tiếng "Ting" thành công
+    public AudioClip accessDeniedSound;  // Tiếng "Bíp" sai mã
+    public AudioClip interactionSound;   // Tiếng bấm nút nhẹ khi mở UI
 
     private bool playerInRange = false;
     private bool isOpened = false;
@@ -28,27 +29,28 @@ public class DoorInteractionPasscode : MonoBehaviour
     void Awake()
     {
         doorCollider = GetComponent<BoxCollider>();
-        if (doorCollider == null)
-        {
-            Debug.LogError("BoxCollider not found on the door object!");
-        }
+        // Tự động lấy AudioSource nếu bạn quên gán trong Inspector
+        if (audioSource == null) audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        // Khi người chơi nhấn E để mở bàn phím
         if (playerInRange && Input.GetKeyDown(KeyCode.E) && !isOpened)
         {
             if (passcodePanel != null)
             {
                 passcodePanel.ShowKeypad();
+                PlaySound(interactionSound); // Âm thanh tương tác ban đầu
+
                 if (interactionText != null)
                 {
-                    // Tắt text khi mở bàn phím
                     interactionText.text = "Press Enter to confirm passcode\nPress E to close";
                 }
             }
         }
 
+        // Xử lý xoay cửa mượt mà
         if (isRotating)
         {
             Quaternion targetRotation = Quaternion.Euler(0, openAngle, 0);
@@ -62,6 +64,41 @@ public class DoorInteractionPasscode : MonoBehaviour
         }
     }
 
+    // Hàm này sẽ được gọi từ PasscodePanel khi nhập ĐÚNG
+    public void UnlockDoor()
+    {
+        if (isOpened) return;
+
+        isOpened = true;
+        isRotating = true;
+
+        PlaySound(accessGrantedSound); // Âm thanh báo thành công
+
+        // Phát tiếng mở cửa sau một khoảng trễ nhỏ hoặc phát cùng lúc
+        Invoke("PlayOpenDoorSound", 0.5f);
+
+        if (doorCollider != null) doorCollider.enabled = false;
+    }
+
+    // Hàm này sẽ được gọi từ PasscodePanel khi nhập SAI
+    public void DenyAccess()
+    {
+        PlaySound(accessDeniedSound); // Âm thanh báo lỗi
+    }
+
+    private void PlayOpenDoorSound()
+    {
+        PlaySound(openDoorSound);
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -69,7 +106,7 @@ public class DoorInteractionPasscode : MonoBehaviour
             playerInRange = true;
             if (interactionText != null && !isOpened)
             {
-                interactionText.text = "Press 'E' to open";
+                interactionText.text = "Press E to interact";
             }
         }
     }
@@ -83,22 +120,8 @@ public class DoorInteractionPasscode : MonoBehaviour
         }
     }
 
-    public void UnlockDoor()
-    {
-        isOpened = true;
-        isRotating = true;
-
-        if (doorCollider != null)
-        {
-            doorCollider.enabled = false;
-        }
-    }
-
     public void EndInteraction()
     {
-        if (interactionText != null)
-        {
-            interactionText.text = "";
-        }
+        if (interactionText != null) interactionText.text = "";
     }
 }

@@ -16,8 +16,8 @@ public class TeleportForSpawnedPrefab : TeleportInteractionBase
     protected bool isUIReady = false; // Cờ theo dõi việc gán các tham chiếu UI
 
     // --- Cần Ghi Đè Lại các hằng số (nếu lớp cha không có) ---
-    private const float DEFAULT_FONT_SIZE = 36f;
-    private const float SELECTED_FONT_SIZE = 48f;
+    private const float DEFAULT_FONT_SIZE = 24f;
+    private const float SELECTED_FONT_SIZE = 36f;
 
     // Ghi đè phương thức Start() để sử dụng Coroutine và GameManager
     protected override void Start()

@@ -954,6 +954,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: I should be careful, there are no railing up here.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -1021,6 +1026,7 @@ GameObject:
   - component: {fileID: 122694823}
   - component: {fileID: 122694822}
   - component: {fileID: 122694826}
+  - component: {fileID: 122694827}
   m_Layer: 0
   m_Name: Cylinder.002 (1)
   m_TagString: Untagged
@@ -1149,6 +1155,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: Aecore_2
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: Ah, the "Aether Core". TSS Group's most iconic exclusive. A pretty piece
     of tech, isn't it?
@@ -1162,6 +1173,102 @@ MonoBehaviour:
   isSpecialSpawnInteraction: 0
   objectToSpawnPrefab: {fileID: 0}
   spawnPoint: {fileID: 0}
+--- !u!82 &122694827
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 122694820}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 16afdab6354fb9d4f901da5fc837e811, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &166711332
 GameObject:
   m_ObjectHideFlags: 0
@@ -1650,6 +1757,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: I should be careful, there are no railing up here.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -2351,7 +2463,7 @@ GameObject:
   - component: {fileID: 596196423}
   m_Layer: 0
   m_Name: Ae (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2442,7 +2554,7 @@ GameObject:
   - component: {fileID: 603208422}
   m_Layer: 0
   m_Name: main (1)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2780,7 +2892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationSceneName: Inter2
-  destinationSpawnPointName: 
+  destinationSpawnPointName: OfficeSpawnPoint
   fadeSpeed: 2
   blackScreenDuration: 2
   myQuestion: Do you want to go in?
@@ -3011,7 +3123,7 @@ GameObject:
   - component: {fileID: 832557164}
   m_Layer: 0
   m_Name: main
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3223,7 +3335,7 @@ GameObject:
   - component: {fileID: 848170487}
   m_Layer: 0
   m_Name: main (2)
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3367,6 +3479,7 @@ GameObject:
   - component: {fileID: 905886491}
   - component: {fileID: 905886490}
   - component: {fileID: 905886489}
+  - component: {fileID: 905886494}
   m_Layer: 0
   m_Name: Cylinder.002
   m_TagString: Untagged
@@ -3403,6 +3516,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: Aecore_1
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: Ah, the "Aether Core". TSS Group's most iconic exclusive. A pretty piece
     of tech, isn't it?
@@ -3508,6 +3626,102 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 905886487}
   m_Mesh: {fileID: 8691780276856062721, guid: bd2cff91b5fbdd54ba6f9f8651671205, type: 3}
+--- !u!82 &905886494
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905886487}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 16afdab6354fb9d4f901da5fc837e811, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 0
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &945540300
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,6 +3771,8 @@ MonoBehaviour:
   resultItemImage: {fileID: 69834324}
   resultText: {fileID: 69834323}
   continueText: {fileID: 69834322}
+  uiAudioSource: {fileID: 0}
+  craftSuccessSound: {fileID: 0}
   playerController: {fileID: 1268762357}
   emptySlotSprite: {fileID: 21300000, guid: 314bb9fdbf7c6684b8704a0e9d85e197, type: 3}
 --- !u!4 &945540302
@@ -4267,6 +4483,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: gap_01
   spawnActionId: spawn_bridge
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: The gap between the buildings is quite big. Maybe we can make a bridge
     to cross it?
@@ -4539,7 +4760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultSpawnPoint: {fileID: 0}
   canMove: 1
-  speed: 3
+  speed: 2.2
   rotationSpeed: 160
 --- !u!54 &1268762358
 Rigidbody:
@@ -4790,6 +5011,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: tarp_01
   spawnActionId: 
+  audioSource: {fileID: 1268762365}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 8300000, guid: 585ca7f5c1c95d54a979533abdc1239d, type: 3}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: This tarp is secured by very strong cables. There is something under it.
   requirementFailureText: I need something to cut it.
@@ -4892,6 +5118,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: I can't go back.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -5046,6 +5277,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 0}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: I can't go back down now.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -5341,7 +5577,7 @@ GameObject:
   - component: {fileID: 1464010788}
   m_Layer: 0
   m_Name: Ae
-  m_TagString: Untagged
+  m_TagString: RoomFloor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5515,6 +5751,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: shears_01
   spawnActionId: 
+  audioSource: {fileID: 1268762365}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: A pruning shear ? Look pretty rusty.
   requirementFailureText: 
@@ -5587,6 +5828,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: oldplank_01
   spawnActionId: spawn_bridge
+  audioSource: {fileID: 1268762365}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 0}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 8300000, guid: 990e1150b5e1c0348aca472a1b153dde, type: 3}
   localInteractionText: {fileID: 0}
   myText: "A short plank that broke in half, I can\u2019t jump over from here."
   requirementFailureText: ' I need something to bridge through the gap.'
@@ -6959,6 +7205,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uniqueId: 
   spawnActionId: 
+  audioSource: {fileID: 1268762365}
+  startInteractionSound: {fileID: 0}
+  pickupSound: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
+  useItemSound: {fileID: 0}
+  spawnObjectSound: {fileID: 0}
   localInteractionText: {fileID: 0}
   myText: Wooden planks.
   requirementFailureText: It seems you are missing a key item to proceed.
@@ -7481,6 +7732,14 @@ PrefabInstance:
       propertyPath: myText
       value: "Fresh wooden planks, I don\u2019t think they would mind\u2026 "
       objectReference: {fileID: 0}
+    - target: {fileID: 3120211719828367563, guid: 5d9d013f76bc36c428102ec0cfa2fad8, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 1268762365}
+    - target: {fileID: 3120211719828367563, guid: 5d9d013f76bc36c428102ec0cfa2fad8, type: 3}
+      propertyPath: pickupSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 05df3f3edc439fa4ea292e4576b9a01f, type: 3}
     - target: {fileID: 3120211719828367563, guid: 5d9d013f76bc36c428102ec0cfa2fad8, type: 3}
       propertyPath: interactionText
       value: 

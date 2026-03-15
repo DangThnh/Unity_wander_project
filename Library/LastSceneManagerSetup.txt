@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/InterScene3/Inter3.unity
+- path: Assets/Scene7_Stair/Stairs.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
