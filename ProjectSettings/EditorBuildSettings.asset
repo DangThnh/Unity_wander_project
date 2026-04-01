@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Intro Scene/IntroScene.unity
     guid: ef7152f12a87e824c8c6d08a9f2d1a5e
   - enabled: 1
-    path: Assets/The prototype.unity
+    path: Assets/Scene_1/The prototype.unity
     guid: cbaffd801325ea249aad7847dbcab493
   - enabled: 1
     path: Assets/Scene2_Outside/Outside.unity

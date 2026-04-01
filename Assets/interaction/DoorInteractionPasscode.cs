@@ -106,7 +106,7 @@ public class DoorInteractionPasscode : MonoBehaviour
             playerInRange = true;
             if (interactionText != null && !isOpened)
             {
-                interactionText.text = "Press E to interact";
+                interactionText.text = "";
             }
         }
     }

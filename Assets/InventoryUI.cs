@@ -82,12 +82,12 @@ public class InventoryUI : MonoBehaviour
     {
         int previousIndex = selectedSlotIndex;
 
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             selectedSlotIndex--;
             if (selectedSlotIndex < 0) selectedSlotIndex = slotImages.Length - 1;
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             selectedSlotIndex++;
             if (selectedSlotIndex >= slotImages.Length) selectedSlotIndex = 0;
@@ -188,7 +188,7 @@ public class InventoryUI : MonoBehaviour
 
         if (resultItemImage != null) resultItemImage.sprite = result.itemIcon;
         if (resultText != null) resultText.text = "Successfully crafted: " + result.itemName.ToUpper();
-        if (continueText != null) continueText.text = "Press 'E' to continue.";
+        if (continueText != null) continueText.text = "Press E to continue.";
 
         ResetCraftingMode();
     }
@@ -247,18 +247,18 @@ public class InventoryUI : MonoBehaviour
         string statusMessage = "";
         if (isCraftingMode)
         {
-            if (selectedSlotIndex == firstCraftingIndex) statusMessage = "Item selected. Choose another item and press 'K' to combine.";
-            else if (selectedSlotIndex < InventoryManager.instance.items.Count) statusMessage = "Press 'K' to combine with the selected item.";
-            else statusMessage = "Empty slot. Press 'K' here to cancel crafting";
+            if (selectedSlotIndex == firstCraftingIndex) statusMessage = "Item selected. Choose another item and press K to combine.";
+            else if (selectedSlotIndex < InventoryManager.instance.items.Count) statusMessage = "Press K to combine with the selected item.";
+            else statusMessage = "Empty slot. Press K here to cancel crafting";
         }
         else
         {
             if (selectedSlotIndex < InventoryManager.instance.items.Count)
             {
                 Item selectedItem = InventoryManager.instance.items[selectedSlotIndex];
-                statusMessage = selectedItem.itemDescription + "\n\n(Press 'K' to start combining)";
+                statusMessage = selectedItem.itemDescription + "\n\n(Press K to start combining)";
             }
-            else statusMessage = "Empty slot. Press 'C' to close";
+            else statusMessage = "Empty slot. Press C to close";
         }
         descriptionText.text = statusMessage;
     }
