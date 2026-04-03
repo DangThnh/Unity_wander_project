@@ -21,12 +21,15 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
     public string myYesText = "Có";
     public string myNoText = "Không";
 
+    // Biến static để các script khác (Inventory) kiểm tra trạng thái
+    public static bool IsInteractingWithUI = false;
+
     // Cài đặt trạng thái
     private bool playerInRange = false;
     private int selectedOption = 0; // 0 = Yes, 1 = No
     private bool isInteracting = false;
     private bool isSceneTransitionActive = false;
-    private bool hasDeclined = false; // MỚI: Trạng thái đã từ chối tương tác
+    private bool hasDeclined = false;
 
     // Tham chiếu
     private Character_movement playerController;
@@ -75,7 +78,6 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            // Khi mới bước vào vùng, reset trạng thái từ chối
             hasDeclined = false;
 
             playerController = other.GetComponent<Character_movement>();
@@ -90,7 +92,6 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            // Khi bước ra khỏi vùng, reset trạng thái để lần sau bước vào lại có thể hiện UI
             hasDeclined = false;
 
             if (!isSceneTransitionActive)
@@ -102,11 +103,6 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
 
     void Update()
     {
-        // CHỈ hiển thị UI nếu: 
-        // 1. Người chơi trong vùng
-        // 2. Chưa đang tương tác
-        // 3. Không đang chuyển cảnh
-        // 4. QUAN TRỌNG: Người chơi chưa bấm "No" (hasDeclined == false)
         if (playerInRange && !isInteracting && !isSceneTransitionActive && !hasDeclined)
         {
             ShowUI();
@@ -134,10 +130,10 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
     void ShowUI()
     {
         isInteracting = true;
+        IsInteractingWithUI = true; // Kích hoạt trạng thái khóa các phím chức năng (C, M...)
 
         if (GameManager.instance != null && GameManager.instance.questionPanel != null)
         {
-            // Cập nhật lại Text mỗi khi hiện (phòng trường hợp nhiều trigger dùng chung 1 panel)
             if (questionText != null) questionText.text = myQuestion;
             if (GameManager.instance.yesText != null) GameManager.instance.yesText.text = myYesText;
             if (GameManager.instance.noText != null) GameManager.instance.noText.text = myNoText;
@@ -158,6 +154,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
             GameManager.instance.questionPanel.SetActive(false);
         }
 
+        // Chỉ mở khóa di chuyển nếu không đang trong quá trình chuyển cảnh
         if (!isSceneTransitionActive && playerController != null)
         {
             playerController.canMove = true;
@@ -194,7 +191,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
             }
             else // Chọn NO
             {
-                hasDeclined = true; // Đánh dấu là người chơi đã từ chối
+                hasDeclined = true;
                 EndInteraction();
             }
         }
@@ -203,6 +200,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
     void EndInteraction()
     {
         isInteracting = false;
+        IsInteractingWithUI = false; // Giải phóng trạng thái để có thể bấm C, M...
         HideUI();
     }
 
@@ -215,6 +213,7 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
         }
 
         isSceneTransitionActive = true;
+        // Giữ IsInteractingWithUI = true để không bấm được gì khi đang mờ dần màn hình
         HideUI();
 
         faderCanvasGroup.blocksRaycasts = true;
@@ -232,6 +231,9 @@ public class InteractionManager_NonRequiredButton : MonoBehaviour
 
     private void LoadNewScene()
     {
+        // Trước khi đổi scene hoàn toàn, nên reset biến static
+        IsInteractingWithUI = false;
+
         if (GameManager.instance != null)
         {
             SceneManager.LoadScene(destinationSceneName);

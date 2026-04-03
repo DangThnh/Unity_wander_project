@@ -60,7 +60,7 @@ public class InventoryUI : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && !ImageReader.IsReadingStatus && !InteractionManager_NonRequiredButton.IsInteractingWithUI)
         {
             bool panelState = !inventoryPanel.activeSelf;
             inventoryPanel.SetActive(panelState);

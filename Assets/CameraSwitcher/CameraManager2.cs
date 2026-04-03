@@ -66,6 +66,9 @@ public class CameraManager : MonoBehaviour
             // TRONG CUTSCENE: Chỉ bật camera có Cinemachine Brain
             foreach (Camera cam in allCameras)
             {
+                // BỎ QUA: Nếu là UICamera thì không can thiệp
+                if (cam.CompareTag("UICamera")) continue;
+
                 // QUAN TRỌNG: Nếu thấy camera có CinemachineBrain, TUYỆT ĐỐI không tắt nó ở đây
                 if (cam.GetComponent<Cinemachine.CinemachineBrain>() != null)
                 {
@@ -80,10 +83,13 @@ public class CameraManager : MonoBehaviour
         }
         else
         {
-            // KHI KẾT THÚC CUTSCENE: Tắt hết và chỉ bật MainCamera
+            // KHI KẾT THÚC CUTSCENE: Tắt hết (trừ UICamera) và chỉ bật MainCamera
             foreach (Camera cam in allCameras)
             {
-                cam.enabled = false;
+                if (!cam.CompareTag("UICamera"))
+                {
+                    cam.enabled = false;
+                }
             }
 
             if (mainCam != null)
@@ -94,9 +100,13 @@ public class CameraManager : MonoBehaviour
             }
             else
             {
-                // Nếu không tìm thấy tag MainCamera, bật đại cái đầu tiên để tránh màn hình đen
-                allCameras[0].enabled = true;
-                activeCamera = allCameras[0];
+                // Nếu không tìm thấy tag MainCamera, bật đại cái đầu tiên (không phải UI) để tránh màn hình đen
+                Camera backupCam = allCameras.FirstOrDefault(c => !c.CompareTag("UICamera"));
+                if (backupCam != null)
+                {
+                    backupCam.enabled = true;
+                    activeCamera = backupCam;
+                }
                 Debug.LogWarning("CameraManager: Không tìm thấy tag MainCamera, bật camera dự phòng.");
             }
         }
@@ -113,8 +123,6 @@ public class CameraManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M)) SwitchToNextCameraInZone();
     }
-
-    // ... (Các hàm EnterZone, SwitchCamera, SwitchToNextCameraInZone giữ nguyên)
 
     // Phương thức được gọi từ CameraZone khi người chơi đi vào
     public void EnterZone(CameraZone newZone)
@@ -166,7 +174,11 @@ public class CameraManager : MonoBehaviour
 
         if (activeCamera != null && activeCamera != newCamera)
         {
-            activeCamera.enabled = false;
+            // CHỈ TẮT: Nếu activeCamera cũ không phải là UICamera
+            if (!activeCamera.CompareTag("UICamera"))
+            {
+                activeCamera.enabled = false;
+            }
         }
 
         activeCamera = newCamera;
@@ -197,5 +209,4 @@ public class CameraManager : MonoBehaviour
             Debug.LogWarning("Next camera in zone is null at index: " + cameraIndex);
         }
     }
-
 }

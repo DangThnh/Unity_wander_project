@@ -360,6 +360,7 @@
 "Assets/InventoryManager.cs"
 "Assets/InventoryUI.cs"
 "Assets/Item.cs"
+"Assets/Main Menu/BackgroundAspectHandler.cs"
 "Assets/Main Menu/MainMenuScript.cs"
 "Assets/MainMenu.cs"
 "Assets/NewBehaviourScript.cs"

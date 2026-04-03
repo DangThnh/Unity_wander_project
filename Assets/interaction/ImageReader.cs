@@ -17,6 +17,10 @@ public class ImageReader : MonoBehaviour
     [TextArea(5, 10)]
     public List<string> pages = new List<string>(); // Danh sách các trang nội dung
 
+    // Biến static để các script khác có thể truy cập mà không cần tham chiếu trực tiếp
+    // Giúp kiểm tra: if (ImageReader.IsReading) { // Khóa phím C, M }
+    public static bool IsReadingStatus = false;
+
     private int currentPageIndex = 0;
     private bool isPlayerNearby = false;
     private bool isReading = false;
@@ -37,9 +41,12 @@ public class ImageReader : MonoBehaviour
 
     void Update()
     {
-        // Kiểm tra tương tác
+        // Kiểm tra tương tác mở sách
         if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
         {
+            // Nếu Inventory hoặc Bản đồ đang mở (giả sử bạn có biến check ở nơi khác)
+            // thì có thể thêm logic ngăn cản mở sách ở đây.
+
             if (!isReading)
             {
                 OpenBook();
@@ -49,6 +56,13 @@ public class ImageReader : MonoBehaviour
                 NextPage();
             }
         }
+
+        // Logic bổ sung: Nếu đang đọc, vô hiệu hóa các hành động khác
+        if (isReading)
+        {
+            // Chúng ta không cần làm gì ở đây nếu các script khác (Inventory) 
+            // chủ động kiểm tra biến ImageReader.IsReadingStatus
+        }
     }
 
     void OpenBook()
@@ -56,6 +70,7 @@ public class ImageReader : MonoBehaviour
         if (pages.Count == 0) return;
 
         isReading = true;
+        IsReadingStatus = true; // Cập nhật trạng thái toàn cục
         currentPageIndex = 0;
 
         // Cập nhật hình ảnh và nội dung riêng của object này lên UI chung
@@ -64,7 +79,13 @@ public class ImageReader : MonoBehaviour
         UpdateUIContent();
         uiPanel.SetActive(true);
 
-        // (Tùy chọn) Khóa di chuyển nhân vật ở đây nếu cần
+        // Vô hiệu hóa di chuyển nhân vật (Nếu script Character_movement có biến canMove)
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var moveScript = player.GetComponent<Character_movement>();
+            if (moveScript != null) moveScript.canMove = false;
+        }
     }
 
     void NextPage()
@@ -96,27 +117,32 @@ public class ImageReader : MonoBehaviour
     public void CloseBook()
     {
         isReading = false;
+        IsReadingStatus = false; // Giải phóng trạng thái toàn cục
         uiPanel.SetActive(false);
-        // (Tùy chọn) Mở khóa di chuyển nhân vật ở đây
+
+        // Mở khóa di chuyển nhân vật
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            var moveScript = player.GetComponent<Character_movement>();
+            if (moveScript != null) moveScript.canMove = true;
+        }
     }
 
-    // Phát hiện người chơi đi vào vùng tương tác
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             isPlayerNearby = true;
-            // Bạn có thể hiện một icon "Press E" nhỏ ở đây
         }
     }
 
-    // Phát hiện người chơi đi ra khỏi vùng tương tác
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             isPlayerNearby = false;
-            if (isReading) CloseBook(); // Tự đóng sách nếu người chơi bỏ chạy
+            if (isReading) CloseBook();
         }
     }
 }
