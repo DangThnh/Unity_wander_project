@@ -8836,7 +8836,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51386b2a640443478dca784257fc54e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueText: But what come have to come.
+  dialogueText: But whatever comes, must come.
   typingSpeed: 0.08
   displayDurationAfterDone: 3
   uiTextElement: {fileID: 1179287962}
