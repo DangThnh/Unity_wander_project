@@ -5,6 +5,9 @@ using System.Collections;
 
 public class InventoryUI : MonoBehaviour
 {
+    // --- BIẾN STATIC ĐỂ CÁC SCRIPT KHÁC KIỂM TRA ---
+    public static bool IsInventoryOpenStatic { get; private set; }
+
     // Cấu hình Inventory UI
     public GameObject inventoryPanel;
     public TextMeshProUGUI descriptionText;
@@ -46,13 +49,24 @@ public class InventoryUI : MonoBehaviour
             selectedSlotEffect.gameObject.SetActive(false);
         }
 
-        // Tự động tìm AudioSource nếu chưa gán
         if (uiAudioSource == null) uiAudioSource = GetComponent<AudioSource>();
+
+        // Khởi tạo trạng thái ban đầu
+        IsInventoryOpenStatic = false;
     }
 
     void Update()
     {
+        // Cập nhật biến static dựa trên trạng thái active của panel hoặc màn hình kết quả
+        IsInventoryOpenStatic = inventoryPanel.activeSelf || isShowingResult;
+
         if (GameState.isInputLocked) return;
+
+        // Chặn mở inventory và pause menu khi đang giải đố
+               if (PauseMenuManager.IsPausedStatic || HexaPuzzleManager.IsPuzzleActiveStatic)
+        {
+            return;
+        }
 
         if (isShowingResult)
         {
@@ -155,7 +169,7 @@ public class InventoryUI : MonoBehaviour
     {
         isCraftingMode = false;
         firstCraftingIndex = -1;
-        selectedSlotEffect.color = defaultEffectColor;
+        if (selectedSlotEffect != null) selectedSlotEffect.color = defaultEffectColor;
         UpdateSlotSelectionUI();
     }
 
@@ -174,7 +188,6 @@ public class InventoryUI : MonoBehaviour
         isShowingResult = true;
         inventoryPanel.SetActive(false);
 
-        // PHÁT ÂM THANH KHI THÀNH CÔNG
         if (uiAudioSource != null && craftSuccessSound != null)
         {
             uiAudioSource.PlayOneShot(craftSuccessSound);
@@ -199,6 +212,7 @@ public class InventoryUI : MonoBehaviour
         if (resultPanel != null) resultPanel.SetActive(false);
         inventoryPanel.SetActive(true);
 
+        // Giữ player đứng yên khi quay lại inventory
         if (playerController != null) playerController.canMove = false;
 
         UpdateUI();

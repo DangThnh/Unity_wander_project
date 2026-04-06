@@ -13,32 +13,39 @@ public class DoorInteraction : MonoBehaviour
     public float openAngle = 90f;
     public float rotationSpeed = 2.0f;
 
-    [Header("Âm thanh (Kéo clip vào đây)")]
-    public AudioClip openSound; // File âm thanh mở cửa
-    [Range(0, 1)] public float volume = 1.0f; // Độ lớn âm thanh
+    [Header("Âm thanh & Thành phần phát")]
+    public AudioSource audioSource; // Bây giờ có thể kéo thả tùy ý từ Inspector
+    public AudioClip openSound;
+    [Range(0, 1)] public float volume = 1.0f;
 
     private bool playerInRange = false;
     private bool isOpened = false;
     private bool isRotating = false;
     private BoxCollider doorCollider;
-    private AudioSource audioSource; // Thành phần phát âm thanh
 
     void Awake()
     {
         // Lấy Box Collider của cánh cửa
         doorCollider = GetComponent<BoxCollider>();
 
-        // Thiết lập AudioSource
-        audioSource = GetComponent<AudioSource>();
+        // Kiểm tra nếu chưa kéo thả AudioSource vào Inspector
         if (audioSource == null)
         {
-            // Tự động thêm AudioSource nếu đối tượng chưa có
-            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
+
+            // Nếu vẫn không tìm thấy component nào trên object, lúc này mới tạo mới
+            if (audioSource == null)
+            {
+                audioSource = gameObject.AddComponent<AudioSource>();
+            }
         }
 
-        // Cấu hình mặc định cho AudioSource để âm thanh nghe chân thực hơn (3D)
-        audioSource.playOnAwake = false;
-        audioSource.spatialBlend = 1.0f; // Chế độ âm thanh 3D (nghe xa gần)
+        // Đảm bảo cấu hình âm thanh được tối ưu (giữ nguyên logic cũ)
+        if (audioSource != null)
+        {
+            audioSource.playOnAwake = false;
+            audioSource.spatialBlend = 1.0f;
+        }
 
         if (doorCollider == null)
         {
@@ -80,7 +87,6 @@ public class DoorInteraction : MonoBehaviour
             playerInRange = true;
             if (interactionText != null && !isOpened)
             {
-                // Bạn có thể thêm nội dung như "Nhấn E để mở" ở đây
                 interactionText.text = "";
             }
         }

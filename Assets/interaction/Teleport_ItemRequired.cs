@@ -227,26 +227,35 @@ public class InteractionManager_RequiredItemTeleport : MonoBehaviour
 
     private IEnumerator FadeAndLoadScene()
     {
-        if (faderCanvasGroup == null)
+        // 1. Logic Fade Out (Làm đen màn hình)
+        if (faderCanvasGroup != null)
         {
-            SceneManager.LoadScene(destinationSceneName);
-            yield break;
+            isSceneTransitionActive = true;
+            HideUI();
+            faderCanvasGroup.blocksRaycasts = true;
+
+            float timer = 0;
+            while (timer < fadeSpeed)
+            {
+                timer += Time.deltaTime;
+                faderCanvasGroup.alpha = timer / fadeSpeed;
+                yield return null;
+            }
+            faderCanvasGroup.alpha = 1;
         }
 
-        isSceneTransitionActive = true;
-        HideUI();
-        faderCanvasGroup.blocksRaycasts = true;
-
-        float timer = 0;
-        while (timer < fadeSpeed)
-        {
-            timer += Time.deltaTime;
-            faderCanvasGroup.alpha = timer / fadeSpeed;
-            yield return null;
-        }
-        faderCanvasGroup.alpha = 1;
-
+        // 2. Chờ một khoảng thời gian ngắn khi màn hình đã đen
         yield return new WaitForSeconds(blackScreenDuration);
+
+        // 3. Logic mới: Xóa vật phẩm yêu cầu khỏi Inventory trước khi Load Scene
+        // Chỉ xóa nếu requiredItemId không trống và InventoryManager tồn tại
+        if (InventoryManager.instance != null && !string.IsNullOrEmpty(requiredItemId))
+        {
+            InventoryManager.instance.RemoveItem(requiredItemId);
+            Debug.Log($"[Interaction] Đã tiêu thụ vật phẩm: {requiredItemId}");
+        }
+
+        // 4. Chuyển sang Scene mới
         SceneManager.LoadScene(destinationSceneName);
     }
 }
