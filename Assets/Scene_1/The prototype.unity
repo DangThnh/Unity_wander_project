@@ -1455,7 +1455,6 @@ GameObject:
   - component: {fileID: 589996059}
   - component: {fileID: 589996061}
   - component: {fileID: 589996062}
-  - component: {fileID: 589996063}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -1556,18 +1555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderWidth: 320
   renderHeight: 240
---- !u!114 &589996063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589996057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf98ade4d862f4b439dfdb210bf498dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &595475554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1694,7 +1681,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.569079, y: 5.757311, z: 2.4}
+  m_Size: {x: 3.269079, y: 5.757311, z: 2.4}
   m_Center: {x: -0.7345379, y: 1.4046016, z: 0.0000009536743}
 --- !u!114 &610850645
 MonoBehaviour:
@@ -4452,7 +4439,6 @@ GameObject:
   - component: {fileID: 1646836094}
   - component: {fileID: 1646836096}
   - component: {fileID: 1646836097}
-  - component: {fileID: 1646836098}
   m_Layer: 0
   m_Name: Second Camera
   m_TagString: Untagged
@@ -4553,18 +4539,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renderWidth: 320
   renderHeight: 240
---- !u!114 &1646836098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646836092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf98ade4d862f4b439dfdb210bf498dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1677821028
 GameObject:
   m_ObjectHideFlags: 0

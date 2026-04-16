@@ -944,7 +944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7ea75865764c9d489843e2de9f489ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faderCanvasGroup: {fileID: 317801700}
   destinationSceneName: Rooftop
   fadeSpeed: 3
   blackScreenDuration: 3
@@ -7960,7 +7959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1358f188c9f98241a310281fa61abc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBGM: {fileID: 8300000, guid: bc525d635f5e9e64891f808f33931292, type: 3}
+  sceneBGM: {fileID: 8300000, guid: 2a60f91b6c839e646be7daddbdc6e392, type: 3}
 --- !u!4 &750012643
 Transform:
   m_ObjectHideFlags: 0

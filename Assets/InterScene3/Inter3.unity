@@ -2450,6 +2450,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2081983429}
     - target: {fileID: 5377406317870818745, guid: cc884fc16f09ae64cb8422e0990ea74e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5377406317870818745, guid: cc884fc16f09ae64cb8422e0990ea74e, type: 3}
       propertyPath: m_PlaneDistance
       value: 4
       objectReference: {fileID: 0}
@@ -6505,7 +6509,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &1318899554
 RectTransform:
@@ -6858,7 +6862,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1358f188c9f98241a310281fa61abc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneBGM: {fileID: 8300000, guid: bc525d635f5e9e64891f808f33931292, type: 3}
+  sceneBGM: {fileID: 8300000, guid: 2a60f91b6c839e646be7daddbdc6e392, type: 3}
 --- !u!4 &1397381360
 Transform:
   m_ObjectHideFlags: 0
